@@ -54,32 +54,32 @@ export const Route = createFileRoute("/privacy")({
           </div>
         </section>
 
-        {/* Data We Collect */}
+        {/* Data Storage & Privacy */}
         <section className="space-y-4">
           <h2 className="text-xl font-black text-foreground flex items-center gap-2.5 pb-2 border-b border-border/60">
             <Server className="h-5 w-5 text-primary" />
-            الحد الأدنى من البيانات التي نجمعها
+            تخزين وحفظ مسودات خطبك
           </h2>
           <p className="text-sm leading-relaxed text-muted-foreground">
-            نحن نلتزم بمبدأ تقليل البيانات، حيث لا نجمع إلا البيانات الضرورية واللازمة لتقديم خدمات المنصة وحفظ تجربتك الفنية بأمان:
+            تتميز منصة خطيب بأنها **لا تتطلب تسجيل حساب** ولا تجمع أي معلومات شخصية أو بريد إلكتروني، مما يمنحك خصوصية وسرية مطلقة. إليك كيفية حفظ وتخزين بياناتك بأمان:
           </p>
           <ul className="space-y-3 pt-2 text-sm leading-relaxed">
             <li className="flex items-start gap-2.5">
               <span className="h-2 w-2 rounded-full bg-primary mt-1.5 shrink-0" />
               <div>
-                <strong>معلومات الحساب:</strong> البريد الإلكتروني والاسم المستعار الذي تختاره، لتأمين دخولك ومزامنة مسوداتك.
+                <strong>تخزين محلي آمن (Local Browser Storage):</strong> يتم حفظ جميع مسوداتك وخطبك وإعداداتك بشكل محلي تماماً داخل ذاكرة متصفح الويب الخاص بجهازك، ولا يتم رفعها أو تخزينها في أي خوادم خارجية تابعة لنا.
               </div>
             </li>
             <li className="flex items-start gap-2.5">
               <span className="h-2 w-2 rounded-full bg-primary mt-1.5 shrink-0" />
               <div>
-                <strong>مسودات الخطب والورشة:</strong> العناوين والمحاور والنصوص التي يتم توليدها أو تعديلها، وتُحفظ مشفرة في قاعدة بيانات آمنة لتتمكن من الوصول إليها وتعديلها وطباعتها في أي وقت.
+                <strong>تنزيل وحفظ ملفاتك (توصية هامة):</strong> نظراً لأن البيانات تُحفظ محلياً في متصفحك، فإنها قد تُحذف في حال قمت بمسح سجل التصفح (Cache/History) أو تغيير المتصفح أو الجهاز. **لذلك ننصحك بشدة وبشكل مستمر بتحميل مسوداتك كملفات وورد (Word) أو نسخها وحفظها في جهازك الخاص لكي لا تفقدها بأي شكل.**
               </div>
             </li>
             <li className="flex items-start gap-2.5">
               <span className="h-2 w-2 rounded-full bg-primary mt-1.5 shrink-0" />
               <div>
-                <strong>التفضيلات والإعدادات:</strong> إعدادات الواجهة (داكن/فاتح)، وحجم الخط المفضل لديك أثناء القراءة، لتوفير تجربة بصرية مريحة لك.
+                <strong>التفضيلات الشخصية:</strong> يتم تخزين خياراتك البصرية المفضلة (مثل تفعيل السمات داكن/فاتح وحجم الخط) محلياً أيضاً لتمنحك تجربة قراءة مخصصة ومريحة في كل مرة تفتح فيها المنصة.
               </div>
             </li>
           </ul>
@@ -106,7 +106,7 @@ export const Route = createFileRoute("/privacy")({
             حقوقك الكاملة على بياناتك
           </h2>
           <p className="text-sm leading-relaxed text-muted-foreground">
-            بصفتك صاحب الحساب وصاحب الرسالة، يمنحك نظام منصة خطيب تحكماً كاملاً وحقوقاً أصيلة على بياناتك تشمل:
+            بصفتك صاحب الكلمة والرسالة، تمنحك منصة خطيب تحكماً كاملاً وحقوقاً أصيلة على بياناتك تشمل:
           </p>
           <div className="grid gap-3 sm:grid-cols-3 text-center mt-3">
             <div className="p-4 rounded-xl border border-border bg-card/60">
@@ -118,8 +118,8 @@ export const Route = createFileRoute("/privacy")({
               <span className="text-[10px] text-muted-foreground block mt-1">أرشفة وحفظ مسوداتك في خزانة آمنة خاصة بك.</span>
             </div>
             <div className="p-4 rounded-xl border border-border bg-card/60">
-              <span className="font-bold text-xs text-foreground block">الحذف النهائي</span>
-              <span className="text-[10px] text-muted-foreground block mt-1">إمكانية حذف أي خطبة أو حذف حسابك بأكمله نهائياً وفوراً.</span>
+              <span className="font-bold text-xs text-foreground block">الإزالة ومسح الذاكرة</span>
+              <span className="text-[10px] text-muted-foreground block mt-1">إمكانية حذف أي خطبة فردية فوراً أو مسح ذاكرة التخزين المحلية بالكامل.</span>
             </div>
           </div>
         </section>
