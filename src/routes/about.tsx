@@ -37,6 +37,7 @@ function AboutPage() {
     <div dir="rtl" className="min-h-svh bg-background text-foreground overflow-x-hidden">
       <MarketingHeader />
       <HeroSection />
+      <ShariaSensitivitySection />
       <SacredTrustSection />
       <SermonJourneySection />
       <GuaranteesSection />
@@ -140,17 +141,136 @@ function HeroSection() {
           منصة خطيب ليست بديلاً عن الخطيب صاحب البصيرة والرسالة، بل هي ورشته الذكية التي تكسر جمود الصفحة البيضاء، وتنظم أفكاره، وتوثق مصادره، ليتفرغ لروح موعظته وتأثيرها.
         </p>
 
-        <div className="mt-10 flex flex-wrap justify-center gap-4">
-          <Link to="/workshop">
-            <Button
-              size="lg"
-              className="group rounded-full bg-gradient-brand px-8 py-6 text-base font-semibold shadow-elegant transition-all hover:translate-y-[-2px] cursor-pointer"
-            >
-              ابدأ تجربتك الأولى
-              <ArrowLeft className="me-2 h-5 w-5 transition-transform group-hover:-translate-x-1" />
-            </Button>
-          </Link>
+      </div>
+    </section>
+  );
+}
+/* ---------- Sharia Sensitivity & Responsibility Section ---------- */
+function ShariaSensitivitySection() {
+  return (
+    <section className="relative overflow-hidden bg-[#f4faf7] py-24 text-[#0a352c] border-y border-emerald-100/80">
+      {/* Absolute Decorative Glow Elements (Light Version) */}
+      <div className="absolute top-0 right-1/4 h-80 w-80 rounded-full bg-emerald-200/20 blur-[100px] pointer-events-none" />
+      <div className="absolute bottom-0 left-1/4 h-80 w-80 rounded-full bg-amber-200/20 blur-[100px] pointer-events-none" />
+
+      {/* Intricate Arabic Geometric Patterns in Background */}
+      <div className="absolute inset-0 opacity-[0.04] pointer-events-none select-none"
+        style={{
+          backgroundImage: `radial-gradient(circle, var(--color-primary) 1px, transparent 1px)`,
+          backgroundSize: "40px 40px"
+        }}
+      />
+
+      <div className="relative z-10 mx-auto max-w-6xl px-4 sm:px-6">
+        {/* Section Heading with high spiritual and emotional appeal */}
+        <div className="mx-auto max-w-3xl text-center space-y-4">
+          <span className="inline-flex items-center gap-2 rounded-full border border-amber-600/30 bg-amber-50 px-4 py-1.5 text-xs font-bold text-amber-700 backdrop-blur animate-pulse">
+            ⚠️ توضيح شرعي هام وميثاق أمانة
+          </span>
+          <h2 className="font-display text-3xl font-black leading-tight sm:text-4xl lg:text-5xl text-[#073229]">
+            ميثاق المنبر: <span className="text-gradient-brand">أمانة الكلمة</span> والمسؤولية الشرعية
+          </h2>
+          <p className="mt-6 text-base leading-loose text-[#2b534b]">
+            إن فكرة منصة <strong className="text-primary font-bold">«خطيب»</strong> فكرة دقيقة وحساسة للغاية؛ لارتباطها الوثيق بـ <strong className="text-amber-700 font-bold">شريعة رب العالمين وعقيدة الأمة</strong> وسير منبر رسول الله ﷺ. ونحن نؤمن يقيناً أن التوجيه والفتوى والموعظة لا تؤخذ من آلة صماء، بل من قلوب وعقول علمائها.
+          </p>
         </div>
+
+        {/* Cinematic Split Comparison: Helper Tool vs Preacher's Spirit */}
+        <div className="mt-16 grid gap-8 lg:grid-cols-2 items-stretch">
+          {/* Right Box: What the platform does (The Tool) */}
+          <div className="relative overflow-hidden rounded-[2rem] border border-emerald-200 bg-white/95 p-8 sm:p-10 shadow-sm backdrop-blur flex flex-col justify-between transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] hover:-translate-y-2 hover:scale-[1.015] hover:border-emerald-400 hover:shadow-elegant hover:ring-4 hover:ring-emerald-500/10">
+            <div className="absolute -top-10 -right-10 h-32 w-32 rounded-full bg-emerald-500/5 blur-2xl" />
+            
+            <div>
+              <div className="flex items-center gap-3">
+                <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-emerald-50 text-emerald-600">
+                  <Sparkles className="h-6 w-6 animate-pulse" />
+                </div>
+                <div>
+                  <span className="text-[10px] font-extrabold text-emerald-600 uppercase tracking-widest">مهمتنا التقنية</span>
+                  <h3 className="text-xl font-black text-[#073229] mt-0.5">منصة خطيب (الورشة التحضيرية)</h3>
+                </div>
+              </div>
+
+              <p className="mt-5 text-sm leading-loose text-[#2b534b]">
+                نهيئ لك الأرضية الخصبة، ونوفر عليك ساعات العناء الذهني من خلال:
+              </p>
+
+              <ul className="mt-6 space-y-4">
+                {[
+                  "بناء الهياكل الموضوعية المتماسكة بلا تشتت أو فوضى.",
+                  "التخريج والتوثيق والتحقق من صحة الأدلة والآيات بنقرة واحدة.",
+                  "كسر جمود الصفحة البيضاء باقتراح أفكار ومحاور بلاغية مترابطة.",
+                  "حفظ أرشيفك وصياغاتك الخاصة لتكون مرجعك الدائم بمكان واحد آمن."
+                ].map((item, idx) => (
+                  <li key={idx} className="flex items-start gap-3 text-xs leading-relaxed text-[#234b43]">
+                    <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-emerald-100 text-emerald-700 font-bold text-[10px]">✓</span>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="mt-8 border-t border-emerald-100 pt-6 text-[11px] text-emerald-600 font-mono font-bold">
+              // أداة ذكية للمساندة والترتيب وصناعة المسودات الأولية فقط
+            </div>
+          </div>
+
+          {/* Left Box: The Preacher's Role (The Soul) - Designed to look majestic and high-priority */}
+          <div className="relative overflow-hidden rounded-[2rem] border border-amber-300 bg-gradient-to-br from-amber-50/60 via-white to-white p-8 sm:p-10 shadow-md backdrop-blur flex flex-col justify-between transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] hover:-translate-y-2 hover:scale-[1.015] hover:border-amber-400 hover:shadow-elegant hover:ring-4 hover:ring-amber-500/10">
+            <div className="absolute -top-10 -right-10 h-32 w-32 rounded-full bg-amber-500/10 blur-2xl animate-pulse" />
+            
+            <div>
+              <div className="flex items-center gap-3">
+                <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-amber-100 text-amber-750">
+                  <ShieldCheck className="h-6 w-6 text-amber-700" />
+                </div>
+                <div>
+                  <span className="text-[10px] font-extrabold text-amber-700 uppercase tracking-widest">أمانتك الشرعية</span>
+                  <h3 className="text-xl font-black text-[#3d2e0f] mt-0.5">الخطيب والإمام (روح المنبر وبصيرته)</h3>
+                </div>
+              </div>
+
+              <p className="mt-5 text-sm leading-loose text-[#52411b]">
+                تقع المسؤولية العلمية والفقهية بالكامل على عاتقك كقائد روحي للأمة عبر:
+              </p>
+
+              <ul className="mt-6 space-y-4">
+                {[
+                  "المراجعة العلمية الدقيقة لكل ما تُخرجه منصة خطيب وضمان موافقته الشرعية.",
+                  "مواءمة الموعظة لواقع جماعتك الفعلي وما يصلح شأنهم وحالهم الفردي والمجتمعي.",
+                  "التعديل، الحذف، والإضافة من مخزونك المعرفي وعلمك الشرعي المتراكم.",
+                  "بث اليقين وصدق العاطفة والإلقاء المؤثر الذي لا تستطيع أي آلة مجاراته."
+                ].map((item, idx) => (
+                  <li key={idx} className="flex items-start gap-3 text-xs leading-relaxed text-[#4d3b16]">
+                    <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-amber-100 text-amber-700 font-bold text-[10px]">★</span>
+                    <span className="font-bold text-[#2e2103]">{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="mt-8 border-t border-amber-200 pt-6 text-[11px] text-amber-750 font-mono font-bold">
+              // المنبر أمانتك ومستقرك.. التقنية ورقتك الذكية، وأنت العقل والبصيرة
+            </div>
+          </div>
+        </div>
+
+        {/* Solemn warning box at the bottom */}
+        <div className="mt-12 rounded-[1.5rem] border border-amber-300 bg-gradient-to-r from-amber-50/80 to-[#fdfcfa]/90 p-6 sm:p-8 backdrop-blur shadow-sm">
+          <div className="flex flex-col sm:flex-row items-center gap-4 text-center sm:text-right">
+            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-amber-100 text-amber-700">
+              <Quote className="h-6 w-6 shrink-0" />
+            </div>
+            <div>
+              <p className="text-sm font-black text-amber-800">ميثاق التوقيع العلمي والشرعي المعتمد</p>
+              <p className="mt-1.5 text-xs leading-relaxed text-[#4d3f23] font-medium">
+                يُحظر شرعاً وأخلاقاً استخدام منصة **«خطيب»** لإنشاء مسودات وإلقائها من على المنبر مباشرة دون قراءة، مراجعة وتعديل مسبق من الخطيب. إن بناء المسودة هو أداة تسهيل وورشة عمل تدعم إبداعك، والمسودة لا تكتسب شرعيتها ومصداقيتها إلا بمرورها على قلب وعقل وبصيرة الإمام.
+              </p>
+            </div>
+          </div>
+        </div>
+
       </div>
     </section>
   );
@@ -530,8 +650,8 @@ function GuaranteesSection() {
           ))}
         </div>
 
-        {/* Cinematic CTA banner */}
-        <div className="relative mt-20 overflow-hidden rounded-[2rem] bg-gradient-brand p-8 text-primary-foreground text-center sm:p-12 shadow-elegant">
+        {/* Cinematic CTA banner with elastic hover animation */}
+        <div className="relative mt-20 overflow-hidden rounded-[2rem] bg-gradient-brand p-8 text-primary-foreground text-center sm:p-12 shadow-elegant transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] hover:-translate-y-2 hover:scale-[1.012] hover:shadow-2xl hover:ring-4 hover:ring-primary/20">
           <div aria-hidden className="pointer-events-none absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_center,_white_10%,_transparent_100%)]" />
           <h3 className="relative text-2xl font-black sm:text-3xl leading-snug">
             التجربة أفضل برهان.. صغ خطبتك المقبلة في دقائق معدودة!

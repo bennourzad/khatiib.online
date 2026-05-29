@@ -31,6 +31,7 @@ import {
 } from "@/components/ui/accordion";
 import { MarketingHeader, MarketingFooter } from "@/components/marketing/MarketingChrome";
 import challengeBg from "@/assets/bg-khatiib-01.png";
+import { Logo } from "@/components/brand/Logo";
 
 
 
@@ -64,7 +65,6 @@ function LandingPage() {
       <FlowDiagram />
       <OutcomeSection />
       <SourcesAnimationSection />
-      <Testimonials />
       <FaqSection />
       <FinalCTA />
       <MarketingFooter />
@@ -92,7 +92,7 @@ function Hero() {
           </span>
 
           <h1 className="text-4xl font-black leading-[1.15] tracking-tight sm:text-5xl lg:text-6xl">
-            من فكرة عابرة..
+            من فكرة أو نازلة..
             <br />
             إلى <span className="text-gradient-brand">خطبة منبر</span> متماسكة.
           </h1>
@@ -137,63 +137,334 @@ function Hero() {
 }
 
 function HeroVisual() {
+  const [step, setStep] = useState(0);
+  const [sourceIdx, setSourceIdx] = useState(0);
+
+  useEffect(() => {
+    if (step === 0) {
+      setSourceIdx(0);
+      const interval = setInterval(() => {
+        setSourceIdx((prev) => (prev < 7 ? prev + 1 : 7));
+      }, 625); // 625ms * 8 = 5000ms (perfect alignment with 5s loader)
+      return () => clearInterval(interval);
+    }
+  }, [step]);
+
+  useEffect(() => {
+    let timer: NodeJS.Timeout;
+    const runLoop = (currentStep: number) => {
+      // Step 0 (Loading logo) gets 5000ms, Step 5 (Success overlay) gets 4000ms climax.
+      // Other generation steps (1, 2, 3, 4) get 1500ms.
+      let duration = 1500;
+      if (currentStep === 0) duration = 5000;
+      else if (currentStep === 5) duration = 4000;
+
+      timer = setTimeout(() => {
+        const next = (currentStep + 1) % 6;
+        setStep(next);
+        runLoop(next);
+      }, duration);
+    };
+
+    runLoop(0);
+    return () => clearTimeout(timer);
+  }, []);
+
+  const axes = [
+    { icon: Target, text: "المحور الأول: حقيقة الصبر ومكانته في القرآن" },
+    { icon: Layers, text: "المحور الثاني: أنواع الصبر الثلاثة" },
+    { icon: Users, text: "المحور الثالث: قصص الأنبياء في الصبر" },
+    { icon: CheckCircle2, text: "خطوات عملية لتربية النفس على الصبر" },
+  ];
+
   return (
-    <div className="relative">
-      <div className="absolute -inset-6 -z-10 rounded-[2.5rem] bg-gradient-brand opacity-20 blur-2xl" />
-      <div className="relative overflow-hidden rounded-[2rem] border border-border bg-card p-7 shadow-elegant">
-        <div className="flex items-center justify-between">
-          <span className="rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold text-primary">
-            مسودة الخطبة
-          </span>
-          <div className="flex gap-1.5">
-            <span className="h-2.5 w-2.5 rounded-full bg-muted-foreground/30" />
-            <span className="h-2.5 w-2.5 rounded-full bg-muted-foreground/30" />
-            <span className="h-2.5 w-2.5 rounded-full bg-primary/70" />
-          </div>
-        </div>
+    <div className="relative flex flex-col gap-3">
+      {/* Glow background */}
+      <div className="absolute -inset-6 -z-10 rounded-[2.5rem] bg-gradient-brand opacity-20 blur-2xl transition-all duration-1000" />
 
-        <h3 className="mt-5 font-display text-2xl font-extrabold leading-snug">
-          الصبر في زمن الفتن
-        </h3>
-        <p className="mt-1 text-xs text-muted-foreground">خطبة جمعة · 18 دقيقة · جمهور عام</p>
-
-        <div className="mt-6 space-y-3">
-          {[
-            { icon: Target, text: "المحور الأول: حقيقة الصبر ومكانته في القرآن" },
-            { icon: Layers, text: "المحور الثاني: أنواع الصبر الثلاثة" },
-            { icon: Users, text: "المحور الثالث: قصص الأنبياء في الصبر" },
-            { icon: CheckCircle2, text: "خطوات عملية لتربية النفس على الصبر" },
-          ].map((row, i) => (
-            <div
-              key={i}
-              className="flex items-start gap-3 rounded-xl border border-border bg-surface-muted/60 p-3.5"
-            >
-              <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
-                <row.icon className="h-4 w-4" />
-              </div>
-              <p className="pt-1 text-sm leading-relaxed text-foreground">{row.text}</p>
-            </div>
-          ))}
-        </div>
-
-        <div className="mt-6 flex items-center justify-between rounded-xl bg-gradient-brand p-4 text-primary-foreground">
-          <div className="text-right">
-            <p className="text-xs opacity-90">جاهزة للتنزيل والتعديل</p>
-            <p className="text-sm font-bold">المسودة الكاملة بين يديك</p>
-          </div>
-          <FileText className="h-7 w-7 opacity-90" />
-        </div>
+      {/* Quote chip — always visible above the animation card */}
+      <div className="flex items-start gap-2 rounded-2xl border border-primary/20 bg-card/80 px-4 py-3 shadow-sm backdrop-blur-sm transition-all duration-300 hover:scale-[1.02] hover:shadow-elegant cursor-default">
+        <Quote className="h-4 w-4 shrink-0 text-primary mt-0.5" />
+        <p className="text-xs leading-relaxed text-muted-foreground">
+          «وفّرت عليّ ساعات من التحضير، ومنحتني مسودةً انطلقت منها بأسلوبي».
+        </p>
       </div>
 
-      {/* Floating quote chip */}
-      <div className="absolute -bottom-6 -start-6 hidden max-w-[16rem] rounded-2xl border border-border bg-card p-4 shadow-elegant sm:block">
-        <div className="flex items-start gap-2">
-          <Quote className="h-4 w-4 shrink-0 text-primary" />
-          <p className="text-xs leading-relaxed text-muted-foreground">
-            «وفّرت عليّ ساعات من التحضير، ومنحتني مسودةً انطلقت منها بأسلوبي».
+      {/* Decorative stars / sparks on step 4 */}
+      {step === 4 && (
+        <>
+          <span className="pointer-events-none absolute -top-4 -start-4 h-4 w-4 text-amber-400 animate-bounce">
+            <Sparkles className="h-4 w-4" />
+          </span>
+          <span className="pointer-events-none absolute -bottom-4 -end-4 h-4 w-4 text-primary animate-pulse">
+            <Sparkles className="h-4 w-4" />
+          </span>
+        </>
+      )}
+
+      {/* Floating verified reference card in step 3 */}
+      {step === 3 && (
+        <div className="absolute -top-8 -end-8 hidden max-w-[14rem] rounded-xl border border-primary/40 bg-card p-3.5 shadow-elegant sm:block animate-[workshop-rise_0.4s_ease-out_both] z-20">
+          <div className="flex items-center gap-2">
+            <BookOpen className="h-4 w-4 text-primary animate-pulse" />
+            <span className="text-[10px] font-bold text-primary">تم تخريج الآية بنجاح</span>
+          </div>
+          <p className="mt-1.5 text-xs font-serif leading-relaxed text-foreground font-semibold">
+            ﴿ وَبَشِّرِ الصَّابِرِينَ ﴾
+          </p>
+          <p className="text-[9px] text-muted-foreground mt-0.5">البقرة: ١٥٥ · الرسم العثماني</p>
+        </div>
+      )}
+
+      <div className="relative overflow-hidden rounded-[2rem] border border-border bg-card p-7 shadow-elegant transition-all duration-500">
+
+        {/* Shimmer overlay for when draft is compiling */}
+        {step > 0 && step < 4 && (
+          <div className="absolute inset-0 pointer-events-none z-10 opacity-30 bg-gradient-to-r from-transparent via-primary/5 to-transparent animate-[workshop-shimmer_3s_infinite] bg-[length:200%_100%]" />
+        )}
+
+        {/* Top Header Row */}
+        <div className="flex items-center justify-between">
+          <span className={`rounded-full px-3 py-1 text-xs font-semibold transition-all duration-500 ${step === 0 ? "bg-muted text-muted-foreground animate-pulse" :
+            step === 1 ? "bg-amber-500/10 text-amber-600 dark:text-amber-400 animate-pulse" :
+              step === 2 ? "bg-sky-500/10 text-sky-600 dark:text-sky-400" :
+                step === 3 ? "bg-purple-500/10 text-purple-600 dark:text-purple-400" :
+                  step === 4 ? "bg-success/15 text-success font-bold" :
+                    "bg-primary/15 text-primary font-extrabold"
+            }`}>
+            {step === 0 && "تهيئة المنصة... 🔄"}
+            {step === 1 && "تحديد الموضوع... 📝"}
+            {step === 2 && "توليد المحاور... ⚡"}
+            {step === 3 && "توثيق الآيات والأحاديث... 📖"}
+            {step === 4 && "المسودة جاهزة! ✨"}
+            {step === 5 && "صياغة مكتملة! 🎉"}
+          </span>
+
+          {/* Steps Indicator dots */}
+          <div className="flex gap-1.5">
+            {[0, 1, 2, 3, 4, 5].map((s) => (
+              <span
+                key={s}
+                className={`h-2.5 w-2.5 rounded-full transition-all duration-300 ${s === step
+                  ? "bg-primary w-5 opacity-100"
+                  : s < step
+                    ? "bg-primary/50 opacity-60"
+                    : "bg-muted-foreground/30 opacity-40"
+                  }`}
+              />
+            ))}
+          </div>
+        </div>
+
+        {/* Title & Category info */}
+        <div className="mt-5 min-h-[4rem]">
+          <h3 className="font-display text-2xl font-extrabold leading-snug flex items-center gap-2">
+            {step <= 1 ? (
+              <span className="text-foreground/90 border-l-2 border-primary pl-2 animate-pulse">
+                الصبر في زمن الفتن
+              </span>
+            ) : (
+              <span className="text-foreground transition-all duration-500">
+                الصبر في زمن الفتن
+              </span>
+            )}
+          </h3>
+          <p className="mt-1 text-xs text-muted-foreground transition-opacity duration-300">
+            خطبة جمعة · 18 دقيقة · جمهور عام
           </p>
         </div>
+
+        {/* Dynamic Sermon Axes (Outline) */}
+        <div className="mt-6 space-y-3 min-h-[17.5rem]">
+          {axes.map((row, i) => {
+            const isLoaded = step >= 2;
+            const isHighlighted = step === 3 && i === 0; // Highlight first axis in reference step
+            const Icon = row.icon;
+
+            return (
+              <div
+                key={i}
+                className={`flex items-start gap-3 rounded-xl border p-3.5 transition-all duration-500 ${isHighlighted
+                  ? "border-primary bg-primary/5 shadow-md scale-[1.02] ring-1 ring-primary/30"
+                  : isLoaded
+                    ? "border-border bg-surface-muted/60"
+                    : "border-border/40 bg-surface-muted/20 opacity-50"
+                  }`}
+              >
+                {/* Check/Number Icon Container */}
+                <div className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-lg transition-all duration-500 ${isHighlighted
+                  ? "bg-primary text-primary-foreground scale-110 shadow-sm"
+                  : isLoaded
+                    ? "bg-primary/10 text-primary"
+                    : "bg-muted text-muted-foreground/40 animate-pulse"
+                  }`}>
+                  {isLoaded ? (
+                    <Icon className={`h-4 w-4 ${isHighlighted ? "animate-pulse" : ""}`} />
+                  ) : (
+                    <span className="h-2 w-2 rounded-full bg-muted-foreground/30 animate-pulse" />
+                  )}
+                </div>
+
+                {/* Content block */}
+                <div className="flex-1 pt-1 min-h-[1.5rem]">
+                  {isLoaded ? (
+                    <div className="animate-[workshop-chip-in_0.4s_ease-out_both]" style={{ animationDelay: `${i * 120}ms` }}>
+                      <p className="text-sm leading-relaxed text-foreground font-semibold">
+                        {row.text}
+                      </p>
+                    </div>
+                  ) : (
+                    /* Perfectly sized grey skeleton simulator to prevent any layout shifts */
+                    <div className="space-y-2 py-1">
+                      <div
+                        className="h-3 rounded-full bg-muted animate-pulse"
+                        style={{ width: i === 0 ? "85%" : i === 1 ? "65%" : i === 2 ? "75%" : "50%" }}
+                      />
+                    </div>
+                  )}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Dynamic Status / Download Banner at bottom */}
+        <div className={`mt-6 flex items-center justify-between rounded-xl p-4 transition-all duration-500 ${step === 4
+          ? "bg-gradient-brand text-primary-foreground shadow-lg scale-100 opacity-100"
+          : "bg-surface-muted border border-border text-muted-foreground"
+          }`}>
+          <div className="text-right">
+            <p className="text-xs transition-opacity duration-300">
+              {step <= 1 && "بناء الفكرة والمدخل الأساسي..."}
+              {step === 2 && "جاري صياغة هيكل المحاور وترتيب الأفكار..."}
+              {step === 3 && "جاري إدراج الآيات القرآنية والأحاديث..."}
+              {step === 4 && "جاهزة للتنزيل والتعديل"}
+            </p>
+            <p className={`text-sm font-bold transition-all duration-500 ${step === 4 ? "text-white" : "text-foreground"
+              }`}>
+              {step <= 1 && "1. تهيئة الموضوع..."}
+              {step === 2 && "2. بناء الهيكل الموضوعي..."}
+              {step === 3 && "3. توثيق وتخريج المراجع..."}
+              {step === 4 && "المسودة الكاملة بين يديك"}
+            </p>
+          </div>
+
+          <div className="relative">
+            {step === 4 && (
+              <span className="absolute -inset-2 rounded-full bg-white/20 animate-ping" />
+            )}
+            <div className={`flex h-9 w-9 items-center justify-center rounded-full transition-all duration-500 ${step === 4
+              ? "bg-white/20 text-white"
+              : "bg-muted text-muted-foreground/50"
+              }`}>
+              {step === 4 ? (
+                <FileText className="h-5 w-5 animate-pulse" />
+              ) : (
+                <Wand2 className="h-5 w-5 animate-spin [animation-duration:3s]" />
+              )}
+            </div>
+          </div>
+        </div>
+
+        {/* Loading Overlay Screen (Step 0 - Initialization) */}
+        {step === 0 && (
+          <div className="absolute inset-0 z-30 flex flex-col justify-center items-center text-center p-7 bg-card rounded-[2rem] border border-border shadow-elegant animate-[workshop-stage-in_0.5s_cubic-bezier(0.22,1,0.36,1)_both]">
+            {/* Ambient glowing circles */}
+            <div className="absolute -top-10 -right-10 h-32 w-32 rounded-full bg-primary/10 blur-2xl pointer-events-none" />
+            <div className="absolute -bottom-10 -left-10 h-32 w-32 rounded-full bg-primary/5 blur-2xl pointer-events-none" />
+
+            {/* Logo with pulsing effect */}
+            <Logo size="lg" className="animate-pulse [animation-duration:2.5s]" />
+
+            <p className="mt-3.5 max-w-xs text-xs font-semibold leading-relaxed text-muted-foreground animate-pulse">
+              تهيئة ورشة العمل المنهجية المعتمدة...
+            </p>
+
+            {/* Loading Progress Bar */}
+            <div className="relative mt-5 flex h-1.5 w-40 overflow-hidden rounded-full bg-muted">
+              <div className="h-full rounded-full bg-gradient-brand animate-[workshop-progress_5s_linear_infinite]" />
+            </div>
+
+            {/* 7 Verified Sources - Interactive Terminal Log Box */}
+            <div className="mt-5 w-full max-w-[21rem] rounded-xl bg-zinc-950/95 p-3.5 text-right font-mono text-[9px] text-emerald-400 border border-zinc-800/80 shadow-inner min-h-[9rem] flex flex-col justify-between">
+              <div className="space-y-1 select-none">
+                {[
+                  "ربط الباحث القرآني (tafsir.app)... ",
+                  "ربط    الدرر السنية (dorar.net)...",
+                  "ربط الباحث الحديثي - تطبيق حديث  (hdith.com)  ... ",
+                  "ربط موقع إسلام سؤال وجواب (islamqa.info)  ... ",
+                  "تحميل سنن ومسانيد السنة النبوية... ",
+                  "مزامنة موقع إمام المسجد  (alimam.ws) ... "
+                ].map((src, idx) => {
+                  const isDone = sourceIdx > idx;
+                  const isActive = sourceIdx === idx;
+                  if (!isDone && !isActive) return null;
+                  return (
+                    <p
+                      key={idx}
+                      className={`animate-[workshop-chip-in_0.2s_ease-out_both] flex items-center gap-1.5 justify-end transition-colors duration-300 ${isDone ? "text-emerald-500/80" : "text-emerald-400 font-bold animate-pulse"
+                        }`}
+                    >
+                      <span>{src}</span>
+                      <span className="text-[10px] font-bold">{isDone ? "✓" : "⚡"}</span>
+                    </p>
+                  );
+                })}
+              </div>
+
+              <div className="border-t border-zinc-800/50 pt-2 mt-2 flex items-center justify-between text-[8px] text-zinc-500 select-none">
+                <span>{sourceIdx === 7 ? "اكتمل ربط 7 مصادر شرعية!" : "جاري فحص وتوثيق المصادر..."}</span>
+                <span>تخريج المصادر: {Math.min(sourceIdx, 7)}/7</span>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Success Overlay Screen (Step 5 - Climax Showcase) */}
+        {step === 5 && (
+          <div className="absolute inset-0 z-30 flex flex-col justify-center items-center text-center p-7 bg-card/98 backdrop-blur-md rounded-[2rem] animate-[workshop-stage-in_0.5s_cubic-bezier(0.22,1,0.36,1)_both]">
+            {/* Ambient gold/emerald background circles inside overlay */}
+            <div className="absolute -top-10 -right-10 h-32 w-32 rounded-full bg-success/10 blur-2xl pointer-events-none" />
+            <div className="absolute -bottom-10 -left-10 h-32 w-32 rounded-full bg-primary/15 blur-2xl pointer-events-none" />
+
+            {/* Spinning decorative orbit ring in background */}
+            <div className="absolute h-48 w-48 rounded-full border border-success/10 animate-[workshop-ring-spin_12s_linear_infinite]" />
+
+            {/* Glowing check circle in center */}
+            <div className="relative mb-5 flex h-16 w-16 items-center justify-center rounded-full bg-success/10 border border-success/20 shadow-[0_0_20px_rgba(34,197,94,0.15)] animate-bounce [animation-duration:2.5s]">
+              {/* Ripple wave */}
+              <span className="absolute inset-0 rounded-full bg-success/20 animate-ping" />
+              <Check className="h-8 w-8 text-success stroke-[2.5]" />
+            </div>
+
+            {/* Headline */}
+            <h3 className="font-display text-2xl font-black leading-tight text-gradient-brand">
+              تمت الصياغة بنجاح! 🎉
+            </h3>
+
+            <p className="mt-2 max-w-sm text-xs leading-relaxed text-muted-foreground">
+              مسودتك المتكاملة أصبحت جاهزة للتنزيل وبدء تعديلها بأسلوبك الشخصي.
+            </p>
+
+            {/* Metrics Chips Grid */}
+            <div className="mt-6 flex flex-wrap justify-center gap-2">
+              <span className="inline-flex items-center gap-1 rounded-full border border-border/80 bg-surface-muted/50 px-3 py-1 text-[11px] font-semibold text-muted-foreground animate-[workshop-chip-in_0.4s_ease-out_both] [animation-delay:100ms]">
+                <FileText className="h-3 w-3 text-primary" />
+                ١,٤٢٠ كلمة موثقة
+              </span>
+              <span className="inline-flex items-center gap-1 rounded-full border border-border/80 bg-surface-muted/50 px-3 py-1 text-[11px] font-semibold text-muted-foreground animate-[workshop-chip-in_0.4s_ease-out_both] [animation-delay:200ms]">
+                <Clock className="h-3 w-3 text-primary" />
+                ١٨ دقيقة إلقاء
+              </span>
+              <span className="inline-flex items-center gap-1 rounded-full border border-border/80 bg-surface-muted/50 px-3 py-1 text-[11px] font-semibold text-muted-foreground animate-[workshop-chip-in_0.4s_ease-out_both] [animation-delay:300ms]">
+                <ShieldCheck className="h-3 w-3 text-primary" />
+                تأصيل شرعي معتمد
+              </span>
+            </div>
+          </div>
+        )}
       </div>
+
     </div>
   );
 }
@@ -255,7 +526,7 @@ function ProblemSection() {
             تحدّي الخطيب
           </span>
           <h2 className="mt-4 text-3xl font-black leading-tight sm:text-4xl lg:text-5xl">
-            70٪ من جهد الخطبة <span className="text-warning">يضيع</span> في صياغةٍ غير منظَّمة.
+            تقضي 70٪ من وقتك في بناء الهيكل وتخريج الأثر، بدلاً من <span className="text-warning">التركيز</span> على رسالتك الدعوية.
           </h2>
           <p className="mt-5 text-base leading-loose text-background/70">
             الفكرة تولد متوهجة، ثم تخفت بين البحث والترتيب والتنقيح؛ المنبر يستحق ورشةً تحفظ التوهج وتختصر الجهد.
@@ -303,7 +574,7 @@ function FlowDiagram() {
       kicker: "اعرف من تخاطب",
       preview: {
         label: "الجمهور المستهدف",
-        value: "شباب المسجد · مستوى متوسط",
+        value: "شباب المسجد · طلبة العلم ",
         tags: ["شباب", "عامّ", "أُسر"],
       },
     },
@@ -315,8 +586,8 @@ function FlowDiagram() {
       kicker: "اضبط الإيقاع",
       preview: {
         label: "النبرة والمدة",
-        value: "هادئة وعاطفية · 12 دقيقة",
-        tags: ["هادئة", "ففقهي تاصلي", "عاطفية"],
+        value: "اجتماعي معالج  · 12 دقيقة",
+        tags: ["علمي تأصيلي", "فقهي تاصلي", "وعظي مؤثر"],
       },
     },
     {
@@ -328,7 +599,7 @@ function FlowDiagram() {
       preview: {
         label: "محاور الخطبة",
         value: "مقدمة · ثلاث وقفات · خاتمة",
-        tags: ["وقفة ١", "وقفة ٢", "وقفة ٣"],
+        tags: ["حقيقة الموضوع ومكانته    ", "الواقع المعاصر وتحدياته ", "أثره على الأسرة والمجتمع   "],
       },
     },
     {
@@ -1041,10 +1312,10 @@ function SourcesAnimationSection() {
                         )}
                         <div
                           className={`relative flex h-10 w-10 items-center justify-center rounded-xl text-xs font-bold transition-all duration-300 ${isActive
-                              ? "bg-primary text-primary-foreground shadow-md"
-                              : isDone
-                                ? "bg-primary/10 text-primary"
-                                : "bg-muted text-muted-foreground"
+                            ? "bg-primary text-primary-foreground shadow-md"
+                            : isDone
+                              ? "bg-primary/10 text-primary"
+                              : "bg-muted text-muted-foreground"
                             }`}
                         >
                           {isDone ? (
@@ -1241,51 +1512,6 @@ function SourcesAnimationSection() {
   );
 }
 
-function Testimonials() {
-  const reviews = [
-    {
-      q: "ساعدتني الورشة في تنظيم محاور خطبتي خلال دقائق، بعد أن كنت أقضي عليها ساعات. لم تكتب لي خطبتي، لكنها فتحت لي الأبواب التي كنت أقف أمامها.",
-      n: "الشيخ عبدالله",
-      m: "إمام جامع · الرياض",
-    },
-    {
-      q: "أنا لا أحب الخطبة المعلَّبة، وهذا ما أحببته هنا: أستلم مسودةً منظمة، ثم أصوغها بلساني وأسلوبي. وفّرت عليّ نصف يوم من التحضير.",
-      n: "أبو يزن",
-      m: "خطيب جمعة · جدة",
-    },
-  ];
-
-  return (
-    <section className="bg-surface-muted/40 py-20 sm:py-24">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6">
-        <div className="mx-auto max-w-2xl text-center">
-          <span className="text-sm font-semibold uppercase tracking-widest text-primary">
-            قصص خطباء
-          </span>
-          <h2 className="mt-4 text-3xl font-black leading-tight sm:text-4xl">
-            خطباء اختاروا الورشة المنظَّمة بدل الصفحة البيضاء
-          </h2>
-        </div>
-
-        <div className="mt-12 grid gap-6 md:grid-cols-2">
-          {reviews.map((r) => (
-            <div
-              key={r.n}
-              className="relative rounded-2xl border border-border bg-card p-7 shadow-sm"
-            >
-              <Quote className="absolute -top-3 right-6 h-7 w-7 rounded-full bg-primary p-1.5 text-primary-foreground" />
-              <p className="text-base leading-loose text-foreground">«{r.q}»</p>
-              <div className="mt-5 border-t border-border pt-4">
-                <p className="font-bold">{r.n}</p>
-                <p className="text-xs text-muted-foreground">{r.m}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
 
 /* ---------- FAQ ---------- */
 function FaqSection() {

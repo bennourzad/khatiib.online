@@ -667,9 +667,9 @@ export function CreateWizard() {
 
           <div className="rounded-xl border border-primary/20 bg-primary/5 p-4 text-center mt-3">
             <Sparkles className="h-7 w-7 text-primary mx-auto mb-2" />
-            <p className="text-sm font-semibold text-foreground">الميثاق والمسؤولية الشرعية:</p>
+            <p className="text-sm font-semibold text-foreground">اكتملت صياغة المسودة  بنجاح!   :</p>
             <p className="text-xs leading-relaxed text-muted-foreground mt-1.5 font-medium">
-              "دورك مراجعة وإضافة لمستك كخطيب وصاحب منبر وبصيرة."
+              " كخطيب وصاحب منبر، دورك الآن هو المراجعة الدقيقة واللمسة الأبوية الموجهة، لتنطلق بالكلمة من قلبك إلى قلوبهم.       "
             </p>
           </div>
 
