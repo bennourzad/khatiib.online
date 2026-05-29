@@ -201,10 +201,10 @@ function HeroVisual() {
 /* ---------- Trust strip ---------- */
 function TrustStrip() {
   const items = [
-    { icon: ShieldCheck, label: "إشراف شرعي على المحاور" },
+    { icon: ShieldCheck, label: "هياكل موضوعية مضبوطة " },
     { icon: BookOpen, label: "مراجع قرآنية ونبوية" },
-    { icon: Sparkles, label: "ذكاء اصطناعي مخصّص للخطب" },
-    { icon: Users, label: "مئات الخطباء الفاعلين" },
+    { icon: Sparkles, label: "ورشة صياغة ذكية متكاملة   " },
+    { icon: Users, label: "ربط مباشر بالمصادر الشرعية  " },
   ];
   return (
     <section className="border-y border-border/60 bg-surface-muted/50">
@@ -459,10 +459,10 @@ function FlowDiagram() {
                       >
                         <div
                           className={`flex h-9 w-9 items-center justify-center rounded-full text-xs font-bold transition-all duration-300 ${isActive
-                              ? "bg-gradient-brand text-primary-foreground scale-110 shadow-lg ring-4 ring-primary/20 animate-pulse-slow"
-                              : isDone
-                                ? "bg-gradient-brand text-primary-foreground"
-                                : "bg-muted text-muted-foreground border border-border"
+                            ? "bg-gradient-brand text-primary-foreground scale-110 shadow-lg ring-4 ring-primary/20 animate-pulse-slow"
+                            : isDone
+                              ? "bg-gradient-brand text-primary-foreground"
+                              : "bg-muted text-muted-foreground border border-border"
                             }`}
                         >
                           {isDone ? "✓" : it.n}
@@ -1040,13 +1040,12 @@ function SourcesAnimationSection() {
                           <span className="absolute -inset-1 rounded-xl bg-primary/30 opacity-40 blur-md" />
                         )}
                         <div
-                          className={`relative flex h-10 w-10 items-center justify-center rounded-xl text-xs font-bold transition-all duration-300 ${
-                            isActive
+                          className={`relative flex h-10 w-10 items-center justify-center rounded-xl text-xs font-bold transition-all duration-300 ${isActive
                               ? "bg-primary text-primary-foreground shadow-md"
                               : isDone
-                              ? "bg-primary/10 text-primary"
-                              : "bg-muted text-muted-foreground"
-                          }`}
+                                ? "bg-primary/10 text-primary"
+                                : "bg-muted text-muted-foreground"
+                            }`}
                         >
                           {isDone ? (
                             <Check className="h-5 w-5 stroke-[2.5]" />

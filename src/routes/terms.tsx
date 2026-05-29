@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { StaticPage } from "@/components/marketing/StaticPage";
-import { FileText, ShieldAlert, Award, FileSignature, CheckCircle2, BookOpen } from "lucide-react";
+import { FileText, ShieldAlert, Award, FileSignature, CheckCircle2, BookOpen, Globe } from "lucide-react";
 
 export const Route = createFileRoute("/terms")({
   head: () => ({
@@ -77,6 +77,174 @@ export const Route = createFileRoute("/terms")({
           </ul>
         </section>
 
+        {/* Reliable Sources and Operation Mechanism */}
+        <section className="space-y-4">
+          <h2 className="text-xl font-black text-foreground flex items-center gap-2.5 pb-2 border-b border-border/60">
+            <Globe className="h-5 w-5 text-primary" />
+            آلية جلب المصادر وحرمة البيانات (أمان فني وشرعي)
+          </h2>
+          <p className="text-sm leading-relaxed text-muted-foreground">
+            تلتزم منصة **خطيب** بأعلى معايير الأمان الفني والنزاهة الشرعية في جلب النصوص والأدلة الفقهية وتخريج الأحاديث:
+          </p>
+          <div className="relative overflow-hidden rounded-2xl border border-primary/20 bg-primary/5 p-6 space-y-4">
+            <div className="absolute top-0 right-0 h-24 w-24 rounded-full bg-primary/10 blur-xl opacity-70" />
+
+            <div className="flex gap-4 items-start relative z-10">
+              <div className="h-10 w-10 shrink-0 rounded-lg bg-primary/10 flex items-center justify-center text-primary font-bold">
+                ✓
+              </div>
+              <div className="space-y-1">
+                <h4 className="text-sm font-bold text-foreground">
+                  تصفح سريع وآمن للمصادر العامة
+                </h4>
+                <p className="text-xs leading-relaxed text-muted-foreground">
+                  تقوم المنصة بتصفح المواقع والموسوعات الفقهية والحديثية العامة المفتوحة للجميع على الإنترنت (مثل الدرر السنية وموسوعات التفاسير المعتمدة) بشكل سريع جداً وتلقائي، لقراءة الآيات والأحاديث النبوية الشريفة والتحقق من صحتها وتخريجها.
+                </p>
+              </div>
+            </div>
+
+            <div className="flex gap-4 items-start relative z-10">
+              <div className="h-10 w-10 shrink-0 rounded-lg bg-primary/10 flex items-center justify-center text-primary font-bold">
+                🔒
+              </div>
+              <div className="space-y-1">
+                <h4 className="text-sm font-bold text-foreground">
+                  احترام الملكية وحظر الاختراق الفني
+                </h4>
+                <p className="text-xs leading-relaxed text-muted-foreground">
+                  <strong>نؤكد بشكل قاطع أنه لا يتم اختراق أو انتهاك أي من هذه المصادر أو قواعد البيانات بأي شكل من الأشكال.</strong> عمليتنا قانونية وفنية 100% وتعتمد على البروتوكولات المسموح بها للتصفح العام وقراءة المحتوى المفتوح، وذلك احتراماً للأمانة الرقمية وحقوق الجهات المالكة لتلك المواقع.
+                </p>
+              </div>
+            </div>
+
+            <div className="flex gap-4 items-start relative z-10">
+              <div className="h-10 w-10 shrink-0 rounded-lg bg-primary/10 flex items-center justify-center text-primary font-bold">
+                ✍️
+              </div>
+              <div className="space-y-1">
+                <h4 className="text-sm font-bold text-foreground">
+                  صياغة احترافية وموثوقة للمسودات
+                </h4>
+                <p className="text-xs leading-relaxed text-muted-foreground">
+                  بعد القراءة الفورية والسريعة للأدلة، تقوم الأداة بتجميع النصوص وصياغة هيكل مسودة الخطبة بشكل احترافي رصين يليق بجلال المنبر وعظمة الرسالة، مما يضمن خلو المسودات من الركاكة اللغوية وتدعيمها بأدلة شرعية موثوقة وثابتة.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Detailed Sources List */}
+          <div className="mt-4 bg-card border border-border/80 rounded-2xl p-5 space-y-4">
+            <h3 className="text-sm font-bold text-foreground flex items-center gap-2 pb-2 border-b border-border/40">
+              <span className="h-2 w-2 rounded-full bg-primary animate-pulse" />
+              المصادر العلمية الموثوقة التي تتصفحها المنصة:
+            </h3>
+
+            <div className="space-y-4 divide-y divide-border/30">
+              <div className="pt-0 space-y-1">
+                <div className="flex justify-between items-center text-xs">
+                  <span className="font-bold text-primary">الموسوعة الحديثية - الدرر السنية</span>
+                  <a
+                    href="https://dorar.net"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-primary hover:underline font-mono text-[10px]"
+                  >
+                    dorar.net ↗
+                  </a>
+                </div>
+                <p className="text-xs text-muted-foreground leading-relaxed">
+                  <strong>عملها:</strong> تصفح سريع للتحقق الدقيق من درجة صحة الأحاديث الشريفة، ومعرفة أحكام كبار المحدثين عليها لضمان نقاوة الخطبة من الأحاديث الموضوعة.
+                </p>
+              </div>
+
+              <div className="pt-3 space-y-1">
+                <div className="flex justify-between items-center text-xs">
+                  <span className="font-bold text-primary">الباحث الحديثي - تطبيق حديث</span>
+                  <a
+                    href="https://hdith.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-primary hover:underline font-mono text-[10px]"
+                  >
+                    hdith.com ↗
+                  </a>
+                </div>
+                <p className="text-xs text-muted-foreground leading-relaxed">
+                  <strong>عملها:</strong> البحث الفوري وتخريج الأحاديث النبوية الشريفة من بطون أمهات الكتب الفقهية والحديثية بشكل لحظي مأمون.
+                </p>
+              </div>
+
+              <div className="pt-3 space-y-1">
+                <div className="flex justify-between items-center text-xs">
+                  <span className="font-bold text-primary">الباحث القرآني ومصحف المدينة</span>
+                  <a
+                    href="https://surah.my"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-primary hover:underline font-mono text-[10px]"
+                  >
+                    surah.my ↗
+                  </a>
+                </div>
+                <p className="text-xs text-muted-foreground leading-relaxed">
+                  <strong>عملها:</strong> جلب الآيات الكريمة برسمها العثماني المعتمد من المصحف الشريف وضبط تفسيرها وسياقها الفقهي السليم.
+                </p>
+              </div>
+
+              <div className="pt-3 space-y-1">
+                <div className="flex justify-between items-center text-xs">
+                  <span className="font-bold text-primary">موسوعة الفقه الإسلامي ومواقع الفتاوى الرسمية</span>
+                  <a
+                    href="https://islamweb.net"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-primary hover:underline font-mono text-[10px]"
+                  >
+                    islamweb.net ↗
+                  </a>
+                </div>
+                <p className="text-xs text-muted-foreground leading-relaxed">
+                  <strong>عملها:</strong> تصفح المسائل والتقسيمات الفقهية والتأصيلية المعتمدة لدى المذاهب الأربعة لضمان سلامة الأحكام الفقهية الواردة في المسودة.
+                </p>
+              </div>
+
+              <div className="pt-3 space-y-1">
+                <div className="flex justify-between items-center text-xs">
+                  <span className="font-bold text-primary">موقع إسلام سؤال وجواب</span>
+                  <a
+                    href="https://islamqa.info"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-primary hover:underline font-mono text-[10px]"
+                  >
+                    islamqa.info ↗
+                  </a>
+                </div>
+                <p className="text-xs text-muted-foreground leading-relaxed">
+                  <strong>عملها:</strong> تصفح الفتاوى الشرعية المحررة والمسائل التأصيلية للتحقق الفوري من سلامة الأقوال الفقهية المعتبرة.
+                </p>
+              </div>
+
+              <div className="pt-3 space-y-1">
+                <div className="flex justify-between items-center text-xs">
+                  <span className="font-bold text-primary">موقع إمام المسجد</span>
+                  <a
+                    href="https://alimam.ws/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-primary hover:underline font-mono text-[10px]"
+                  >
+                    alimam.ws ↗
+                  </a>
+                </div>
+                <p className="text-xs text-muted-foreground leading-relaxed">
+                  <strong>عملها:</strong> الاسترشاد بالحقائب الدعوية المعتمدة والخطب النموذجية والموضوعات المعاصرة لتغذية محتوى الوعظ والإرشاد.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Intellectual Property */}
         <section className="space-y-4">
           <h2 className="text-xl font-black text-foreground flex items-center gap-2.5 pb-2 border-b border-border/60">
@@ -85,7 +253,7 @@ export const Route = createFileRoute("/terms")({
           </h2>
           <div className="p-5 rounded-2xl border border-border bg-card shadow-sm">
             <p className="text-xs leading-relaxed text-muted-foreground">
-              أي مسودة أو نص خطبة تقوم بصياغته وتعديله باستخدام منصة **خطيب** هو **ملك فكري مطلق وخاص بك وحدك**. 
+              أي مسودة أو نص خطبة تقوم بصياغته وتعديله باستخدام منصة **خطيب** هو **ملك فكري مطلق وخاص بك وحدك**.
               لا تدعي المنصة أي حقوق ملكية أو نشر أو توزيع على خطبك ومؤلفاتك المنبرية، ولديك الحرية الكاملة في إلقائها، نشرها كتابيًا، أو طباعتها وتوزيعها دعويًا.
             </p>
           </div>

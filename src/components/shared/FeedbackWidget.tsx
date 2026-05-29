@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { MessageSquare, Star, Sparkles, X, Heart, MessageSquareQuote } from "lucide-react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
+import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
@@ -8,44 +9,52 @@ const QUESTIONS = [
   {
     id: 1,
     title: "فكرة ورشة العمل الذكية",
-    question: "ما مدى ملاءمة فكرة ورشة العمل الذكية لمساعدة أئمة المساجد في تنظيم أفكارهم الكبيرة؟",
+    question: "ما تقييمك لفكرة ورشة العمل الذكية لتنظيم أفكارك المنبرية؟",
   },
   {
     id: 2,
     title: "تجربة الصياغة وسرعة التوليد",
-    question: "كيف تقيّم تجربة وسرعة صياغة مسودة الخطبة بخطواتها المتكاملة ونظام التوليد السريع الجديد؟",
+    question: "كيف تقيّم سرعة وسلاسة صياغة مسودة الخطبة الجديدة؟",
   },
   {
     id: 3,
     title: "جماليات التصميم والواجهة الرسومية",
-    question: "ما مدى رضاك عن جمال وسلاسة الواجهة الرسومية والتصميم البصري وتناسق ألوان الثيم الفاخر؟",
+    question: "ما مدى رضاك عن جمال تصميم الواجهات وألوان الثيم الفاخر؟",
   },
   {
     id: 4,
     title: "أصالة وموثوقية الأدلة الشرعية",
-    question: "ما تقييمك لأصالة وموثوقية تخريج الأحاديث وتفسير الآيات بالرسم العثماني المعتمد؟",
+    question: "ما تقييمك لموثوقية الأدلة وتخريج الأحاديث بالمنصة؟",
   },
   {
     id: 5,
     title: "توفير الوقت والجهد للخطيب",
-    question: "إلى أي مدى ترى أن هذا المشروع سيوفر وقتاً وجهداً حقيقياً للخطيب في تحضيره المنبري الأسبوعي؟",
+    question: "إلى أي مدى تُسهم المنصة في توفير وقتك وجهدك التحضيري؟",
   },
 ];
 
 const LOCAL_STORAGE_KEY = "khatiib:feedback_submitted";
+const LOCAL_STORAGE_RATINGS = "khatiib:feedback_ratings";
 
 export function FeedbackWidget() {
   const [isOpen, setIsOpen] = useState(false);
   const [ratings, setRatings] = useState<Record<number, number>>({});
   const [submitted, setSubmitted] = useState(false);
   const [hoveredStars, setHoveredStars] = useState<Record<number, number>>({});
-  const [alreadySubmitted, setAlreadySubmitted] = useState(false);
 
   // Check if already submitted in previous sessions
   useEffect(() => {
     const isSubmitted = localStorage.getItem(LOCAL_STORAGE_KEY);
+    const storedRatings = localStorage.getItem(LOCAL_STORAGE_RATINGS);
     if (isSubmitted === "true") {
-      setAlreadySubmitted(true);
+      setSubmitted(true);
+      if (storedRatings) {
+        try {
+          setRatings(JSON.parse(storedRatings));
+        } catch (e) {
+          console.error("Error parsing stored ratings", e);
+        }
+      }
     }
   }, []);
 
@@ -71,17 +80,23 @@ export function FeedbackWidget() {
     if (Object.keys(ratings).length < QUESTIONS.length) {
       return;
     }
-    
-    // Save to local storage to prevent showing floating button again
+
+    // Save to local storage
     localStorage.setItem(LOCAL_STORAGE_KEY, "true");
+    localStorage.setItem(LOCAL_STORAGE_RATINGS, JSON.stringify(ratings));
     setSubmitted(true);
+  };
+
+  const handleReset = () => {
+    localStorage.removeItem(LOCAL_STORAGE_KEY);
+    localStorage.removeItem(LOCAL_STORAGE_RATINGS);
+    setRatings({});
+    setSubmitted(false);
+    setHoveredStars({});
   };
 
   const handleClose = () => {
     setIsOpen(false);
-    if (submitted) {
-      setAlreadySubmitted(true);
-    }
   };
 
   const isFormValid = Object.keys(ratings).length === QUESTIONS.length;
@@ -89,21 +104,16 @@ export function FeedbackWidget() {
   // Custom feedback text based on rating
   const feedbackMessage = getFeedbackMessage(averageRating);
 
-  // Don't render floating icon if survey has been completed
-  if (alreadySubmitted) {
-    return null;
-  }
-
   return (
     <>
       {/* Floating Trigger Button on the Left */}
       <button
         type="button"
         onClick={() => setIsOpen(true)}
-        className="fixed left-5 bottom-8 md:bottom-10 z-40 flex h-14 w-14 items-center justify-center rounded-full bg-gradient-brand text-primary-foreground shadow-elegant transition-all duration-300 hover:scale-108 hover:rotate-3 active:scale-95 cursor-pointer animate-pulse-slow border border-primary/20"
+        className="fixed left-5 bottom-8 md:bottom-10 z-40 flex h-12 w-12 items-center justify-center rounded-full bg-gradient-brand text-primary-foreground shadow-elegant transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer border border-primary/20"
         title="استبيان تقييم المنصة"
       >
-        <MessageSquareQuote className="h-6 w-6 text-primary-foreground" />
+        <MessageSquareQuote className="h-5 w-5 text-primary-foreground" />
       </button>
 
       {/* Survey Modal */}
@@ -131,9 +141,6 @@ export function FeedbackWidget() {
                 const currentHover = hoveredStars[q.id] || 0;
                 return (
                   <div key={q.id} className="space-y-2">
-                    <div className="text-xs font-semibold text-primary uppercase tracking-wider">
-                      {q.title}
-                    </div>
                     <p className="text-sm leading-relaxed text-foreground font-medium">
                       {q.question}
                     </p>
@@ -201,7 +208,7 @@ export function FeedbackWidget() {
                     <rect x="25" y="25" width="50" height="50" transform="rotate(67.5 50 50)" />
                   </svg>
                 </div>
-                
+
                 {/* Glowing Outer Sphere */}
                 <div className="absolute h-28 w-28 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center shadow-elegant">
                   <div className="text-center font-mono">
@@ -228,8 +235,8 @@ export function FeedbackWidget() {
                         isFull
                           ? "fill-amber-400 text-amber-400 drop-shadow-[0_0_8px_rgba(251,191,36,0.6)]"
                           : isHalf
-                          ? "fill-amber-400/40 text-amber-400"
-                          : "text-muted-foreground/30"
+                            ? "fill-amber-400/40 text-amber-400"
+                            : "text-muted-foreground/30"
                       )}
                     />
                   );
@@ -250,12 +257,62 @@ export function FeedbackWidget() {
                 </div>
               </div>
 
-              <div className="pt-6 mt-8 border-t border-border/50">
+              {/* Detailed Question Ratings Accordion */}
+              <Accordion type="single" collapsible className="w-full mt-8 text-right bg-muted/40 border border-border/40 rounded-xl px-4 py-1">
+                <AccordionItem value="detailed-ratings" className="border-none">
+                  <AccordionTrigger className="text-xs font-black text-primary hover:no-underline flex items-center justify-between py-3">
+                    <span className="flex items-center gap-1.5">
+                      <Sparkles className="h-3.5 w-3.5 text-primary" />
+                      تفاصيل تقييمك للمنصة
+                    </span>
+                  </AccordionTrigger>
+                  <AccordionContent className="pt-1 pb-3">
+                    <div className="divide-y divide-border/20">
+                      {QUESTIONS.map((q) => {
+                        const ratingVal = ratings[q.id] || 0;
+                        return (
+                          <div key={q.id} className="flex justify-between items-center py-2.5 text-xs font-semibold">
+                            <span className="text-foreground/90">{q.title}</span>
+                            <div className="flex flex-row-reverse items-center gap-0.5">
+                              {Array.from({ length: 5 }).map((_, starIdx) => {
+                                const val = 5 - starIdx;
+                                return (
+                                  <Star
+                                    key={starIdx}
+                                    className={cn(
+                                      "h-3.5 w-3.5 stroke-[1.8]",
+                                      val <= ratingVal
+                                        ? "fill-amber-400 text-amber-400 drop-shadow-[0_0_3px_rgba(251,191,36,0.3)]"
+                                        : "text-muted-foreground/20"
+                                    )}
+                                  />
+                                );
+                              })}
+                              <span className="ms-1.5 font-bold text-amber-500 font-mono text-[10px]">
+                                {ratingVal}
+                              </span>
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </AccordionContent>
+                </AccordionItem>
+              </Accordion>
+
+              <div className="pt-6 mt-8 border-t border-border/50 flex flex-row gap-3 w-full">
                 <Button
                   onClick={handleClose}
-                  className="w-full bg-gradient-brand text-primary-foreground font-semibold shadow-elegant hover:scale-[1.02] active:scale-[0.98] transition-all rounded-xl py-5"
+                  className="flex-1 bg-gradient-brand text-primary-foreground font-semibold shadow-elegant hover:scale-[1.02] active:scale-[0.98] transition-all rounded-xl py-5 text-xs sm:text-sm"
                 >
                   إغلاق واستكمال الورشة
+                </Button>
+                <Button
+                  onClick={handleReset}
+                  variant="outline"
+                  className="flex-1 text-foreground border-border/80 font-semibold hover:bg-muted/40 transition-all rounded-xl py-5 text-xs sm:text-sm"
+                >
+                  إعادة تقييم الاستبيان
                 </Button>
               </div>
             </div>

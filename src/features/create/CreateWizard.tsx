@@ -738,7 +738,7 @@ function GenerationProgressDialog({ open }: { open: boolean }) {
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2 text-right">
             <Loader2 className="h-4 w-4 animate-spin text-primary" />
-            جارٍ صياغة الخطبة
+            جارٍ صياغة مسودة الخطبة
           </DialogTitle>
           <DialogDescription className="text-right">
             نُحضّر لك مسودة أوّلية بناءً على الموجز الذي حدّدته. قد تستغرق العملية بضع لحظات.
@@ -753,6 +753,19 @@ function GenerationProgressDialog({ open }: { open: boolean }) {
           </div>
         </div>
 
+        {/* Reassurance Notice */}
+        <div className="rounded-xl border border-amber-500/25 bg-amber-500/5 p-4 flex gap-3 items-start text-right">
+          <Sparkles className="h-5 w-5 text-amber-500 shrink-0 mt-0.5 animate-pulse" />
+          <div className="space-y-1">
+            <h4 className="text-xs font-bold text-amber-600 dark:text-amber-400">
+              لماذا قد تستغرق الصياغة بعض الوقت؟
+            </h4>
+            <p className="text-[11.5px] leading-relaxed text-muted-foreground font-medium">
+              عملية الصياغة لا تتم بشكل عشوائي، بل تمر عبر <strong>مراحل دقيقة وحقيقية</strong> تشمل استدعاء الأدلة بالرسم العثماني وتخريج الأحاديث وتنسيق الهياكل لتقديم مسودة رصينة. <strong>سترى ثمرة هذا الإتقان والتأصيل بنفسك فور مراجعة النتيجة!</strong>
+            </p>
+          </div>
+        </div>
+
         <div className="rounded-xl border border-primary/20 bg-primary/5 p-4">
           <div className="mb-1 flex items-center gap-1.5 text-xs font-semibold text-primary">
             <Sparkles className="h-3.5 w-3.5" />
@@ -763,9 +776,7 @@ function GenerationProgressDialog({ open }: { open: boolean }) {
           </p>
         </div>
 
-        <p className="text-[11px] leading-relaxed text-muted-foreground">
-          المحتوى المولَّد مسودة استرشادية؛ يُرجى مراجعته شرعيًا ولغويًا قبل إلقائه على المصلين.
-        </p>
+
         <p className="text-[11px] leading-relaxed text-muted-foreground">
           يتم توليد الخطبة بناءً على نتائج المواقع الشرعية الموثوقة: tafsir.app · hdith.com · sunnah.one · islamqa.info · dorar.net · khutabaa.com · islamweb.net
         </p>

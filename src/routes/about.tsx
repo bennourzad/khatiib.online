@@ -64,12 +64,12 @@ function IslamicOrnament() {
         <rect x="50" y="50" width="100" height="100" transform="rotate(45 100 100)" />
         <rect x="50" y="50" width="100" height="100" transform="rotate(22.5 100 100)" />
         <rect x="50" y="50" width="100" height="100" transform="rotate(67.5 100 100)" />
-        
+
         <circle cx="100" cy="100" r="70" strokeDasharray="2,2" />
         <circle cx="100" cy="100" r="50" />
         <circle cx="100" cy="100" r="35" strokeDasharray="3,3" />
         <circle cx="100" cy="100" r="18" />
-        
+
         {/* Intricate rays */}
         {Array.from({ length: 32 }).map((_, i) => (
           <line
@@ -83,9 +83,9 @@ function IslamicOrnament() {
         ))}
 
         {/* Outer majestic polygon points */}
-        <polygon 
-          points="100,8 115,35 150,35 135,65 170,80 135,95 150,125 115,125 100,152 85,125 50,125 65,95 30,80 65,65 50,35 85,35" 
-          strokeWidth="0.75" 
+        <polygon
+          points="100,8 115,35 150,35 135,65 170,80 135,95 150,125 115,125 100,152 85,125 50,125 65,95 30,80 65,65 50,35 85,35"
+          strokeWidth="0.75"
         />
       </svg>
     </div>
@@ -104,8 +104,8 @@ function HeroSection() {
         className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-35"
       />
       {/* Dark theme overlay with transparency */}
-      <div 
-        aria-hidden="true" 
+      <div
+        aria-hidden="true"
         className="pointer-events-none absolute inset-0 bg-[#031d18]/85"
       />
 
@@ -113,15 +113,15 @@ function HeroSection() {
       <IslamicOrnament />
 
       {/* Central vibrant primary glow (Less calm, more dynamic) */}
-      <div 
-        aria-hidden 
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--color-primary-soft)_0%,_transparent_75%)] opacity-35 mix-blend-screen"
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--color-primary-soft)_0%,_transparent_30%)] opacity-30 mix-blend-screen"
       />
 
       {/* Background glow blobs */}
       <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute -top-40 right-1/4 h-[30rem] w-[30rem] rounded-full bg-primary/30 blur-3xl opacity-60 animate-pulse-slow" />
-        <div className="absolute bottom-10 left-1/4 h-[25rem] w-[25rem] rounded-full bg-primary/20 blur-3xl opacity-40" />
+        <div className="absolute -top-40 right-1/4 h-[30rem] w-[30rem] rounded-full bg-primary/30 blur-3xl opacity-80 animate-pulse-slow" />
+        <div className="absolute bottom-10 left-1/4 h-[25rem] w-[25rem] rounded-full bg-primary/20 blur-3xl opacity-80" />
       </div>
 
       <div className="relative z-10 mx-auto max-w-5xl px-4 text-center sm:px-6 animate-fade-in-up">
@@ -369,7 +369,7 @@ function SermonJourneySection() {
                   {/* Background line */}
                   <div className="absolute inset-x-4 top-1/2 h-0.5 -translate-y-1/2 bg-white/10 -z-10" />
                   {/* Progress line */}
-                  <div 
+                  <div
                     className="absolute start-4 top-1/2 h-0.5 -translate-y-1/2 bg-gradient-brand -z-10 transition-all duration-500 ease-out"
                     style={{ width: `calc(${((active) / (steps.length - 1)) * 100}% - 1.5rem)` }}
                   />
@@ -385,13 +385,12 @@ function SermonJourneySection() {
                         className="relative focus:outline-none"
                       >
                         <div
-                          className={`flex h-9 w-9 items-center justify-center rounded-full text-xs font-bold transition-all duration-300 ${
-                            isActive
-                              ? "bg-gradient-brand text-slate-950 scale-110 shadow-lg ring-4 ring-primary/20 animate-pulse-slow font-mono font-bold"
-                              : isDone
+                          className={`flex h-9 w-9 items-center justify-center rounded-full text-xs font-bold transition-all duration-300 ${isActive
+                            ? "bg-gradient-brand text-slate-950 scale-110 shadow-lg ring-4 ring-primary/20 animate-pulse-slow font-mono font-bold"
+                            : isDone
                               ? "bg-gradient-brand text-slate-950 font-mono font-bold"
                               : "bg-white/5 text-slate-400 border border-white/10 font-mono"
-                          }`}
+                            }`}
                         >
                           {isDone ? "✓" : st.num}
                         </div>
@@ -419,22 +418,20 @@ function SermonJourneySection() {
                       <button
                         type="button"
                         onClick={() => setActive(idx)}
-                        className={`group relative flex w-full items-center gap-3 rounded-xl border p-3 text-right transition-all duration-300 ${
-                          isActive
-                            ? "border-primary/50 bg-primary/10 text-white"
-                            : "border-transparent text-slate-400 hover:border-white/10 hover:bg-white/5"
-                        }`}
+                        className={`group relative flex w-full items-center gap-3 rounded-xl border p-3 text-right transition-all duration-300 ${isActive
+                          ? "border-primary/50 bg-primary/10 text-white"
+                          : "border-transparent text-slate-400 hover:border-white/10 hover:bg-white/5"
+                          }`}
                       >
                         <div className="relative shrink-0">
                           {isActive && (
                             <span className="absolute -inset-1 rounded-xl bg-gradient-brand opacity-40 blur-md" />
                           )}
                           <div
-                            className={`relative flex h-10 w-10 items-center justify-center rounded-xl text-xs font-black transition-all ${
-                              isActive || isDone
-                                ? "bg-gradient-brand text-slate-950 font-bold font-mono"
-                                : "bg-white/5 text-slate-400"
-                            }`}
+                            className={`relative flex h-10 w-10 items-center justify-center rounded-xl text-xs font-black transition-all ${isActive || isDone
+                              ? "bg-gradient-brand text-slate-950 font-bold font-mono"
+                              : "bg-white/5 text-slate-400"
+                              }`}
                           >
                             {isDone ? "✓" : st.num}
                           </div>
