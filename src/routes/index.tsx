@@ -178,17 +178,9 @@ function HeroVisual() {
   ];
 
   return (
-    <div className="relative flex flex-col gap-3">
+    <div className="relative">
       {/* Glow background */}
       <div className="absolute -inset-6 -z-10 rounded-[2.5rem] bg-gradient-brand opacity-20 blur-2xl transition-all duration-1000" />
-
-      {/* Quote chip — always visible above the animation card */}
-      <div className="flex items-start gap-2 rounded-2xl border border-primary/20 bg-card/80 px-4 py-3 shadow-sm backdrop-blur-sm transition-all duration-300 hover:scale-[1.02] hover:shadow-elegant cursor-default">
-        <Quote className="h-4 w-4 shrink-0 text-primary mt-0.5" />
-        <p className="text-xs leading-relaxed text-muted-foreground">
-          «وفّرت عليّ ساعات من التحضير، ومنحتني مسودةً انطلقت منها بأسلوبي».
-        </p>
-      </div>
 
       {/* Decorative stars / sparks on step 4 */}
       {step === 4 && (
