@@ -130,6 +130,7 @@ export function CreateWizard() {
   const [busy, setBusy] = useState(false);
   const [generating, setGenerating] = useState(false);
   const [savedId, setSavedId] = useState<string | null>(null);
+  const [showSuccessDialog, setShowSuccessDialog] = useState(false);
   const [philosophyAck, setPhilosophyAck] = useState(false);
   const [showAlert, setShowAlert] = useState(true);
   const [isNearBottom, setIsNearBottom] = useState(false);
@@ -189,6 +190,20 @@ export function CreateWizard() {
       setAiTitle(result.title);
       setDraft(result.sections);
       setOutline(result.sections.map((s) => ({ heading: s.heading, intent: "" })));
+
+      // Auto-save the generated sermon
+      const id = savedSermonsStore.add({
+        title: result.title || buildTitle(brief),
+        topic,
+        contentType,
+        audience,
+        duration,
+        tone,
+        axes,
+        sections: result.sections,
+      });
+      setSavedId(id);
+      setShowSuccessDialog(true);
       setStep(6);
     } catch (e) {
       toast.error((e as Error).message || "تعذّر توليد الخطبة");
@@ -255,7 +270,7 @@ export function CreateWizard() {
 
       {/* تنبيه فلسفة المنصة العائم */}
       {showAlert && (
-        <div 
+        <div
           className={cn(
             "fixed right-4 md:right-6 left-4 md:left-auto md:max-w-md z-50 rounded-2xl border-r-4 border-primary bg-card/95 backdrop-blur p-4 shadow-elegant animate-in fade-in slide-in-from-bottom-5 transition-all duration-500",
             isNearBottom ? "bottom-[135px] md:bottom-[105px]" : "bottom-4 md:bottom-6"
@@ -628,6 +643,51 @@ export function CreateWizard() {
 
       </Card>
       <GenerationProgressDialog open={generating} />
+
+      {/* Success Dialog */}
+      <Dialog open={showSuccessDialog} onOpenChange={setShowSuccessDialog}>
+        <DialogContent
+          dir="rtl"
+          className="sm:max-w-md border-border/80 bg-card/95 backdrop-blur-xl shadow-2xl animate-fade-in"
+          onPointerDownOutside={(e) => e.preventDefault()}
+          onEscapeKeyDown={(e) => e.preventDefault()}
+        >
+          <DialogHeader className="text-right">
+            <DialogTitle className="flex items-center gap-2 text-foreground text-xl font-bold">
+              <span className="relative flex h-3 w-3">
+                <span className="absolute inline-flex h-full w-full rounded-full bg-emerald-500 animate-ping opacity-75" />
+                <span className="relative inline-flex h-3 w-3 rounded-full bg-emerald-500" />
+              </span>
+              تم صياغة مسودة خطبتك بنجاح!
+            </DialogTitle>
+            <DialogDescription className="text-sm mt-3 leading-relaxed text-muted-foreground">
+              تم حفظ الخطبة تلقائيًا في أرشيفك الشخصي (خطبي المحفوظة).
+            </DialogDescription>
+          </DialogHeader>
+
+          <div className="rounded-xl border border-primary/20 bg-primary/5 p-4 text-center mt-3">
+            <Sparkles className="h-7 w-7 text-primary mx-auto mb-2" />
+            <p className="text-sm font-semibold text-foreground">الميثاق والمسؤولية الشرعية:</p>
+            <p className="text-xs leading-relaxed text-muted-foreground mt-1.5 font-medium">
+              "دورك مراجعة وإضافة لمستك كخطيب وصاحب منبر وبصيرة."
+            </p>
+          </div>
+
+          <div className="flex justify-end gap-3 mt-5">
+            <Button
+              onClick={() => {
+                setShowSuccessDialog(false);
+                if (savedId) {
+                  navigate({ to: "/app/saved/$id", params: { id: savedId } });
+                }
+              }}
+              className="w-full bg-gradient-brand text-primary-foreground font-semibold shadow-lg hover:scale-[1.02] active:scale-[0.98] transition-all cursor-pointer rounded-xl py-5"
+            >
+              عرض المسودة
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }

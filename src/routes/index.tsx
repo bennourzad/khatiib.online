@@ -1037,14 +1037,16 @@ function SourcesAnimationSection() {
                       {/* Brand-colored Circle */}
                       <div className="relative shrink-0">
                         {isActive && (
-                          <span className="absolute -inset-1 rounded-xl opacity-40 blur-md" style={{ backgroundColor: s.color }} />
+                          <span className="absolute -inset-1 rounded-xl bg-primary/30 opacity-40 blur-md" />
                         )}
                         <div
-                          className={`relative flex h-10 w-10 items-center justify-center rounded-xl text-xs font-bold transition-all duration-300 ${isActive || isDone
-                            ? "text-white shadow-md"
-                            : "bg-muted text-muted-foreground"
-                            }`}
-                          style={{ backgroundColor: isActive || isDone ? s.color : undefined }}
+                          className={`relative flex h-10 w-10 items-center justify-center rounded-xl text-xs font-bold transition-all duration-300 ${
+                            isActive
+                              ? "bg-primary text-primary-foreground shadow-md"
+                              : isDone
+                              ? "bg-primary/10 text-primary"
+                              : "bg-muted text-muted-foreground"
+                          }`}
                         >
                           {isDone ? (
                             <Check className="h-5 w-5 stroke-[2.5]" />
