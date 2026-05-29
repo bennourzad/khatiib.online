@@ -1,0 +1,538 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+/* Thmanyah Sans — primary typeface across the entire product */
+@font-face {
+  font-family: "Thmanyah Sans";
+  src: url("/fonts/ThmanyahSans-Light.otf") format("opentype");
+  font-weight: 300; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Thmanyah Sans";
+  src: url("/fonts/ThmanyahSans-Regular.otf") format("opentype");
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Thmanyah Sans";
+  src: url("/fonts/ThmanyahSans-Medium.otf") format("opentype");
+  font-weight: 500; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Thmanyah Sans";
+  src: url("/fonts/ThmanyahSans-Bold.otf") format("opentype");
+  font-weight: 700; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Thmanyah Sans";
+  src: url("/fonts/ThmanyahSans-Black.otf") format("opentype");
+  font-weight: 900; font-style: normal; font-display: swap;
+}
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * منصة خطيب — Design System
+ * Premium Arabic SaaS for sermons & religious speaking material.
+ * Primary palette: refined emerald / deep teal — trustworthy, calm, spiritual-modern.
+ * All colors in oklch. Tokens flow through @theme inline so Tailwind utilities
+ * resolve via CSS variables and stay consistent between light/dark.
+ */
+
+@theme inline {
+  --font-sans: "Thmanyah Sans", ui-sans-serif, system-ui, -apple-system,
+    "Segoe UI", Tahoma, Arial, sans-serif;
+  --font-arabic: "Thmanyah Sans", ui-sans-serif, system-ui, sans-serif;
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-surface-muted: var(--surface-muted);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary-soft: var(--primary-soft);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ring-offset-background: var(--background);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+:root {
+  --radius: 0.75rem;
+
+  /* Light — warm paper-white with deep emerald primary */
+  --background: oklch(0.992 0.003 95);
+  --foreground: oklch(0.21 0.02 175);
+  --surface: oklch(1 0 0);
+  --surface-muted: oklch(0.975 0.006 160);
+
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.21 0.02 175);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.21 0.02 175);
+
+  --primary: oklch(0.46 0.09 168);
+  --primary-foreground: oklch(0.985 0.005 160);
+  --primary-soft: oklch(0.955 0.025 165);
+
+  --secondary: oklch(0.965 0.012 160);
+  --secondary-foreground: oklch(0.28 0.03 170);
+  --muted: oklch(0.965 0.008 150);
+  --muted-foreground: oklch(0.48 0.018 170);
+  --accent: oklch(0.94 0.03 165);
+  --accent-foreground: oklch(0.28 0.04 170);
+
+  --destructive: oklch(0.55 0.19 25);
+  --destructive-foreground: oklch(0.985 0.005 0);
+  --success: oklch(0.6 0.13 160);
+  --warning: oklch(0.72 0.15 75);
+
+  --border: oklch(0.91 0.008 160);
+  --border-strong: oklch(0.84 0.012 165);
+  --input: oklch(0.91 0.008 160);
+  --ring: oklch(0.55 0.09 168);
+
+  --chart-1: oklch(0.55 0.12 168);
+  --chart-2: oklch(0.65 0.1 200);
+  --chart-3: oklch(0.6 0.13 85);
+  --chart-4: oklch(0.7 0.12 35);
+  --chart-5: oklch(0.5 0.15 290);
+
+  --sidebar: oklch(0.985 0.006 160);
+  --sidebar-foreground: oklch(0.25 0.02 175);
+  --sidebar-primary: oklch(0.46 0.09 168);
+  --sidebar-primary-foreground: oklch(0.985 0.005 160);
+  --sidebar-accent: oklch(0.95 0.015 165);
+  --sidebar-accent-foreground: oklch(0.28 0.03 170);
+  --sidebar-border: oklch(0.91 0.008 160);
+  --sidebar-ring: oklch(0.55 0.09 168);
+}
+
+.dark {
+  /* Dark — deep ink with luminous emerald — optimized for long-form reading */
+  --background: oklch(0.16 0.012 180);
+  --foreground: oklch(0.95 0.008 160);
+  --surface: oklch(0.195 0.014 180);
+  --surface-muted: oklch(0.22 0.014 180);
+
+  --card: oklch(0.205 0.014 180);
+  --card-foreground: oklch(0.95 0.008 160);
+  --popover: oklch(0.22 0.014 180);
+  --popover-foreground: oklch(0.95 0.008 160);
+
+  --primary: oklch(0.72 0.12 168);
+  --primary-foreground: oklch(0.16 0.02 175);
+  --primary-soft: oklch(0.28 0.04 168);
+
+  --secondary: oklch(0.245 0.018 180);
+  --secondary-foreground: oklch(0.95 0.008 160);
+  --muted: oklch(0.235 0.014 180);
+  --muted-foreground: oklch(0.7 0.015 165);
+  --accent: oklch(0.28 0.03 170);
+  --accent-foreground: oklch(0.95 0.008 160);
+
+  --destructive: oklch(0.65 0.19 25);
+  --destructive-foreground: oklch(0.98 0.005 0);
+  --success: oklch(0.72 0.13 160);
+  --warning: oklch(0.78 0.15 75);
+
+  --border: oklch(1 0 0 / 9%);
+  --border-strong: oklch(1 0 0 / 16%);
+  --input: oklch(1 0 0 / 12%);
+  --ring: oklch(0.65 0.12 168);
+
+  --chart-1: oklch(0.72 0.12 168);
+  --chart-2: oklch(0.7 0.1 200);
+  --chart-3: oklch(0.75 0.13 85);
+  --chart-4: oklch(0.72 0.14 35);
+  --chart-5: oklch(0.65 0.15 290);
+
+  --sidebar: oklch(0.185 0.014 180);
+  --sidebar-foreground: oklch(0.93 0.008 160);
+  --sidebar-primary: oklch(0.72 0.12 168);
+  --sidebar-primary-foreground: oklch(0.16 0.02 175);
+  --sidebar-accent: oklch(0.245 0.018 180);
+  --sidebar-accent-foreground: oklch(0.95 0.008 160);
+  --sidebar-border: oklch(1 0 0 / 9%);
+  --sidebar-ring: oklch(0.65 0.12 168);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    direction: rtl;
+  }
+
+  html,
+  body {
+    font-family: var(--font-sans);
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    font-feature-settings: "kern", "liga", "calt";
+  }
+
+  /* Editorial reading rhythm for long sermon text */
+  .prose-arabic {
+    line-height: 2.05;
+    font-size: 1.0625rem;
+    letter-spacing: 0;
+  }
+
+  .prose-arabic p + p {
+    margin-top: 1.1em;
+  }
+
+  /* Polished focus ring */
+  :focus-visible {
+    outline: 2px solid var(--color-ring);
+    outline-offset: 2px;
+    border-radius: 6px;
+  }
+
+  ::selection {
+    background: color-mix(in oklab, var(--color-primary) 30%, transparent);
+  }
+}
+
+@layer utilities {
+  .bg-gradient-brand {
+    background-image: linear-gradient(
+      135deg,
+      color-mix(in oklab, var(--color-primary) 100%, transparent),
+      color-mix(in oklab, var(--color-primary) 70%, #0ea5e9 30%)
+    );
+  }
+
+  .bg-gradient-soft {
+    background-image: radial-gradient(
+        ellipse at top right,
+        color-mix(in oklab, var(--color-primary) 12%, transparent),
+        transparent 55%
+      ),
+      radial-gradient(
+        ellipse at bottom left,
+        color-mix(in oklab, var(--color-primary) 8%, transparent),
+        transparent 55%
+      );
+  }
+
+  .text-gradient-brand {
+    background: linear-gradient(
+      135deg,
+      var(--color-primary),
+      color-mix(in oklab, var(--color-primary) 55%, #0891b2 45%)
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .shadow-elegant {
+    box-shadow:
+      0 1px 2px color-mix(in oklab, var(--color-primary) 6%, transparent),
+      0 8px 32px -12px color-mix(in oklab, var(--color-primary) 18%, transparent);
+  }
+
+  /* Primary CTA glow pulse */
+  .animate-pulse-slow {
+    animation: pulse-slow 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  /* Magic wand sparkle wiggle */
+  .animate-wand-sparkle {
+    animation: wand-sparkle 2.5s ease-in-out infinite;
+  }
+
+  /* Sparkle icon with glow for "صناعة خطبة" nav item */
+  .animate-sparkle-glow {
+    animation: sparkle-glow 2.4s ease-in-out infinite;
+    filter: drop-shadow(0 0 4px color-mix(in oklab, var(--color-primary) 70%, transparent));
+    transform-origin: center;
+  }
+
+}
+
+@keyframes pulse-slow {
+  0%, 100% {
+    opacity: 0.35;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.65;
+    transform: scale(1.03);
+  }
+}
+
+@keyframes wand-sparkle {
+  0%, 100% {
+    transform: rotate(-6deg) scale(1);
+  }
+  25% {
+    transform: rotate(8deg) scale(1.15);
+}
+
+@keyframes sparkle-glow {
+  0%, 100% {
+    transform: rotate(0deg) scale(1);
+    filter: drop-shadow(0 0 3px color-mix(in oklab, var(--color-primary) 55%, transparent));
+  }
+  50% {
+    transform: rotate(12deg) scale(1.18);
+    filter: drop-shadow(0 0 10px color-mix(in oklab, var(--color-primary) 90%, transparent));
+  }
+}
+
+  50% {
+    transform: rotate(-4deg) scale(1.05);
+  }
+  75% {
+    transform: rotate(6deg) scale(1.2);
+  }
+}
+
+/* تمييز الآيات القرآنية والأحاديث النبوية داخل نصوص الخطب */
+.sermon-ayah {
+  color: var(--color-primary);
+  background-color: color-mix(in oklab, var(--color-primary) 10%, transparent);
+  padding: 0.05em 0.4em;
+  border-radius: 0.375rem;
+  font-weight: 500;
+  font-family: "Amiri", "Traditional Arabic", "Thmanyah Sans", serif;
+  font-size: 1.05em;
+  line-height: 1.9;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
+.sermon-hadith {
+  color: color-mix(in oklab, var(--color-foreground) 88%, var(--color-primary) 12%);
+  border-bottom: 1px dashed color-mix(in oklab, var(--color-primary) 55%, transparent);
+  padding-bottom: 0.05em;
+  font-style: italic;
+  cursor: pointer;
+  text-decoration: none;
+  transition: color 0.15s ease, border-color 0.15s ease;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+.sermon-hadith:hover {
+  color: var(--color-primary);
+  border-bottom-color: var(--color-primary);
+}
+
+.sermon-hadith-source {
+  color: color-mix(in oklab, var(--color-foreground) 55%, transparent);
+  font-size: 0.92em;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.15s ease;
+}
+.sermon-hadith-source:hover {
+  color: var(--color-primary);
+  text-decoration: underline;
+}
+
+
+/* === Workshop section animations === */
+@keyframes workshop-float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-8px) rotate(0.5deg); }
+}
+@keyframes workshop-pulse-ring {
+  0% { transform: scale(0.9); opacity: 0.6; }
+  100% { transform: scale(1.6); opacity: 0; }
+}
+@keyframes workshop-shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+@keyframes workshop-rise {
+  0% { opacity: 0; transform: translateY(16px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+@keyframes workshop-progress {
+  0% { width: 0%; }
+  100% { width: 100%; }
+}
+@keyframes workshop-orbit {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+@keyframes workshop-glow {
+  0%, 100% { opacity: 0.18; transform: scale(1); }
+  50% { opacity: 0.32; transform: scale(1.05); }
+}
+
+.workshop-card-rise {
+  opacity: 0;
+  animation: workshop-rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+.workshop-halo {
+  animation: workshop-glow 6s ease-in-out infinite;
+}
+.workshop-float {
+  animation: workshop-float 6s ease-in-out infinite;
+}
+.workshop-shimmer {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    color-mix(in oklab, var(--color-primary) 18%, transparent) 50%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  animation: workshop-shimmer 2.8s linear infinite;
+}
+.workshop-progress-bar {
+  animation: workshop-progress 2.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+.workshop-pulse-ring {
+  animation: workshop-pulse-ring 2s ease-out infinite;
+}
+.workshop-orbit {
+  animation: workshop-orbit 24s linear infinite;
+}
+
+/* === Cinematic stage === */
+@keyframes workshop-stage-in {
+  0% { opacity: 0; transform: translateY(14px) scale(0.98); filter: blur(8px); }
+  100% { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+}
+@keyframes workshop-caret {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+@keyframes workshop-type {
+  0% { width: 0; }
+  100% { width: 100%; }
+}
+@keyframes workshop-chip-in {
+  0% { opacity: 0; transform: translateX(-12px); }
+  100% { opacity: 1; transform: translateX(0); }
+}
+@keyframes workshop-bar-fill {
+  0% { transform: scaleX(0); }
+  100% { transform: scaleX(1); }
+}
+@keyframes workshop-spark {
+  0% { opacity: 0; transform: translateY(6px) scale(0.7); }
+  60% { opacity: 1; transform: translateY(-4px) scale(1.05); }
+  100% { opacity: 0; transform: translateY(-14px) scale(0.9); }
+}
+@keyframes workshop-line-grow {
+  0% { transform: scaleY(0); }
+  100% { transform: scaleY(1); }
+}
+@keyframes workshop-ring-spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+.workshop-stage-in {
+  animation: workshop-stage-in 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.workshop-type {
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  animation: workshop-type 0.9s steps(40, end) both;
+}
+.workshop-caret::after {
+  content: "▍";
+  margin-inline-start: 2px;
+  color: var(--color-primary);
+  animation: workshop-caret 1s steps(1) infinite;
+}
+.workshop-chip-in {
+  animation: workshop-chip-in 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.workshop-bar-fill {
+  transform-origin: right;
+  animation: workshop-bar-fill 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.workshop-spark {
+  animation: workshop-spark 1.4s ease-out infinite;
+}
+.workshop-line-grow {
+  transform-origin: top;
+  animation: workshop-line-grow 0.6s ease-out both;
+}
+.workshop-ring-spin {
+  animation: workshop-ring-spin 8s linear infinite;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@keyframes hadith-btn-pulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 15px color-mix(in oklab, var(--color-primary) 30%, transparent);
+  }
+  16.6% {
+    transform: scale(1.04);
+    box-shadow: 0 0 25px color-mix(in oklab, var(--color-primary) 65%, transparent);
+  }
+  66.6% {
+    transform: scale(1.04);
+    box-shadow: 0 0 25px color-mix(in oklab, var(--color-primary) 65%, transparent);
+  }
+  83.3% {
+    transform: scale(1);
+    box-shadow: 0 0 15px color-mix(in oklab, var(--color-primary) 30%, transparent);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 15px color-mix(in oklab, var(--color-primary) 30%, transparent);
+  }
+}
+
+.animate-hadith-btn {
+  animation: hadith-btn-pulse 6s ease-in-out infinite;
+}
+
+
