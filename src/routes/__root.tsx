@@ -12,6 +12,7 @@ import { Toaster } from "@/components/ui/sonner";
 
 import appCss from "../styles.css?url";
 import { themeBootScript } from "@/lib/theme";
+import { FeedbackWidget } from "@/components/shared/FeedbackWidget";
 
 function NotFoundComponent() {
   return (
@@ -134,6 +135,7 @@ function RootComponent() {
     <QueryClientProvider client={queryClient}>
       <Outlet />
       <Toaster position="top-center" dir="rtl" richColors closeButton />
+      <FeedbackWidget />
     </QueryClientProvider>
   );
 }
