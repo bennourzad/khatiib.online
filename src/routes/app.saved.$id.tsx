@@ -584,15 +584,7 @@ function SavedSermonDetailPage() {
               <div className="flex items-center gap-2">
                 <Dialog open={hadithDialogOpen} onOpenChange={setHadithDialogOpen}>
                   <DialogContent className="max-w-5xl" dir="rtl">
-                    <DialogHeader className="flex flex-row items-center justify-between gap-4 border-b border-border/40 pb-3 mb-2">
-                      <div className="space-y-1 text-right">
-                        <DialogTitle className="text-xl font-bold flex items-center gap-2 text-foreground">
-                          البحث في الباحث الحديثي
-                        </DialogTitle>
-                        <DialogDescription className="text-xs text-muted-foreground">
-                          استخدم الباحث للتحقق من صحة الأحاديث المذكورة في الخطبة
-                        </DialogDescription>
-                      </div>
+                    <DialogHeader className="flex flex-row items-center gap-4 border-b border-border/40 pb-3 mb-2">
                       <Button
                         type="button"
                         variant="outline"
@@ -606,6 +598,14 @@ function SavedSermonDetailPage() {
                         <ArrowRight className="h-4 w-4" />
                         العودة لأحاديث الخطبة
                       </Button>
+                      <div className="space-y-1 text-right">
+                        <DialogTitle className="text-xl font-bold flex items-center gap-2 text-foreground">
+                          البحث في الباحث الحديثي
+                        </DialogTitle>
+                        <DialogDescription className="text-xs text-muted-foreground">
+                          استخدم الباحث للتحقق من صحة الأحاديث المذكورة في الخطبة
+                        </DialogDescription>
+                      </div>
                     </DialogHeader>
                     <div className="space-y-4">
                       <form onSubmit={handleHadithSearch} className="flex flex-col gap-2 sm:flex-row sm:items-center">
