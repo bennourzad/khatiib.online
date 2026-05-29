@@ -65,18 +65,36 @@ export function MarketingHeader({ showNav = true }: { showNav?: boolean }) {
                   <Info className="h-5 w-5" />
                 </div>
                 <AlertDialogTitle className="text-right">تنبيه هام لحفظ خطبك</AlertDialogTitle>
-                <AlertDialogDescription className="text-right leading-loose text-sm">
-                  أخي الكريم، الخطيب المبارك..
-                  <br />
-                  يرجى العلم أن المنصة حالياً تحفظ مسودات خطبك **بشكل محلي مؤقت** على جهازك الحالي (المتصفح)، ولا توفر حسابات مستخدمين سحابية في هذا الإصدار التجريبي.
-                  <br />
-                  <span className="font-semibold text-foreground">
-                    لتجنب ضياع جهدك الثمين في حال تغيير الجهاز أو تنظيف بيانات المتصفح، ننصحك بشدة بـ «تصدير الكل» وحفظ ملفات الوورد على جهازك الخاص بانتظام.
-                  </span>
-                  <br />
-                  <span className="text-xs text-muted-foreground/80 mt-1 block">
-                    * سيتم توفير ميزة الحسابات السحابية والربط الآمن للخطباء قريباً بإذن الله.
-                  </span>
+                <AlertDialogDescription className="text-right leading-relaxed text-sm space-y-4 mt-3">
+                  <span className="block text-foreground font-bold">أخي الكريم، الخطيب المبارك..</span>
+                  
+                  {/* Local Storage Explanation Card */}
+                  <div className="rounded-xl border border-primary/20 bg-primary/5 p-4 space-y-2 text-right relative overflow-hidden">
+                    <div className="absolute top-0 right-0 h-16 w-16 rounded-full bg-primary/10 blur-xl opacity-60" />
+                    <div className="flex gap-2.5 items-start relative z-10 text-xs font-semibold text-foreground/90 leading-relaxed">
+                      <span className="text-primary shrink-0 mt-0.5">📂</span>
+                      <p>
+                        المنصة حالياً تحفظ مسودات خطبك <strong className="text-primary">بشكل محلي مؤقت</strong> على جهازك الحالي (المتصفح). لا توفر المنصة حسابات مستخدمين سحابية في هذا الإصدار التجريبي.
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Recommendation Card */}
+                  <div className="rounded-xl border border-amber-500/25 bg-amber-500/5 p-4 space-y-2 text-right relative overflow-hidden">
+                    <div className="absolute top-0 right-0 h-16 w-16 rounded-full bg-amber-500/10 blur-xl opacity-60" />
+                    <div className="flex gap-2.5 items-start relative z-10 text-xs font-semibold text-foreground/90 leading-relaxed">
+                      <span className="text-amber-600 shrink-0 mt-0.5">⚠️</span>
+                      <p>
+                        لتجنب ضياع جهدك الثمين في حال تغيير الجهاز أو تنظيف بيانات المتصفح، ننصحك بشدة بـ <strong>«تصدير الكل»</strong> وحفظ ملفات الوورد على جهازك الخاص بانتظام.
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Future release note */}
+                  <div className="flex items-center justify-center gap-1.5 text-xs text-muted-foreground/80 font-medium py-1">
+                    <span>✨</span>
+                    <span>سيتم توفير ميزة الحسابات السحابية والربط الآمن للخطباء قريباً بإذن الله.</span>
+                  </div>
                 </AlertDialogDescription>
               </AlertDialogHeader>
               <AlertDialogFooter className="mt-4">
