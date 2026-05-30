@@ -180,7 +180,7 @@ function ShariaSensitivitySection() {
           {/* Right Box: What the platform does (The Tool) */}
           <div className="relative overflow-hidden rounded-[2rem] border border-emerald-200 bg-white/95 p-8 sm:p-10 shadow-sm backdrop-blur flex flex-col justify-between transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] hover:-translate-y-2 hover:scale-[1.015] hover:border-emerald-400 hover:shadow-elegant hover:ring-4 hover:ring-emerald-500/10">
             <div className="absolute -top-10 -right-10 h-32 w-32 rounded-full bg-emerald-500/5 blur-2xl" />
-            
+
             <div>
               <div className="flex items-center gap-3">
                 <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-emerald-50 text-emerald-600">
@@ -219,7 +219,7 @@ function ShariaSensitivitySection() {
           {/* Left Box: The Preacher's Role (The Soul) - Designed to look majestic and high-priority */}
           <div className="relative overflow-hidden rounded-[2rem] border border-amber-300 bg-gradient-to-br from-amber-50/60 via-white to-white p-8 sm:p-10 shadow-md backdrop-blur flex flex-col justify-between transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] hover:-translate-y-2 hover:scale-[1.015] hover:border-amber-400 hover:shadow-elegant hover:ring-4 hover:ring-amber-500/10">
             <div className="absolute -top-10 -right-10 h-32 w-32 rounded-full bg-amber-500/10 blur-2xl animate-pulse" />
-            
+
             <div>
               <div className="flex items-center gap-3">
                 <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-amber-100 text-amber-750">
@@ -264,7 +264,7 @@ function ShariaSensitivitySection() {
             </div>
             <div>
               <p className="text-sm font-black text-amber-800">ميثاق التوقيع العلمي والشرعي المعتمد</p>
-              <p className="mt-1.5 text-xs leading-relaxed text-[#4d3f23] font-medium">
+              <p className="mt-1.5 text-lg leading-relaxed text-[#4d3f23] font-medium">
                 يُحظر شرعاً وأخلاقاً استخدام منصة **«خطيب»** لإنشاء مسودات وإلقائها من على المنبر مباشرة دون قراءة، مراجعة وتعديل مسبق من الخطيب. إن بناء المسودة هو أداة تسهيل وورشة عمل تدعم إبداعك، والمسودة لا تكتسب شرعيتها ومصداقيتها إلا بمرورها على قلب وعقل وبصيرة الإمام.
               </p>
             </div>
