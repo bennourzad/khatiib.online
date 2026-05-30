@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { MessageSquare, Star, Sparkles, X, Heart, MessageSquareQuote } from "lucide-react";
+import { MessageSquare, Star, Sparkles, X, Heart, MessageSquareQuote, ArrowUp } from "lucide-react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
@@ -41,6 +41,28 @@ export function FeedbackWidget() {
   const [ratings, setRatings] = useState<Record<number, number>>({});
   const [submitted, setSubmitted] = useState(false);
   const [hoveredStars, setHoveredStars] = useState<Record<number, number>>({});
+  const [showScrollTop, setShowScrollTop] = useState(false);
+
+  // Monitor scroll position to show/hide "Scroll to Top" button
+  useEffect(() => {
+    const toggleVisibility = () => {
+      if (window.scrollY > 300) {
+        setShowScrollTop(true);
+      } else {
+        setShowScrollTop(false);
+      }
+    };
+
+    window.addEventListener("scroll", toggleVisibility);
+    return () => window.removeEventListener("scroll", toggleVisibility);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
 
   // Check if already submitted in previous sessions
   useEffect(() => {
@@ -114,6 +136,21 @@ export function FeedbackWidget() {
         title="استبيان تقييم المنصة"
       >
         <MessageSquareQuote className="h-5 w-5 text-primary-foreground" />
+      </button>
+
+      {/* Scroll to Top Button on the Right */}
+      <button
+        type="button"
+        onClick={scrollToTop}
+        className={cn(
+          "fixed right-5 bottom-8 md:bottom-10 z-40 flex h-12 w-12 items-center justify-center rounded-full bg-gradient-brand text-primary-foreground shadow-elegant transition-all duration-500 hover:scale-105 active:scale-95 cursor-pointer border border-primary/20",
+          showScrollTop
+            ? "opacity-100 translate-y-0 scale-100 pointer-events-auto"
+            : "opacity-0 translate-y-4 scale-95 pointer-events-none"
+        )}
+        title="العودة لأعلى الصفحة"
+      >
+        <ArrowUp className="h-5 w-5 text-primary-foreground" />
       </button>
 
       {/* Survey Modal */}

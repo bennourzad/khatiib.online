@@ -85,7 +85,7 @@ function Hero() {
 
       <div className="relative mx-auto grid max-w-6xl items-center gap-12 px-4 py-20 sm:px-6 lg:grid-cols-2 lg:py-28">
         {/* Right side (text) */}
-        <div className="space-y-7 text-right">
+        <div className="space-y-7 text-center lg:text-right flex flex-col items-center lg:items-start">
           <span className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/5 px-3.5 py-1.5 text-xs font-medium text-primary">
             <Sparkles className="h-3.5 w-3.5" />
             ورشة موجَّهة لصياغة مسودة خطبة الجمعة
@@ -102,7 +102,7 @@ function Hero() {
             بمسودةٍ كاملة بين يديك تُهذّبها بأسلوبك. أنت الإمام، ونحن ورشتك.
           </p>
 
-          <div className="flex flex-wrap items-center gap-3 pt-2">
+          <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3 pt-2">
             <Link to="/workshop" search={{ topic: undefined }}>
               <Button
                 size="lg"
@@ -115,15 +115,22 @@ function Hero() {
             </Link>
           </div>
 
-          <div className="flex items-center gap-3 pt-4 text-sm text-muted-foreground">
-            <div className="flex">
-              {Array.from({ length: 5 }).map((_, i) => (
-                <Star key={i} className="h-4 w-4 fill-amber-400 text-amber-400" />
-              ))}
+          <div className="flex flex-col lg:flex-row items-center lg:justify-start gap-2 lg:gap-3 pt-4 text-sm text-muted-foreground">
+            {/* First Line on Mobile: Stars + Score */}
+            <div className="flex items-center gap-2">
+              <div className="flex">
+                {Array.from({ length: 5 }).map((_, i) => (
+                  <Star key={i} className="h-4 w-4 fill-amber-400 text-amber-400" />
+                ))}
+              </div>
+              <span className="font-semibold text-foreground">4.9/5</span>
             </div>
-            <span>
-              <span className="font-semibold text-foreground">4.9/5</span> · مئات الخطباء يصوغون خطبهم على المنصة
-            </span>
+
+            {/* Dot separator (desktop only) */}
+            <span className="hidden lg:inline text-muted-foreground/60">·</span>
+
+            {/* Second Line on Mobile: Description */}
+            <span>مئات الخطباء يصوغون خطبهم على المنصة</span>
           </div>
         </div>
 
