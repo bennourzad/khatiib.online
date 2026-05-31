@@ -99,7 +99,7 @@ function Hero() {
 
           <p className="max-w-xl text-base leading-loose text-muted-foreground sm:text-lg">
             ورشة عمل تأخذ بيدك خطوةً خطوة: تختار الموضوع والجمهور والنبرة والمحاور، ثم تنطلق
-            بمسودةٍ كاملة بين يديك تُهذّبها بأسلوبك.<strong>أنت الخطيب ونحن ورشتك</strong>  .
+            بمسودةٍ كاملة بين يديك تُهذّبها بأسلوبك. <br></br><strong>أنت الخطيب ونحن ورشتك</strong>  .
           </p>
 
           <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3 pt-2">
@@ -966,7 +966,7 @@ function FlowDiagram() {
             style={{ animationDelay: "2s" }}
           >
             <Clock className="h-4 w-4 text-primary" />
-            <span className="text-xs font-semibold">‏3-8 دقائق فقط</span>
+            <span className="text-xs font-semibold">‏8-3 دقائق فقط</span>
           </div>
         </div>
       </div>

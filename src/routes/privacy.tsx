@@ -127,7 +127,7 @@ export const Route = createFileRoute("/privacy")({
         {/* Contact and Updates */}
         <section className="space-y-4 pt-4 border-t border-border/60 text-center">
           <p className="text-xs text-muted-foreground">
-            تخضع هذه السياسة للتحديثات الدورية لمواكبة التطورات التقنية والضوابط الشرعية. تم التحديث في: مايو ٢٠٢٦ م.
+            تخضع هذه السياسة للتحديثات الدورية لمواكبة التطورات التقنية والضوابط الشرعية. تم التحديث في: مايو 2026 م.
           </p>
           <p className="text-sm font-semibold text-primary">
             لأي استفسار يخص أمانة بياناتك، نسعد بتواصلك معنا عبر صفحة الدعم والاتصال.
