@@ -183,7 +183,7 @@ export const Route = createFileRoute("/terms")({
                     rel="noopener noreferrer"
                     className="text-primary hover:underline font-mono text-[10px]"
                   >
-                    surah.my ↗
+                    tafsir.app ↗
                   </a>
                 </div>
                 <p className="text-xs text-muted-foreground leading-relaxed">

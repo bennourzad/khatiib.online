@@ -452,7 +452,7 @@ export const generateSermonAI = createServerFn({ method: "POST" })
 
     if (!geminiKey) {
       throw new Error(
-        "لم يتم العثور على مفتاح GEMINI_API_KEY. يرجى إضافته في ملف .env في المجلد الرئيسي للمشروع."
+        "لم نتمكن من الوصول لخدمة الصياغة — حاول مرة أخرى ، نحن في الوضع التجريبي ."
       );
     }
 
