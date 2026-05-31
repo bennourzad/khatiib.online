@@ -190,6 +190,8 @@ async function callNativeGeminiWithRetry(
     try {
       return await callNativeGemini(params);
     } catch (err: any) {
+      // QUOTA_EXCEEDED means the model's billing/daily limit is exhausted — no point retrying same model
+      if (err.message === "QUOTA_EXCEEDED") throw err;
       if (err.message.includes("تجاوزت حد الاستخدام") && attempt < retries) {
         // If it's a 429 rate limit, wait longer (e.g. 10s on 1st retry, 15s on 2nd, 25s on subsequent) to let the window reset
         const waitTime = attempt === 1 ? 10000 : attempt === 2 ? 15000 : 25000;
@@ -239,9 +241,16 @@ async function callNativeGemini({
     })
   });
 
-  if (response.status === 429) {
-    const errorTxt = await response.text();
-    console.error(`[Gemini 429 Error Details] Model: ${model}, Response:`, errorTxt);
+  if (response.status === 429 || response.status === 402) {
+    const errorBody = await response.json().catch(() => ({})) as any;
+    const msg = (errorBody?.error?.message ?? "").toLowerCase();
+    const isQuota =
+      errorBody?.error?.status === "RESOURCE_EXHAUSTED" ||
+      msg.includes("quota") ||
+      msg.includes("billing") ||
+      response.status === 402;
+    console.error(`[Gemini Quota/Rate Error] Model: ${model}, status: ${response.status}`, JSON.stringify(errorBody).slice(0, 500));
+    if (isQuota) throw new Error("QUOTA_EXCEEDED"); // رمز خاص يُفعّل الـ Fallback
     throw new Error("تجاوزت حد الاستخدام لـ Gemini، يرجى المحاولة بعد دقيقة");
   }
 
@@ -432,7 +441,12 @@ export const generateSermonAI = createServerFn({ method: "POST" })
     const apiKey = geminiKey;
     const isLovable = apiKey.startsWith("sk_");
 
+    // المدفوعة أولاً → المجانية عند نفاد الرصيد
+    const PAID_MODELS = ["gemini-2.5-flash", "gemini-2.5-pro"];
+    const FREE_MODELS = ["gemini-2.0-flash", "gemini-1.5-flash"];
+
     const callModel = async (systemPrompt: string, userPrompt: string, temperature = 0.7): Promise<string> => {
+      // مسار Lovable Gateway (لا يتغير)
       if (isLovable) {
         return callGatewayText({
           apiKey,
@@ -442,26 +456,31 @@ export const generateSermonAI = createServerFn({ method: "POST" })
           userPrompt,
           temperature,
         });
-      } else {
-        let lastError: Error | null = null;
-        for (const model of ["gemini-3.5-flash", "gemini-2.5-flash", "gemini-2.5-pro"]) {
-          try {
-            return await callNativeGeminiWithRetry({
-              apiKey,
-              model,
-              systemPrompt,
-              userPrompt,
-              temperature,
-            });
-          } catch (err) {
-            lastError = err instanceof Error ? err : new Error("تعذّر الاتصال بخدمة التوليد");
-            if (lastError.message.includes("حد الاستخدام")) {
-              break;
-            }
-          }
-        }
-        throw lastError ?? new Error("تعذّر توليد النص الآن");
       }
+
+      // مسار Google AI Studio مع Fallback تلقائي للمجاني
+      const allModels = [...PAID_MODELS, ...FREE_MODELS];
+      let lastError: Error | null = null;
+
+      for (const model of allModels) {
+        const isFree = FREE_MODELS.includes(model);
+        if (isFree) {
+          console.warn(`[Fallback] رصيد النماذج المدفوعة نفد — التحويل للنموذج المجاني: ${model}`);
+        }
+        try {
+          return await callNativeGeminiWithRetry({ apiKey, model, systemPrompt, userPrompt, temperature });
+        } catch (err: any) {
+          lastError = err instanceof Error ? err : new Error("تعذّر الاتصال بخدمة التوليد");
+          const isQuota = lastError.message === "QUOTA_EXCEEDED" || lastError.message.toLowerCase().includes("billing");
+          const isRateLimit = lastError.message.includes("تجاوزت حد الاستخدام");
+          if (isQuota || (isRateLimit && !isFree)) {
+            continue; // جرّب النموذج التالي
+          }
+          throw lastError; // خطأ حقيقي → أوقف
+        }
+      }
+
+      throw new Error("تعذّر توليد الخطبة — جميع النماذج المتاحة وصلت لحدودها. حاول بعد قليل.");
     };
 
     const sectionPlan = buildSectionPlan(data);
