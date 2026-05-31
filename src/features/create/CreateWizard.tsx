@@ -48,12 +48,18 @@ import { savedSermonsStore } from "@/stores/savedSermons";
 import { favoritesStore } from "@/stores/favorites";
 import type { SermonSection } from "@/types";
 import { Checkbox } from "@/components/ui/checkbox";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 
-const CONTENT_TYPES: { value: ContentKind; label: string; hint: string }[] = [
+const CONTENT_TYPES: { value: ContentKind; label: string; hint: string; disabled?: boolean }[] = [
   { value: "خطبة", label: "خطبة جمعة", hint: "15–25 دقيقة · جمهور عام" },
   { value: "كلمة", label: "كلمة قصيرة", hint: "3–7 دقائق · بين الصلوات" },
-  { value: "درس", label: "درس علمي", hint: "20–45 دقيقة · حلقة دروس" },
+  { value: "درس", label: "درس علمي", hint: "20–45 دقيقة · حلقة دروس", disabled: true },
 ];
 
 const AUDIENCES = [
@@ -330,22 +336,48 @@ export function CreateWizard() {
             <div className="mt-5 space-y-3">
               <Label>نوع المحتوى</Label>
               <div className="grid gap-2 sm:grid-cols-3">
-                {CONTENT_TYPES.map((c) => (
-                  <button
-                    key={c.value}
-                    type="button"
-                    onClick={() => setContentType(c.value)}
-                    className={cn(
-                      "rounded-xl border p-3 text-right transition-all",
-                      contentType === c.value
-                        ? "border-primary bg-primary/5 ring-1 ring-primary/30"
-                        : "border-border hover:border-primary/40 hover:bg-muted/40",
-                    )}
-                  >
-                    <div className="font-semibold text-foreground">{c.label}</div>
-                    <div className="mt-0.5 text-xs text-muted-foreground">{c.hint}</div>
-                  </button>
-                ))}
+                {CONTENT_TYPES.map((c) => {
+                  const buttonElement = (
+                    <button
+                      key={c.value}
+                      type="button"
+                      onClick={() => {
+                        if (!c.disabled) {
+                          setContentType(c.value);
+                        }
+                      }}
+                      aria-disabled={c.disabled}
+                      className={cn(
+                        "rounded-xl border p-3 text-right transition-all w-full",
+                        c.disabled
+                          ? "opacity-50 cursor-not-allowed border-border hover:bg-transparent"
+                          : contentType === c.value
+                          ? "border-primary bg-primary/5 ring-1 ring-primary/30"
+                          : "border-border hover:border-primary/40 hover:bg-muted/40",
+                      )}
+                    >
+                      <div className="font-semibold text-foreground">{c.label}</div>
+                      <div className="mt-0.5 text-xs text-muted-foreground">{c.hint}</div>
+                    </button>
+                  );
+
+                  if (c.disabled) {
+                    return (
+                      <TooltipProvider key={c.value} delayDuration={0}>
+                        <Tooltip>
+                          <TooltipTrigger asChild>
+                            {buttonElement}
+                          </TooltipTrigger>
+                          <TooltipContent side="top" className="text-right">
+                            هذا النوع من المحتوى سيتوفر قريباً إن شاء الله
+                          </TooltipContent>
+                        </Tooltip>
+                      </TooltipProvider>
+                    );
+                  }
+
+                  return buttonElement;
+                })}
               </div>
             </div>
           </StepShell>
@@ -371,14 +403,36 @@ export function CreateWizard() {
             <div className="space-y-3">
               <Label>المدة المقدّرة (دقائق)</Label>
               <div className="flex flex-wrap gap-2">
-                {[3, 5, 10, 15, 20, 25, 30].map((d) => (
-                  <ChipChoice
-                    key={d}
-                    label={`${d} دقيقة`}
-                    active={duration === d}
-                    onClick={() => setDuration(d)}
-                  />
-                ))}
+                {[3, 5, 10, 15, 20, 25, 30].map((d) => {
+                  const isDurationDisabled = [20, 25, 30].includes(d);
+
+                  const chipElement = (
+                    <ChipChoice
+                      key={d}
+                      label={`${d} دقيقة`}
+                      active={duration === d}
+                      onClick={() => setDuration(d)}
+                      disabled={isDurationDisabled}
+                    />
+                  );
+
+                  if (isDurationDisabled) {
+                    return (
+                      <TooltipProvider key={d} delayDuration={0}>
+                        <Tooltip>
+                          <TooltipTrigger asChild>
+                            <div>{chipElement}</div>
+                          </TooltipTrigger>
+                          <TooltipContent side="top" className="text-right">
+                            هذه المدة ستتوفر قريباً إن شاء الله
+                          </TooltipContent>
+                        </Tooltip>
+                      </TooltipProvider>
+                    );
+                  }
+
+                  return chipElement;
+                })}
               </div>
             </div>
             <div className="mt-5 space-y-3">
@@ -810,18 +864,23 @@ function ChipChoice({
   label,
   active,
   onClick,
+  disabled,
 }: {
   label: string;
   active: boolean;
   onClick: () => void;
+  disabled?: boolean;
 }) {
   return (
     <button
       type="button"
-      onClick={onClick}
+      onClick={disabled ? undefined : onClick}
+      aria-disabled={disabled}
       className={cn(
         "rounded-full border px-3.5 py-1.5 text-sm transition-all",
-        active
+        disabled
+          ? "opacity-50 cursor-not-allowed border-border bg-background text-foreground/50"
+          : active
           ? "border-primary bg-primary text-primary-foreground shadow-sm"
           : "border-border bg-background text-foreground/85 hover:border-primary/40 hover:bg-muted/60",
       )}
