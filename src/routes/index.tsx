@@ -99,7 +99,7 @@ function Hero() {
 
           <p className="max-w-xl text-base leading-loose text-muted-foreground sm:text-lg">
             ورشة عمل تأخذ بيدك خطوةً خطوة: تختار الموضوع والجمهور والنبرة والمحاور، ثم تنطلق
-            بمسودةٍ كاملة بين يديك تُهذّبها بأسلوبك. أنت الإمام، ونحن ورشتك.
+            بمسودةٍ كاملة بين يديك تُهذّبها بأسلوبك.<strong>أنت الخطيب ونحن ورشتك</strong>  .
           </p>
 
           <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3 pt-2">
@@ -586,7 +586,7 @@ function FlowDiagram() {
       preview: {
         label: "النبرة والمدة",
         value: "اجتماعي معالج  · 12 دقيقة",
-        tags: ["علمي تأصيلي", "فقهي تاصلي", "وعظي مؤثر"],
+        tags: ["علمي تأصيلي", "تربوي تحفيزي   ", "وعظي مؤثر"],
       },
     },
     {

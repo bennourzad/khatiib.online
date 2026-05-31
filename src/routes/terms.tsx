@@ -37,11 +37,11 @@ export const Route = createFileRoute("/terms")({
           </p>
           <div className="rounded-xl border border-primary/20 bg-primary/5 p-4 text-xs leading-relaxed text-foreground/90 space-y-2">
             <p>
-              <strong>«المنصة أداة مساعدة وليست بديلاً للخطيب صاحبة البصيرة»:</strong>
+              <strong>«المنصة أداة مساعدة وليست بديلاً للخطيب صاحب البصيرة»:</strong>
               إن منصة خطيب صُممت لتكون ورشة عمل ذكية لتكسر جمود الصفحة البيضاء وتختصر وقت البحث الشاق، وتوثق الأدلة.
             </p>
             <p>
-              لا يمكن إطلاقًا لأي نظام ذكاء اصطناعي أن يحل محل روح ووجدان الإمام وعلمه الشرعي وفهمه لواقع جماعته ومصلّيه الفعليين.
+              لا يمكن إطلاقًا لأي نظام ذكاء اصطناعي أن يحل محل روح ووجدان الإمام الخطبي وعلمه الشرعي وفهمه لواقع جماعته ومصلّيه الفعليين.
             </p>
           </div>
         </section>
@@ -84,7 +84,7 @@ export const Route = createFileRoute("/terms")({
             آلية جلب المصادر وحرمة البيانات (أمان فني وشرعي)
           </h2>
           <p className="text-sm leading-relaxed text-muted-foreground">
-            تلتزم منصة **خطيب** بأعلى معايير الأمان الفني والنزاهة الشرعية في جلب النصوص والأدلة الفقهية وتخريج الأحاديث:
+            تلتزم منصة <strong>خطيب</strong> بأعلى معايير الأمان الفني والنزاهة الشرعية في جلب النصوص والأدلة الفقهية وتخريج الأحاديث:
           </p>
           <div className="relative overflow-hidden rounded-2xl border border-primary/20 bg-primary/5 p-6 space-y-4">
             <div className="absolute top-0 right-0 h-24 w-24 rounded-full bg-primary/10 blur-xl opacity-70" />

@@ -187,7 +187,7 @@ function ShariaSensitivitySection() {
                   <Sparkles className="h-6 w-6 animate-pulse" />
                 </div>
                 <div>
-                  <span className="text-[10px] font-extrabold text-emerald-600 uppercase tracking-widest">مهمتنا التقنية</span>
+                  <span className="text-[12px] font-extrabold text-emerald-600 uppercase tracking-widest">مهمتنا التقنية</span>
                   <h3 className="text-xl font-black text-[#073229] mt-0.5">منصة خطيب (الورشة التحضيرية)</h3>
                 </div>
               </div>
@@ -211,8 +211,8 @@ function ShariaSensitivitySection() {
               </ul>
             </div>
 
-            <div className="mt-8 border-t border-emerald-100 pt-6 text-[11px] text-emerald-600 font-mono font-bold">
-              // أداة ذكية للمساندة والترتيب وصناعة المسودات الأولية فقط
+            <div className="mt-8 border-t border-emerald-100 pt-6 text-[12px] text-sm leading-loose text-[#2b534b]">
+              // أداة ذكية للمساندة والترتيب وصناعة المسودات الأولية فقط.
             </div>
           </div>
 
@@ -226,7 +226,7 @@ function ShariaSensitivitySection() {
                   <ShieldCheck className="h-6 w-6 text-amber-700" />
                 </div>
                 <div>
-                  <span className="text-[10px] font-extrabold text-amber-700 uppercase tracking-widest">أمانتك الشرعية</span>
+                  <span className="text-[12px] font-extrabold text-amber-700 uppercase tracking-widest">أمانتك الشرعية</span>
                   <h3 className="text-xl font-black text-[#3d2e0f] mt-0.5">الخطيب والإمام (روح المنبر وبصيرته)</h3>
                 </div>
               </div>
@@ -250,7 +250,7 @@ function ShariaSensitivitySection() {
               </ul>
             </div>
 
-            <div className="mt-8 border-t border-amber-200 pt-6 text-[11px] text-amber-750 font-mono font-bold">
+            <div className="mt-8 border-t border-amber-200 pt-6 text-[12px] text-sm leading-loose text-[#2b534b]">
               // المنبر أمانتك ومستقرك.. التقنية ورقتك الذكية، وأنت العقل والبصيرة
             </div>
           </div>
@@ -265,7 +265,7 @@ function ShariaSensitivitySection() {
             <div>
               <p className="text-sm font-black text-amber-800">ميثاق التوقيع العلمي والشرعي المعتمد</p>
               <p className="mt-1.5 text-lg leading-relaxed text-[#4d3f23] font-medium">
-                يُحظر شرعاً وأخلاقاً استخدام منصة **«خطيب»** لإنشاء مسودات وإلقائها من على المنبر مباشرة دون قراءة، مراجعة وتعديل مسبق من الخطيب. إن بناء المسودة هو أداة تسهيل وورشة عمل تدعم إبداعك، والمسودة لا تكتسب شرعيتها ومصداقيتها إلا بمرورها على قلب وعقل وبصيرة الإمام.
+                يُحظر شرعاً وأخلاقاً استخدام منصة <strong>خطيب</strong> لإنشاء مسودات وإلقائها من على المنبر مباشرة دون قراءة، مراجعة وتعديل مسبق من الخطيب. إن بناء المسودة هو أداة تسهيل وورشة عمل تدعم إبداعك، والمسودة لا تكتسب شرعيتها ومصداقيتها إلا بمرورها على قلب وعقل وبصيرة الإمام.
               </p>
             </div>
           </div>
@@ -291,7 +291,7 @@ function SacredTrustSection() {
               نعلم يقيناً أن الكلمة على المنبر <span className="text-primary">أمانة عظيمة</span>.. والموقف جد حساس.
             </h2>
             <p className="text-base leading-loose text-muted-foreground">
-              لهذا السبب تحديداً، لم نصمم **خطيب** ليكون كاتب خطب جاهزة يُلقيها الإمام دون وعي. إن التجربة الحقيقية هي التي تبرهن كيف يظل الإمام هو صاحب البصيرة والقرار الفقهي والتربوي، بينما تقوم المنصة بدور "الورشة التحضيرية" التي تختصر عليه ساعات التعب والترتيب والبحث المشتت.
+              لهذا السبب تحديداً، لم نصمم <strong>خطيب</strong> ليكون كاتب خطب جاهزة يُلقيها الإمام دون وعي. إن التجربة الحقيقية هي التي تبرهن كيف يظل الإمام هو صاحب البصيرة والقرار الفقهي والتربوي، بينما تقوم المنصة بدور "الورشة التحضيرية" التي تختصر عليه ساعات التعب والترتيب والبحث المشتت.
             </p>
             <div className="rounded-xl border border-primary/20 bg-primary/5 p-4 text-sm leading-relaxed text-foreground/90">
               <Quote className="h-4 w-4 text-primary mb-2" />
@@ -613,7 +613,7 @@ function GuaranteesSection() {
         <div className="text-center space-y-4 mb-16">
           <span className="text-sm font-semibold uppercase tracking-widest text-primary">الضمانات التقنية والشرعية</span>
           <h2 className="text-3xl font-black leading-tight sm:text-4xl">
-            ضمانات المنصة لخطباء منبر رسول الله ﷺ
+            حصانة المنبر: ضماناتنا لخطباء الأمة وموجهيها
           </h2>
           <p className="max-w-2xl mx-auto text-base text-muted-foreground leading-relaxed">
             المنصة صممت بالكامل لتوفير حماية كاملة ودقيقة لخطبتك، مع ميزات أمان علمية متفوقة تضع قراراتك وخبرتك الفقهية في المقدمة.
