@@ -166,7 +166,7 @@ export function FeedbackWidget() {
               استبيان تقييم تجربة «خطيب»
             </DialogTitle>
             <DialogDescription className="text-xs mt-1.5 leading-relaxed text-muted-foreground">
-              رأيك الغالي يا صاحب الكلمة يهمنا لكي نرتقي بالمنصة ونقدّم الخدمة الأجود لخطباء الأمة ومنابر الرسالة.
+              بصمتكم في تطوير المنصة تصنع الفارق؛ يسعدنا أن نستمع لنصحكم ومقترحاتكم الغالية.
             </DialogDescription>
           </DialogHeader>
 
