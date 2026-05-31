@@ -178,7 +178,7 @@ export const Route = createFileRoute("/terms")({
                 <div className="flex justify-between items-center text-xs">
                   <span className="font-bold text-primary">الباحث القرآني ومصحف المدينة</span>
                   <a
-                    href="https://surah.my"
+                    href="https://tafsir.app/"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-primary hover:underline font-mono text-[10px]"
