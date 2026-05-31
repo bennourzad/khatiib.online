@@ -3,6 +3,7 @@ import { ArrowLeft, Info, Menu, Bookmark } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Logo, LogoMark } from "@/components/brand/Logo";
 import { ThemeToggle } from "@/components/shell/ThemeToggle";
+import { PrayerTimesFooter } from "@/components/shared/PrayerTimes";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -186,42 +187,51 @@ export function MarketingHeader({ showNav = true }: { showNav?: boolean }) {
 
 export function MarketingFooter() {
   return (
-    <footer className="border-t border-border/60 bg-background py-10">
-      <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-6 px-4 text-sm text-muted-foreground sm:flex-row sm:px-6">
-        {/* Right Section: Logo, Copyright & Version */}
-        <div className="flex flex-col items-center gap-2 sm:items-start">
-          <div className="flex items-center gap-2">
-            <LogoMark size={16} />
-            <span>· جميع الحقوق محفوظة</span>
-            <span className="text-xs text-muted-foreground/60 bg-muted px-1.5 py-0.5 rounded border border-border/40 font-mono">الإصدار 0.1</span>
+    <footer className="border-t border-border/60 bg-background py-8">
+      <div className="mx-auto flex max-w-6xl flex-col gap-5 px-4 text-sm text-muted-foreground sm:px-6">
+
+        {/* Prayer Times Row */}
+        <PrayerTimesFooter />
+
+        {/* Bottom Row: Logo + Links */}
+        <div className="flex flex-col items-center justify-between gap-5 sm:flex-row">
+          {/* Right Section: Logo, Copyright & Version */}
+          <div className="flex flex-col items-center gap-2 sm:items-start">
+            <div className="flex items-center gap-2">
+              <LogoMark size={16} />
+              <span>· جميع الحقوق محفوظة</span>
+              <span className="text-xs text-muted-foreground/60 bg-muted px-1.5 py-0.5 rounded border border-border/40 font-mono">الإصدار 0.1</span>
+            </div>
+            <div className="text-xs text-muted-foreground/80">
+              صنع بحب ❤️{" "}
+              <a
+                href="https://api.whatsapp.com/send?phone=213561705544&text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%20%D8%A8%D9%83%20%D8%B6%D9%8A%D9%81%D8%A7%20%D8%B9%D8%B2%D9%8A%D8%B2%D8%A7"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline hover:text-primary transition-colors"
+              >
+                By Bennour
+              </a>{" "}
+              2026
+            </div>
           </div>
-          <div className="text-xs text-muted-foreground/80">
-            صنع بحب ❤️{" "}
-            <a
-              href="https://api.whatsapp.com/send?phone=213561705544&text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%20%D8%A8%D9%83%20%D8%B6%D9%8A%D9%81%D8%A7%20%D8%B9%D8%B2%D9%8A%D8%B2%D8%A7"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="underline hover:text-primary transition-colors"
-            >
-              By Bennour
-            </a>{" "}
-            2026
+
+          {/* Left Section: Nav Links & Theme Toggle */}
+          <div className="flex flex-col items-center gap-3 sm:items-end">
+            <div className="flex items-center gap-5">
+              <Link to="/privacy" className="hover:text-foreground transition-colors">الخصوصية</Link>
+              <Link to="/terms" className="hover:text-foreground transition-colors">الشروط والأحكام</Link>
+              <Link to="/contact" className="hover:text-foreground transition-colors">تواصل معنا</Link>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="text-xs text-muted-foreground/60">تعديل الوضع:</span>
+              <ThemeToggle compact />
+            </div>
           </div>
         </div>
 
-        {/* Left Section: Nav Links & Theme Toggle */}
-        <div className="flex flex-col items-center gap-3 sm:items-end">
-          <div className="flex items-center gap-5">
-            <Link to="/privacy" className="hover:text-foreground transition-colors">الخصوصية</Link>
-            <Link to="/terms" className="hover:text-foreground transition-colors">الشروط</Link>
-            <Link to="/contact" className="hover:text-foreground transition-colors">تواصل</Link>
-          </div>
-          <div className="flex items-center gap-2">
-            <span className="text-xs text-muted-foreground/60">تعديل الوضع:</span>
-            <ThemeToggle compact />
-          </div>
-        </div>
       </div>
     </footer>
   );
 }
+
