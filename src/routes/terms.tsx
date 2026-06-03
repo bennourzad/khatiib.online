@@ -193,7 +193,7 @@ export const Route = createFileRoute("/terms")({
 
               <div className="pt-3 space-y-1">
                 <div className="flex justify-between items-center text-xs">
-                  <span className="font-bold text-primary">موسوعة الفقه الإسلامي ومواقع الفتاوى الرسمية</span>
+                  <span className="font-bold text-primary">موقع إسلام ويب     </span>
                   <a
                     href="https://islamweb.net"
                     target="_blank"
@@ -204,7 +204,7 @@ export const Route = createFileRoute("/terms")({
                   </a>
                 </div>
                 <p className="text-xs text-muted-foreground leading-relaxed">
-                  <strong>عملها:</strong> تصفح المسائل والتقسيمات الفقهية والتأصيلية المعتمدة لدى المذاهب الأربعة لضمان سلامة الأحكام الفقهية الواردة في المسودة.
+                  <strong>عملها:</strong> إن ما يتميز به موقع إسلام ويب من شمولية واعتدال وإتقان، يجعل من الموقع صرحاً شامخاً، وبناءً قوياً في عالم الإنترنت
                 </p>
               </div>
 
