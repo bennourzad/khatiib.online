@@ -201,8 +201,8 @@ async function callNativeGeminiWithRetry(
     userPrompt: string;
     temperature?: number;
   },
-  retries = 6,
-  delayMs = 4000
+  retries = 3,
+  delayMs = 2000
 ): Promise<string> {
   for (let attempt = 1; attempt <= retries; attempt++) {
     try {
@@ -210,10 +210,16 @@ async function callNativeGeminiWithRetry(
     } catch (err: any) {
       // QUOTA_EXCEEDED means the model's billing/daily limit is exhausted — no point retrying same model
       if (err.message === "QUOTA_EXCEEDED") throw err;
-      if (err.message.includes("تجاوزت حد الاستخدام") && attempt < retries) {
-        // If it's a 429 rate limit, wait longer (e.g. 10s on 1st retry, 15s on 2nd, 25s on subsequent) to let the window reset
-        const waitTime = attempt === 1 ? 10000 : attempt === 2 ? 15000 : 25000;
-        console.warn(`[Gemini Rate Limit] Attempt ${attempt} failed with 429. Waiting ${waitTime}ms to clear rate limit window...`);
+
+      const isRateLimit = err.status === 429 || err.message.includes("تجاوزت حد الاستخدام");
+      const isTransient = err.status >= 500 || err.message.includes("fetch failed");
+
+      if ((isRateLimit || isTransient) && attempt < retries) {
+        // If it's a 429 rate limit, wait longer to let the window reset
+        const waitTime = isRateLimit
+          ? (attempt === 1 ? 8000 : 15000)
+          : (attempt * delayMs); // 2s, 4s for transient errors
+        console.warn(`[Gemini API Error] Model: ${params.model}, attempt ${attempt} failed with status ${err.status || 'unknown'}. Retrying in ${waitTime}ms...`);
         await new Promise((res) => setTimeout(res, waitTime));
         continue;
       }
@@ -268,14 +274,22 @@ async function callNativeGemini({
       msg.includes("billing") ||
       response.status === 402;
     console.error(`[Gemini Quota/Rate Error] Model: ${model}, status: ${response.status}`, JSON.stringify(errorBody).slice(0, 500));
-    if (isQuota) throw new Error("QUOTA_EXCEEDED"); // رمز خاص يُفعّل الـ Fallback
-    throw new Error("تجاوزت حد الاستخدام لـ Gemini، يرجى المحاولة بعد دقيقة");
+    if (isQuota) {
+      const err = new Error("QUOTA_EXCEEDED") as any;
+      err.status = response.status;
+      throw err;
+    }
+    const err = new Error("تجاوزت حد الاستخدام لـ Gemini، يرجى المحاولة بعد دقيقة") as any;
+    err.status = response.status;
+    throw err;
   }
 
   if (!response.ok) {
     const txt = await response.text();
     console.error("Gemini Native API Error", model, response.status, txt.slice(0, 1000));
-    throw new Error(`فشل الاتصال بمولّد الخطب (${response.status})`);
+    const err = new Error(`فشل الاتصال بمولّد الخطب (${response.status})`) as any;
+    err.status = response.status;
+    throw err;
   }
 
   const json = await response.json();
@@ -459,9 +473,9 @@ export const generateSermonAI = createServerFn({ method: "POST" })
     const apiKey = geminiKey;
     const isLovable = apiKey.startsWith("sk_");
 
-    // المدفوعة أولاً → المجانية عند نفاد الرصيد
-    const PAID_MODELS = ["gemini-2.5-flash", "gemini-2.5-pro"];
-    const FREE_MODELS = ["gemini-2.0-flash", "gemini-1.5-flash"];
+    // النماذج النشطة في Google AI Studio مرتبة حسب الأحدث والأكثر استقراراً
+    const PAID_MODELS = ["gemini-3.5-flash", "gemini-2.5-flash", "gemini-2.5-pro"];
+    const FREE_MODELS: string[] = []; // النماذج القديمة (1.5 و 2.0) تم إيقافها من قِبل Google
 
     const callModel = async (systemPrompt: string, userPrompt: string, temperature = 0.7): Promise<string> => {
       // مسار Lovable Gateway (لا يتغير)
@@ -476,7 +490,7 @@ export const generateSermonAI = createServerFn({ method: "POST" })
         });
       }
 
-      // مسار Google AI Studio مع Fallback تلقائي للمجاني
+      // مسار Google AI Studio مع Fallback تلقائي للنموذج البديل
       const allModels = [...PAID_MODELS, ...FREE_MODELS];
       let lastError: Error | null = null;
 
@@ -491,14 +505,18 @@ export const generateSermonAI = createServerFn({ method: "POST" })
           lastError = err instanceof Error ? err : new Error("تعذّر الاتصال بخدمة التوليد");
           const isQuota = lastError.message === "QUOTA_EXCEEDED" || lastError.message.toLowerCase().includes("billing");
           const isRateLimit = lastError.message.includes("تجاوزت حد الاستخدام");
-          if (isQuota || (isRateLimit && !isFree)) {
+          const isTransient = err.status >= 500 || lastError.message.includes("503") || lastError.message.includes("500") || lastError.message.includes("504");
+          const isUnsupportedModel = err.status === 404 || err.status === 400 || lastError.message.includes("404") || lastError.message.includes("400");
+
+          if (isQuota || (isRateLimit && !isFree) || isTransient || isUnsupportedModel) {
+            console.warn(`[Model Fallback] Model ${model} failed (status: ${err.status || 'unknown'}, msg: ${lastError.message}). Switching to next model...`);
             continue; // جرّب النموذج التالي
           }
-          throw lastError; // خطأ حقيقي → أوقف
+          throw lastError; // خطأ حقيقي (مثل 401 مفتاح خاطئ) → أوقف
         }
       }
 
-      throw new Error("تعذّر توليد الخطبة — جميع النماذج المتاحة وصلت لحدودها. حاول بعد قليل.");
+      throw new Error("تعذّر توليد الخطبة — جميع النماذج المتاحة وصلت لحدودها أو غير متوفرة. حاول بعد قليل.");
     };
 
     const sectionPlan = buildSectionPlan(data);
