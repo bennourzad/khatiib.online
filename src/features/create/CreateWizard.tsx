@@ -295,7 +295,7 @@ export function CreateWizard() {
             <div>
               <p className="text-sm font-semibold text-foreground">تنبيه هام</p>
               <p className="mt-1 text-xs leading-relaxed text-muted-foreground">
-                ورشة عمل لصياغة مسودة لخطبتك، لا خطبة جاهزة للإلقاء المباشر. هنا نختصر وقتك ونمنحك شرارة الانطلاق بمسودة ذكية؛ لتبقى أنت الإمام والخطيب والموجه.. تختار وتصحح وتضيف لتصنع محتواك الفريد.
+                نمنحك مسودة ذكية تختصر وقتك وتُشعل فكرة انطلاقك، لتتولى أنت كخطيب وإمام صياغة محتواك الفريد وتعديله بحرية. (ليست خطبة جاهزة للإلقاء).
               </p>
             </div>
           </div>
@@ -352,8 +352,8 @@ export function CreateWizard() {
                         c.disabled
                           ? "opacity-50 cursor-not-allowed border-border hover:bg-transparent"
                           : contentType === c.value
-                          ? "border-primary bg-primary/5 ring-1 ring-primary/30"
-                          : "border-border hover:border-primary/40 hover:bg-muted/40",
+                            ? "border-primary bg-primary/5 ring-1 ring-primary/30"
+                            : "border-border hover:border-primary/40 hover:bg-muted/40",
                       )}
                     >
                       <div className="font-semibold text-foreground">{c.label}</div>
@@ -881,8 +881,8 @@ function ChipChoice({
         disabled
           ? "opacity-50 cursor-not-allowed border-border bg-background text-foreground/50"
           : active
-          ? "border-primary bg-primary text-primary-foreground shadow-sm"
-          : "border-border bg-background text-foreground/85 hover:border-primary/40 hover:bg-muted/60",
+            ? "border-primary bg-primary text-primary-foreground shadow-sm"
+            : "border-border bg-background text-foreground/85 hover:border-primary/40 hover:bg-muted/60",
       )}
     >
       {label}

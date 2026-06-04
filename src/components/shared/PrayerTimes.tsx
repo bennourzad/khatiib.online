@@ -60,7 +60,7 @@ function usePrayerTimes() {
     queryKey: ["prayer-times", dateStr],
     queryFn: async (): Promise<AladhanResponse> => {
       const res = await fetch(
-        `https://api.aladhan.com/v1/timingsByCity/${dateStr}?city=Algiers&country=DZ&method=19`,
+        `https://api.aladhan.com/v1/timingsByCity/${dateStr}?city=Mecca&country=SA&method=4`,
       );
       if (!res.ok) throw new Error("Failed to fetch prayer times");
       return res.json();
@@ -128,7 +128,7 @@ export function PrayerTimesCompact() {
         مواقت الصلاة الحالية
       </span>
       <Clock className="h-3.5 w-3.5 text-primary" />
-      <span className="hidden text-muted-foreground sm:inline">الجزائر:</span>
+      <span className="hidden text-muted-foreground sm:inline">مكة المكرمة:</span>
       <div className="flex items-center gap-2 ps-1">
         {PRAYERS.map((p) => (
           <div key={p.key} className="flex items-baseline gap-1">
@@ -175,7 +175,7 @@ export function PrayerTimesFooter() {
       <div className="flex items-center justify-center gap-2 mb-3">
         <Clock className="h-3.5 w-3.5 text-primary" />
         <span className="text-xs font-semibold text-primary tracking-wide">
-          مواقيت الصلاة — الجزائر
+          مواقيت الصلاة — مكة المكرمة
         </span>
       </div>
 

@@ -193,7 +193,7 @@ export const Route = createFileRoute("/terms")({
 
               <div className="pt-3 space-y-1">
                 <div className="flex justify-between items-center text-xs">
-                  <span className="font-bold text-primary">موقع إسلام ويب     </span>
+                  <span className="font-bold text-primary">  إسلام ويب      </span>
                   <a
                     href="https://islamweb.net"
                     target="_blank"
