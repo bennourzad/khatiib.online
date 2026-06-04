@@ -8,13 +8,13 @@ export const Route = createFileRoute("/workshop")({
   }),
   head: () => ({
     meta: [
-      { title: "ورشة صياغة الخطبة — منصة خطيب" },
+      { title: "ورشة صياغة مسودة الخطبة — منصة خطيب" },
       {
         name: "description",
         content:
           "ورشة موجَّهة لصياغة خطبتك خطوة بخطوة: الموضوع، الجمهور، المدة، النبرة، المحاور، ثم مسودة كاملة بين يديك.",
       },
-      { property: "og:title", content: "ورشة صياغة الخطبة — منصة خطيب" },
+      { property: "og:title", content: "ورشة صياغة مسودة الخطبة — منصة خطيب" },
       {
         property: "og:description",
         content: "من فكرة عابرة إلى خطبة منبر متماسكة — ورشة موجَّهة تأخذ بيدك خطوة خطوة.",

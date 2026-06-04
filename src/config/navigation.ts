@@ -22,7 +22,7 @@ export interface NavItem {
 export const PRIMARY_NAV: NavItem[] = [
   { to: "/app", labelAr: "محادثة جديدة", icon: MessageSquarePlus, exact: true },
   { to: "/app/categories", labelAr: "التصنيفات", icon: Compass },
-  { to: "/app/create", labelAr: "ورشة صياغة الخطبة", icon: Sparkles },
+  { to: "/app/create", labelAr: "ورشة صياغة مسودة الخطبة", icon: Sparkles },
 ];
 
 export const LIBRARY_NAV: NavItem[] = [

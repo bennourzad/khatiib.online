@@ -38,13 +38,13 @@ import { Logo } from "@/components/brand/Logo";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "منصة خطيب — ورشة صياغة الخطبة" },
+      { title: "منصة خطيب — ورشة صياغة مسودة الخطبة " },
       {
         name: "description",
         content:
           "ورشة موجَّهة لصياغة خطبك الإسلامية: من الفكرة إلى المسودة الكاملة، خطوة بخطوة، بأسلوبك أنت.",
       },
-      { property: "og:title", content: "منصة خطيب — ورشة صياغة الخطبة" },
+      { property: "og:title", content: "منصة خطيب — ورشة صياغة مسودة الخطبة" },
       {
         property: "og:description",
         content:
