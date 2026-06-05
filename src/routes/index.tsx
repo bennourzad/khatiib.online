@@ -1582,7 +1582,7 @@ function FinalCTA() {
   return (
     <section className="bg-surface-muted/30 py-20">
       <div className="mx-auto max-w-5xl px-4 sm:px-6">
-        <div className="relative overflow-hidden rounded-[2rem] bg-gradient-brand px-8 py-16 text-center text-primary-foreground shadow-elegant sm:px-14">
+        <div className="relative overflow-hidden rounded-[2rem] bg-gradient-brand px-8 py-16 text-center text-primary-foreground shadow-elegant sm:px-14 transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] hover:-translate-y-2 hover:scale-[1.012] hover:shadow-2xl hover:ring-4 hover:ring-primary/20">
           <div aria-hidden className="pointer-events-none absolute inset-0 opacity-20">
             <div className="absolute -right-20 -top-20 h-72 w-72 rounded-full bg-white blur-3xl" />
             <div className="absolute -bottom-20 -left-20 h-72 w-72 rounded-full bg-white blur-3xl" />
