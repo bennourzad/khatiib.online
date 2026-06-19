@@ -5,7 +5,7 @@
   "compatibility_flags": ["nodejs_compat"],
   "main": "src/server.ts",
   "routes": [
-    { "pattern": "khatiib.online/*", "custom_domain": true },
-    { "pattern": "www.khatiib.online/*", "custom_domain": true }
+    { "pattern": "khatiib.online", "custom_domain": true },
+    { "pattern": "www.khatiib.online", "custom_domain": true }
   ]
 }
