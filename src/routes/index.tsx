@@ -30,7 +30,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { MarketingHeader, MarketingFooter } from "@/components/marketing/MarketingChrome";
-import challengeBg from "@/assets/bg-khatiib-01.png";
+import challengeBg from "@/assets/bg-khatiib-01.webp";
 import { Logo } from "@/components/brand/Logo";
 
 

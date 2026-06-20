@@ -17,7 +17,7 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { MarketingHeader, MarketingFooter } from "@/components/marketing/MarketingChrome";
-import challengeBg from "@/assets/bg-khatiib-01.png";
+import challengeBg from "@/assets/bg-khatiib-01.webp";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
