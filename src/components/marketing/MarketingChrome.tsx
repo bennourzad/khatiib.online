@@ -203,9 +203,9 @@ export function MarketingFooter() {
               <span className="text-xs text-muted-foreground/60 bg-muted px-1.5 py-0.5 rounded border border-border/40 font-mono">الإصدار 0.1</span>
             </div>
             <div className="text-xs text-muted-foreground/80">
-              صنع بحب ❤️{" "}
+              صنع بشغف ❤️{" "}
               <a
-                href="https://api.whatsapp.com/send?phone=213561705544&text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%20%D8%A8%D9%83%20%D8%B6%D9%8A%D9%81%D8%A7%20%D8%B9%D8%B2%D9%8A%D8%B2%D8%A7"
+                href="https://bennour.design/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="underline hover:text-primary transition-colors"

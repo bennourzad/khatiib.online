@@ -346,9 +346,9 @@ export function AppSidebar() {
         </div>
         <div className="border-t border-border/60 group-data-[collapsible=icon]:hidden" />
         <div className="px-1 text-center text-[11px] text-muted-foreground group-data-[collapsible=icon]:hidden">
-          صنع بحب ❤️{" "}
+          صنع بشغف ❤️{" "}
           <a
-            href="https://api.whatsapp.com/send?phone=213561705544&text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%20%D8%A8%D9%83%20%D8%B6%D9%8A%D9%81%D8%A7%20%D8%B9%D8%B2%D9%8A%D8%B2%D8%A7"
+            href="https://bennour.design/"
             target="_blank"
             rel="noopener noreferrer"
             className="underline hover:text-primary"
