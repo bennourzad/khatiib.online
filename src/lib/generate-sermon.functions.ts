@@ -301,6 +301,79 @@ async function callNativeGemini({
 }
 
 
+async function callOpenRouterWithRetry(
+  params: {
+    apiKey: string;
+    models: string[];
+    systemPrompt: string;
+    userPrompt: string;
+    temperature?: number;
+  },
+  retries = 2
+): Promise<string> {
+  let lastError: Error | null = null;
+
+  for (const model of params.models) {
+    for (let attempt = 1; attempt <= retries; attempt++) {
+      try {
+        console.log(`[OpenRouter API Call] Invoking model ${model} (Attempt ${attempt})...`);
+        const res = await fetch("https://openrouter.ai/api/v1/chat/completions", {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${params.apiKey}`,
+            "Content-Type": "application/json",
+            "HTTP-Referer": "https://khatiib.online",
+            "X-Title": "Khatiib Platform",
+          },
+          body: JSON.stringify({
+            model,
+            temperature: params.temperature ?? 0.7,
+            max_tokens: 1400,
+            messages: [
+              { role: "system", content: params.systemPrompt },
+              { role: "user", content: params.userPrompt },
+            ],
+          }),
+        });
+
+        if (res.status === 429) {
+          console.warn(`[OpenRouter RateLimit] Model: ${model}, status: 429.`);
+          if (attempt < retries) {
+            await new Promise((r) => setTimeout(r, 2000 * attempt));
+            continue;
+          }
+          break;
+        }
+
+        if (!res.ok) {
+          const txt = await res.text();
+          console.error(`[OpenRouter Error] Model: ${model}, status: ${res.status}, body: ${txt.slice(0, 500)}`);
+          if (res.status === 401) {
+            const err = new Error("مفتاح OpenRouter غير صالح أو غير موجود على النظام (401 User not found). يرجى التأكد من إنشاء المفتاح من openrouter.ai/keys");
+            (err as any).status = 401;
+            throw err;
+          }
+          if (res.status >= 500 && attempt < retries) {
+            await new Promise((r) => setTimeout(r, 1500 * attempt));
+            continue;
+          }
+          break;
+        }
+
+        const json = (await res.json()) as GatewayResponse;
+        return getTextFromGateway(json);
+      } catch (err: any) {
+        lastError = err instanceof Error ? err : new Error("تعذّر الاتصال بخدمة OpenRouter");
+        if (attempt < retries) {
+          await new Promise((r) => setTimeout(r, 1500 * attempt));
+        }
+      }
+    }
+  }
+
+  throw lastError ?? new Error("تعذّر توليد النص عبر OpenRouter");
+}
+
 function buildSectionPlan(data: BriefInput) {
   const totalWords = data.duration * 110;
   const includePrayer = data.contentType === "خطبة";
@@ -416,6 +489,7 @@ export const generateSermonAI = createServerFn({ method: "POST" })
   .inputValidator((input) => BriefSchema.parse(input))
   .handler(async ({ data }): Promise<GeneratedSermon> => {
     let envGeminiKey = "";
+    let envOpenRouterKey = "";
     try {
       const searchDirs = [
         process.cwd(),
@@ -452,6 +526,9 @@ export const generateSermonAI = createServerFn({ method: "POST" })
             if (key === "GEMINI_API_KEY") {
               envGeminiKey = value.trim();
             }
+            if (key === "OPENROUTER_API_KEY") {
+              envOpenRouterKey = value.trim();
+            }
           }
         }
       }
@@ -459,26 +536,53 @@ export const generateSermonAI = createServerFn({ method: "POST" })
       console.error("[SERVER FN] Error reading .env manually:", err);
     }
 
+    const cleanEnvOpenRouterKey = envOpenRouterKey && envOpenRouterKey !== "YOUR_OPENROUTER_API_KEY_HERE" ? envOpenRouterKey : undefined;
+    const cleanProcessOpenRouterKey = process.env.OPENROUTER_API_KEY && process.env.OPENROUTER_API_KEY !== "YOUR_OPENROUTER_API_KEY_HERE" ? process.env.OPENROUTER_API_KEY : undefined;
+    const openRouterKey = cleanEnvOpenRouterKey || cleanProcessOpenRouterKey;
+
     const cleanEnvKey = envGeminiKey && envGeminiKey !== "YOUR_GEMINI_API_KEY_HERE" ? envGeminiKey : undefined;
     const cleanProcessKey = process.env.GEMINI_API_KEY && process.env.GEMINI_API_KEY !== "YOUR_GEMINI_API_KEY_HERE" ? process.env.GEMINI_API_KEY : undefined;
 
     const geminiKey = cleanEnvKey || cleanProcessKey;
 
-    if (!geminiKey) {
+    if (!openRouterKey && !geminiKey) {
       throw new Error(
         "لم نتمكن من الوصول لخدمة الصياغة — حاول مرة أخرى ، نحن في الوضع التجريبي ."
       );
     }
 
-    const apiKey = geminiKey;
-    const isLovable = apiKey.startsWith("sk_");
+    // نماذج OpenRouter مرتبة حسب الأفضلية للغة العربية والسرعة المؤكدة
+    const OPENROUTER_MODELS = [
+      "deepseek/deepseek-chat",
+      "google/gemini-2.5-flash",
+      "meta-llama/llama-3.3-70b-instruct",
+    ];
 
     // النماذج النشطة في Google AI Studio مرتبة حسب الأحدث والأكثر استقراراً
     const PAID_MODELS = ["gemini-3.5-flash", "gemini-2.5-flash", "gemini-2.5-pro"];
-    const FREE_MODELS: string[] = []; // النماذج القديمة (1.5 و 2.0) تم إيقافها من قِبل Google
+    const FREE_MODELS: string[] = [];
 
     const callModel = async (systemPrompt: string, userPrompt: string, temperature = 0.7): Promise<string> => {
-      // مسار Lovable Gateway (لا يتغير)
+      // 1. مسار OpenRouter (يعمل إذا تم توفير مفتاح OpenRouter)
+      if (openRouterKey) {
+        try {
+          return await callOpenRouterWithRetry({
+            apiKey: openRouterKey,
+            models: OPENROUTER_MODELS,
+            systemPrompt,
+            userPrompt,
+            temperature,
+          });
+        } catch (orErr: any) {
+          console.warn(`[OpenRouter Failed] ${orErr.message}. Checking Gemini fallback...`);
+          if (!geminiKey) throw orErr;
+        }
+      }
+
+      const apiKey = geminiKey!;
+      const isLovable = apiKey.startsWith("sk_");
+
+      // 2. مسار Lovable Gateway (لا يتغير)
       if (isLovable) {
         return callGatewayText({
           apiKey,
@@ -490,7 +594,7 @@ export const generateSermonAI = createServerFn({ method: "POST" })
         });
       }
 
-      // مسار Google AI Studio مع Fallback تلقائي للنموذج البديل
+      // 3. مسار Google AI Studio المباشر مع Fallback تلقائي
       const allModels = [...PAID_MODELS, ...FREE_MODELS];
       let lastError: Error | null = null;
 
