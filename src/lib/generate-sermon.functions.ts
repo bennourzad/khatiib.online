@@ -490,6 +490,38 @@ export const generateSermonAI = createServerFn({ method: "POST" })
   .handler(async ({ data }): Promise<GeneratedSermon> => {
     let envGeminiKey = "";
     let envOpenRouterKey = "";
+    let cloudflareOpenRouterKey: string | undefined;
+    let cloudflareGeminiKey: string | undefined;
+
+    // 1. Try Cloudflare Workers context via cloudflare:workers (native Cloudflare module)
+    try {
+      // @ts-ignore
+      const cfWorkersModule = ["cloudflare", "workers"].join(":");
+      const cfWorkers = await import(/* @vite-ignore */ cfWorkersModule);
+      if (cfWorkers?.env) {
+        cloudflareOpenRouterKey = cfWorkers.env.OPENROUTER_API_KEY;
+        cloudflareGeminiKey = cfWorkers.env.GEMINI_API_KEY;
+      }
+    } catch (e) {
+      // Not in Cloudflare Workers environment or module not available
+    }
+
+    // 2. Try H3 event context (Vinxi/Nitro on Cloudflare Pages/Workers)
+    if (!cloudflareOpenRouterKey || !cloudflareGeminiKey) {
+      try {
+        const vinxiHttpModule = ["vinxi", "http"].join("/");
+        const { getEvent } = await import(/* @vite-ignore */ vinxiHttpModule);
+        const event = getEvent();
+        const cfEnv = event?.context?.cloudflare?.env;
+        if (cfEnv) {
+          cloudflareOpenRouterKey = cloudflareOpenRouterKey || cfEnv.OPENROUTER_API_KEY;
+          cloudflareGeminiKey = cloudflareGeminiKey || cfEnv.GEMINI_API_KEY;
+        }
+      } catch (e) {
+        // Not in Vinxi server environment or no Cloudflare context
+      }
+    }
+
     try {
       const searchDirs = [
         process.cwd(),
@@ -536,14 +568,16 @@ export const generateSermonAI = createServerFn({ method: "POST" })
       console.error("[SERVER FN] Error reading .env manually:", err);
     }
 
+    const cleanCloudflareOpenRouterKey = cloudflareOpenRouterKey && cloudflareOpenRouterKey !== "YOUR_OPENROUTER_API_KEY_HERE" ? cloudflareOpenRouterKey : undefined;
     const cleanEnvOpenRouterKey = envOpenRouterKey && envOpenRouterKey !== "YOUR_OPENROUTER_API_KEY_HERE" ? envOpenRouterKey : undefined;
     const cleanProcessOpenRouterKey = process.env.OPENROUTER_API_KEY && process.env.OPENROUTER_API_KEY !== "YOUR_OPENROUTER_API_KEY_HERE" ? process.env.OPENROUTER_API_KEY : undefined;
-    const openRouterKey = cleanEnvOpenRouterKey || cleanProcessOpenRouterKey;
+    const openRouterKey = cleanCloudflareOpenRouterKey || cleanEnvOpenRouterKey || cleanProcessOpenRouterKey;
 
+    const cleanCloudflareGeminiKey = cloudflareGeminiKey && cloudflareGeminiKey !== "YOUR_GEMINI_API_KEY_HERE" ? cloudflareGeminiKey : undefined;
     const cleanEnvKey = envGeminiKey && envGeminiKey !== "YOUR_GEMINI_API_KEY_HERE" ? envGeminiKey : undefined;
     const cleanProcessKey = process.env.GEMINI_API_KEY && process.env.GEMINI_API_KEY !== "YOUR_GEMINI_API_KEY_HERE" ? process.env.GEMINI_API_KEY : undefined;
 
-    const geminiKey = cleanEnvKey || cleanProcessKey;
+    const geminiKey = cleanCloudflareGeminiKey || cleanEnvKey || cleanProcessKey;
 
     if (!openRouterKey && !geminiKey) {
       throw new Error(
