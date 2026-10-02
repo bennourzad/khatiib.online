@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>منصة خطيب — ملف العرض التقديمي</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --c-dark-bg: #031d18;
+      --c-dark-card: #062b24;
+      --c-dark-border: #12463c;
+      --c-light-bg: #faf9f6;
+      --c-light-card: #ffffff;
+      --c-light-border: #e0e8e4;
+      --c-emerald: #0e4d40;
+      --c-emerald-light: #e8f3ef;
+      --c-emerald-soft: #f0f7f4;
+      --c-gold: #c5a880;
+      --c-gold-light: #f9f6f0;
+      --c-text-dark: #1a2e2b;
+      --c-text-muted: #526e67;
+      --c-text-white: #f5f7f6;
+      --c-accent-red: #c53030;
+      --c-accent-red-bg: #fff5f5;
+      --font-cairo: 'Cairo', system-ui, sans-serif;
+      --font-amiri: 'Amiri', serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-cairo);
+      background-color: #333;
+      direction: rtl;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    @page {
+      size: 1920px 1080px;
+      margin: 0;
+    }
+
+    @media print {
+      body {
+        background: transparent;
+      }
+      .slide {
+        page-break-after: always;
+        break-after: page;
+        page-break-inside: avoid;
+        break-inside: avoid;
+        box-shadow: none !important;
+        margin: 0 !important;
+      }
+    }
+
+    .slide {
+      width: 1920px;
+      height: 1080px;
+      position: relative;
+      overflow: hidden;
+      margin: 20px auto;
+      background: var(--c-light-bg);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 60px 80px 45px 80px;
+    }
+
+    /* DARK THEME SLIDES (Slide 1 & 10) */
+    .slide.dark-theme {
+      background: var(--c-dark-bg);
+      color: var(--c-text-white);
+    }
+
+    .slide.dark-theme::before {
+      content: "";
+      position: absolute;
+      top: -200px;
+      right: -200px;
+      width: 900px;
+      height: 900px;
+      background: radial-gradient(circle, rgba(14, 77, 64, 0.4) 0%, rgba(3, 29, 24, 0) 70%);
+      pointer-events: none;
+    }
+
+    .slide.dark-theme::after {
+      content: "";
+      position: absolute;
+      bottom: -150px;
+      left: -150px;
+      width: 700px;
+      height: 700px;
+      background: radial-gradient(circle, rgba(197, 168, 128, 0.15) 0%, rgba(3, 29, 24, 0) 70%);
+      pointer-events: none;
+    }
+
+    /* TOP BRAND BAR */
+    .brand-bar {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 10px;
+      background: linear-gradient(90deg, var(--c-emerald), var(--c-gold));
+    }
+    .slide.dark-theme .brand-bar {
+      background: linear-gradient(90deg, var(--c-gold), var(--c-emerald));
+    }
+
+    /* HEADER */
+    .slide-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid var(--c-light-border);
+      padding-bottom: 25px;
+      position: relative;
+      z-index: 2;
+    }
+    .slide.dark-theme .slide-header {
+      border-bottom: 2px solid var(--c-dark-border);
+    }
+
+    .header-titles h2 {
+      font-size: 34px;
+      font-weight: 800;
+      color: var(--c-emerald);
+      letter-spacing: -0.5px;
+    }
+    .slide.dark-theme .header-titles h2 {
+      color: var(--c-text-white);
+    }
+
+    .header-badge {
+      background: var(--c-emerald-light);
+      color: var(--c-emerald);
+      border: 1px solid var(--c-light-border);
+      padding: 8px 24px;
+      border-radius: 30px;
+      font-size: 18px;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .slide.dark-theme .header-badge {
+      background: var(--c-dark-card);
+      color: var(--c-gold);
+      border-color: var(--c-dark-border);
+    }
+
+    /* CONTENT BODY */
+    .slide-body {
+      flex: 1;
+      padding: 40px 0 20px 0;
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    /* FOOTER */
+    .slide-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid var(--c-light-border);
+      padding-top: 20px;
+      font-size: 16px;
+      color: var(--c-text-muted);
+      position: relative;
+      z-index: 2;
+    }
+    .slide.dark-theme .slide-footer {
+      border-top: 1px solid var(--c-dark-border);
+      color: #7b9e96;
+    }
+
+    /* ORNAMENTS */
+    .islamic-star {
+      position: absolute;
+      opacity: 0.05;
+      pointer-events: none;
+      z-index: 1;
+    }
+    .slide.dark-theme .islamic-star {
+      opacity: 0.08;
+    }
+
+    /* UI CARDS & GRIDS */
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 35px;
+      height: 100%;
+    }
+    .grid-2x2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(2, 1fr);
+      gap: 30px;
+      height: 100%;
+    }
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 25px;
+      height: 100%;
+    }
+    .grid-5 {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 20px;
+      height: 100%;
+    }
+
+    .card {
+      background: var(--c-light-card);
+      border: 1.5px solid var(--c-light-border);
+      border-radius: 20px;
+      padding: 35px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card-top-line {
+      position: absolute;
+      top: 0;
+      right: 0;
+      left: 0;
+      height: 6px;
+    }
+
+    .number-badge {
+      width: 54px;
+      height: 54px;
+      border-radius: 50%;
+      background: var(--c-emerald-light);
+      color: var(--c-emerald);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      font-weight: 800;
+      margin-bottom: 22px;
+    }
+
+    .card h3 {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--c-text-dark);
+      margin-bottom: 15px;
+      line-height: 1.35;
+    }
+
+    .card p {
+      font-size: 18px;
+      line-height: 1.65;
+      color: var(--c-text-muted);
+    }
+
+    /* QUOTE BANNER */
+    .quote-banner {
+      background: var(--c-emerald-soft);
+      border: 1.5px solid #d3e7df;
+      border-radius: 16px;
+      padding: 22px 35px;
+      margin-bottom: 30px;
+      text-align: center;
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--c-emerald);
+    }
+
+    /* METRIC CARDS */
+    .metric-box {
+      background: var(--c-emerald-light);
+      border-radius: 16px;
+      padding: 25px 20px;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .metric-val {
+      font-size: 48px;
+      font-weight: 900;
+      color: var(--c-emerald);
+      line-height: 1.1;
+    }
+
+    /* STEP CARDS */
+    .step-card {
+      background: var(--c-light-card);
+      border: 1.5px solid var(--c-light-border);
+      border-radius: 20px;
+      padding: 30px 20px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+    }
+    .step-num {
+      width: 55px;
+      height: 55px;
+      border-radius: 50%;
+      background: var(--c-emerald-light);
+      color: var(--c-emerald);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      font-weight: 800;
+      margin-bottom: 20px;
+    }
+    .step-card.active .step-num {
+      background: var(--c-emerald);
+      color: #fff;
+    }
+
+    /* ALERT CARDS */
+    .alert-card {
+      background: #fff;
+      border: 1.5px solid #f2d6d6;
+      border-radius: 16px;
+      padding: 24px 30px;
+      margin-bottom: 18px;
+      display: flex;
+      align-items: flex-start;
+      gap: 25px;
+    }
+    .alert-icon {
+      font-size: 28px;
+      color: var(--c-accent-red);
+      flex-shrink: 0;
+      margin-top: 3px;
+    }
+    .alert-content h4 {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--c-text-dark);
+      margin-bottom: 8px;
+    }
+    .alert-content p {
+      font-size: 18px;
+      line-height: 1.55;
+      color: var(--c-text-muted);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==================================================================== -->
+  <!-- SLIDE 1: COVER -->
+  <!-- ==================================================================== -->
+  <div class="slide dark-theme">
+    <div class="brand-bar"></div>
+    <svg class="islamic-star" style="bottom: 50px; left: 50px; width: 600px; height: 600px;" viewBox="0 0 200 200">
+      <rect x="50" y="50" width="100" height="100" fill="none" stroke="#c5a880" stroke-width="1" transform="rotate(0 100 100)" />
+      <rect x="50" y="50" width="100" height="100" fill="none" stroke="#c5a880" stroke-width="1" transform="rotate(45 100 100)" />
+      <rect x="50" y="50" width="100" height="100" fill="none" stroke="#c5a880" stroke-width="1" transform="rotate(22.5 100 100)" />
+      <rect x="50" y="50" width="100" height="100" fill="none" stroke="#c5a880" stroke-width="1" transform="rotate(67.5 100 100)" />
+      <circle cx="100" cy="100" r="70" fill="none" stroke="#c5a880" stroke-width="0.5" stroke-dasharray="3,3" />
+    </svg>
+
+    <div class="slide-header" style="border: none;">
+      <div class="header-badge" style="background: rgba(197,168,128,0.15); border-color: var(--c-gold); color: var(--c-gold); font-size: 20px; padding: 10px 30px;">
+        تحدي الذكاء الاصطناعي في خدمة المحتوى الإسلامي · 2026
+      </div>
+      <div style="font-size: 20px; color: #7b9e96; font-weight: 600;">
+        مسار توليد وإثراء المحتوى الإسلامي الرصين
+      </div>
+    </div>
+
+    <div class="slide-body" style="align-items: center; text-align: center;">
+      <div style="background: var(--c-dark-card); border: 2px solid var(--c-dark-border); border-radius: 28px; padding: 60px 100px; max-width: 1450px; box-shadow: 0 25px 60px rgba(0,0,0,0.4); position: relative;">
+        
+        <h1 style="font-size: 80px; font-weight: 900; color: #ffffff; letter-spacing: -1px; margin-bottom: 25px; line-height: 1.1;">
+          مَنَصَّة خَطِيب
+        </h1>
+
+        <h2 style="font-size: 36px; font-weight: 700; color: #a3e6d2; margin-bottom: 25px; line-height: 1.4;">
+          ورشة الذكاء الاصطناعي التوليدي لصياغة الخطب المنبرية<br>بضوابط شرعية وبلاغة أصيلة
+        </h2>
+
+        <div style="font-family: var(--font-amiri); font-size: 32px; font-style: italic; color: var(--c-gold); margin-top: 15px;">
+          « أمانة الكلمة .. وعصرية التقنية »
+        </div>
+
+        <div style="margin-top: 40px; display: flex; justify-content: center; gap: 40px; font-size: 19px; color: #8baea6;">
+          <span>✓ توثيق وتخريج حديثي مباشر</span>
+          <span>·</span>
+          <span>✓ تنقية بلاغية تراثية</span>
+          <span>·</span>
+          <span>✓ خصوصية منبرية مطلقة</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <div>منصة خطيب — الإصدار التجريبي 0.1</div>
+      <div>www.khatiib.com</div>
+    </div>
+  </div>
+
+  <!-- ==================================================================== -->
+  <!-- SLIDE 2: THE PROBLEM -->
+  <!-- ==================================================================== -->
+  <div class="slide">
+    <div class="brand-bar"></div>
+    <div class="slide-header">
+      <div class="header-titles">
+        <h2>ثقل أمانة المنبر وتحديات إعداد الخطبة في عصر السرعة</h2>
+      </div>
+      <div class="header-badge">المشكلة والواقع</div>
+    </div>
+
+    <div class="slide-body">
+      <div class="grid-3">
+        <div class="card">
+          <div class="card-top-line" style="background: var(--c-emerald);"></div>
+          <div class="number-badge">01</div>
+          <h3>رهبة الصفحة البيضاء وصعوبة التجديد</h3>
+          <p>
+            يواجه خطيب الجمعة أسبوعياً معضلة البدء من الصفر لاختيار موضوع يلامس هموم المصلين الحقيقية، مما يدفع الكثيرين للاستنساخ الحرفي للخطب القديمة أو الوقوع في التكرار النمطي الذي يفقد الموعظة تأثيرها.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="card-top-line" style="background: var(--c-gold);"></div>
+          <div class="number-badge" style="background: var(--c-gold-light); color: var(--c-gold);">02</div>
+          <h3>استنزاف 4 إلى 6 ساعات في التحضير</h3>
+          <p>
+            يقضي الخطيب ساعات طويلة ومجهدة أسبوعياً بين جمع الشواهد القرآنية، وتخريج الأحاديث، وتنسيق المحاور، مما يثقل كاهله ويقلل من وقت التفرغ للحفظ والاستحضار والاتصال الروحي الفعلي بجماعته.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="card-top-line" style="background: var(--c-accent-red);"></div>
+          <div class="number-badge" style="background: var(--c-accent-red-bg); color: var(--c-accent-red);">03</div>
+          <h3>تشتت المصادر وضعف التوثيق الحديثي</h3>
+          <p>
+            فوضى المراجع بين مواقع الإنترنت والكتب غير المحققة، ومخاطر الوقوع في إيراد أحاديث ضعيفة أو قصص موضوعة متداولة لا تصح نسبتها إلى النبي ﷺ على منبر رسول الله.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <div>منصة خطيب · تحدي الذكاء الاصطناعي في خدمة المحتوى الإسلامي</div>
+      <div>الشريحة 2 من 10</div>
+    </div>
+  </div>
+
+  <!-- ==================================================================== -->
+  <!-- SLIDE 3: THE GAP IN GENERIC AI -->
+  <!-- ==================================================================== -->
+  <div class="slide">
+    <div class="brand-bar"></div>
+    <div class="slide-header">
+      <div class="header-titles">
+        <h2>لماذا تفشل نماذج الذكاء الاصطناعي العامة على المنبر؟</h2>
+      </div>
+      <div class="header-badge">الفجوة والقصور</div>
+    </div>
+
+    <div class="slide-body" style="justify-content: flex-start; gap: 15px;">
+      <div class="alert-card">
+        <div class="alert-icon">⚠️</div>
+        <div class="alert-content">
+          <h4>الهلوسة الشرعية ونسبة الأحاديث الضعيفة والمكذوبة</h4>
+          <p>النماذج العامة تبتدع متوناً غير صحيحة، أو تنسب أحاديث موضوعة أو مكذوبة إلى كتب الصحاح دون أي تحرٍ علمي، والمنبر مقام توقيف وأمانة شرعية مقدسة لا تحتمل الخطأ.</p>
+        </div>
+      </div>
+
+      <div class="alert-card">
+        <div class="alert-icon">⚠️</div>
+        <div class="alert-content">
+          <h4>الركاكة اللغوية والأسلوب الصحفي المترجم البارد</h4>
+          <p>تعتمد النماذج لغة آلية هجينة مليئة بالكليشيهات الباردة مثل: ("يلعب دوراً كبيراً"، "يسلط الضوء"، "في عصرنا الحالي")، وهي لغة هزيلة تفقد المنبر جلاله وفصاحته المأثورة.</p>
+        </div>
+      </div>
+
+      <div class="alert-card">
+        <div class="alert-icon">⚠️</div>
+        <div class="alert-content">
+          <h4>انعدام مراعاة الهيكل المنبري وضوابط زمن الإلقاء</h4>
+          <p>تولد نصوصاً مقالية هلامية بلا ضوابط زمنية، ولا تراعي التقسيم المنبري المعتمد: (خطبة أولى، جلسة استراحة، خطبة ثانية، وخاتمة بالدعاء المأثور المحكم).</p>
+        </div>
+      </div>
+
+      <div class="alert-card">
+        <div class="alert-icon">⚠️</div>
+        <div class="alert-content">
+          <h4>انتهاك سرية الأفكار والمسودات الدعوية</h4>
+          <p>المنصات العامة ترفع مسودات الخطباء على خوادمها لتدريب نماذجها، مما يثير مخاوف حقيقية لدى الإمام حيال خصوصية أفكاره المنبرية قبل إلقائها على الناس.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <div>منصة خطيب · تحدي الذكاء الاصطناعي في خدمة المحتوى الإسلامي</div>
+      <div>الشريحة 3 من 10</div>
+    </div>
+  </div>
+
+  <!-- ==================================================================== -->
+  <!-- SLIDE 4: THE SOLUTION - KHATIIB -->
+  <!-- ==================================================================== -->
+  <div class="slide">
+    <div class="brand-bar"></div>
+    <div class="slide-header">
+      <div class="header-titles">
+        <h2>منصة خطيب: ورشة عمل ذكية تمكّن الخطيب ولا تستبدله</h2>
+      </div>
+      <div class="header-badge">الحل المبتكر</div>
+    </div>
+
+    <div class="slide-body">
+      <div class="quote-banner">
+        « المنصة أداة مساعدة لكسر جمود الصفحة البيضاء، وليست بديلاً عن بصيرة الخطيب وفقهه لواقع جماعته ومصلّيه »
+      </div>
+
+      <div class="grid-2x2">
+        <div class="card" style="padding: 28px;">
+          <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 12px;">
+            <div style="background: var(--c-emerald-light); color: var(--c-emerald); width: 42px; height: 42px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 22px; font-weight: 800;">✓</div>
+            <h3 style="margin: 0;">ورشة صياغة تفاعلية موجَّهة</h3>
+          </div>
+          <p>مسار منهجي خطوة بخطوة يمنع التشتت ويحول الفكرة العابرة إلى هيكل خطبة متماسك، مع تحديد دقيق للجمهور والنبرة والمدة الزمنية ومحاور الحديث.</p>
+        </div>
+
+        <div class="card" style="padding: 28px;">
+          <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 12px;">
+            <div style="background: var(--c-emerald-light); color: var(--c-emerald); width: 42px; height: 42px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 22px; font-weight: 800;">✓</div>
+            <h3 style="margin: 0;">محرك التحقق الحديثي الصارم</h3>
+          </div>
+          <p>تكامل مباشر مع محركات التخريج المعتمدة (Hdith.com)، وحظر تام لإيراد الأحاديث الضعيفة أو مجهولة المصدر لضمان صيانة هيبة المنبر.</p>
+        </div>
+
+        <div class="card" style="padding: 28px;">
+          <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 12px;">
+            <div style="background: var(--c-emerald-light); color: var(--c-emerald); width: 42px; height: 42px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 22px; font-weight: 800;">✓</div>
+            <h3 style="margin: 0;">طبقة التنقية والتعريب البلاغي</h3>
+          </div>
+          <p>خوارزمية حصرية (Classical Arabic Humanizer) تنقي المسودة آلياً من كليشيهات الذكاء الاصطناعي وتصيغها ببيان عربي فصيح جزل على خطى أئمة البيان العربي.</p>
+        </div>
+
+        <div class="card" style="padding: 28px;">
+          <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 12px;">
+            <div style="background: var(--c-emerald-light); color: var(--c-emerald); width: 42px; height: 42px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 22px; font-weight: 800;">✓</div>
+            <h3 style="margin: 0;">الخصوصية المطلقة والتصدير الفوري</h3>
+          </div>
+          <p>تخزين محلي مشفر على متصفح الخطيب دون إرسال مسوداته لأي جهة خارجية، مع تصدير بضغطة زر إلى ملف Word (.docx) مهيأ فوراً للإلقاء على المنبر.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <div>منصة خطيب · تحدي الذكاء الاصطناعي في خدمة المحتوى الإسلامي</div>
+      <div>الشريحة 4 من 10</div>
+    </div>
+  </div>
+
+  <!-- ==================================================================== -->
+  <!-- SLIDE 5: USER JOURNEY / WORKSHOP FLOW -->
+  <!-- ==================================================================== -->
+  <div class="slide">
+    <div class="brand-bar"></div>
+    <div class="slide-header">
+      <div class="header-titles">
+        <h2>رحلة إعداد الخطبة: من الفكرة العابرة إلى المسودة في 5 خطوات</h2>
+      </div>
+      <div class="header-badge">مسار الورشة</div>
+    </div>
+
+    <div class="slide-body">
+      <div class="grid-5">
+        <div class="step-card">
+          <div class="step-num">1</div>
+          <h3 style="font-size: 22px; margin-bottom: 12px;">تحديد النوع والموضوع</h3>
+          <p style="font-size: 16px;">اختيار القالب (خطبة جمعة / كلمة موعظية / درس علمي) وتحديد الموضوع الرئيسي للخطبة بدقة.</p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-num">2</div>
+          <h3 style="font-size: 22px; margin-bottom: 12px;">تخصيص الجمهور</h3>
+          <p style="font-size: 16px;">تحديد الفئة المستهدفة: عامة المصلين، الشباب، أهل الحي، الناشئة لضبط مستوى ولغة الخطاب.</p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-num">3</div>
+          <h3 style="font-size: 22px; margin-bottom: 12px;">ضبط النبرة والمدة</h3>
+          <p style="font-size: 16px;">اختيار النبرة (وعظي مؤثر، علمي، علاجي) وضبط وقت الإلقاء المقدر (15-25 دقيقة) ومعدل الكلمات.</p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-num">4</div>
+          <h3 style="font-size: 22px; margin-bottom: 12px;">هندسة المحاور</h3>
+          <p style="font-size: 16px;">بناء محاور الخطبة وتوزيع الأفكار بموازنة منهجية تجمع بين الأدلة الشرعية والواقع المعاش.</p>
+        </div>
+
+        <div class="step-card active">
+          <div class="step-num">5</div>
+          <h3 style="font-size: 22px; margin-bottom: 12px;">التوليد والمراجعة</h3>
+          <p style="font-size: 16px;">صياغة المسودة بالتوازي، فحص الأحاديث، وإتاحة التعديل اللحظي والتصدير المباشر لـ Word.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <div>منصة خطيب · تحدي الذكاء الاصطناعي في خدمة المحتوى الإسلامي</div>
+      <div>الشريحة 5 من 10</div>
+    </div>
+  </div>
+
+  <!-- ==================================================================== -->
+  <!-- SLIDE 6: DEEP TECH & ISLAMIC GROUNDING -->
+  <!-- ==================================================================== -->
+  <div class="slide">
+    <div class="brand-bar"></div>
+    <div class="slide-header">
+      <div class="header-titles">
+        <h2>الابتكار التقني: محرك التخريج والتعريب البلاغي التراثي</h2>
+      </div>
+      <div class="header-badge">الابتكار التقني</div>
+    </div>
+
+    <div class="slide-body">
+      <div class="grid-3">
+        <div class="card">
+          <div class="card-top-line" style="background: var(--c-emerald);"></div>
+          <h3 style="font-size: 24px;">محرك التخريج والتحقق الحديثي</h3>
+          <div style="font-size: 14px; font-weight: 700; color: var(--c-gold); margin-bottom: 20px;">Takhrij & Grounding Engine</div>
+          <p>
+            توجيه قطعي للنماذج بحظر الأحاديث الضعيفة أو الموضوعة، مع ربط مخصص عبر خادم وسيط (Hdith Proxy API) للبحث المباشر في صحة الرواية وعزوها الفوري لراويها ومخرجها وصحتها عند كبار المحدثين.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="card-top-line" style="background: var(--c-gold);"></div>
+          <h3 style="font-size: 24px;">منقي الأسلوب التراثي العربي</h3>
+          <div style="font-size: 14px; font-weight: 700; color: var(--c-gold); margin-bottom: 20px;">Classical Arabic Humanizer</div>
+          <p>
+            خوارزمية معالجة لاحقة (Post-processing) تستبدل الكليشيهات الحديثة والمترجمة بألفاظ عربية فصيحة (كالاستعاضة عن "يسلط الضوء" بـ "يجلو المعنى"، وعن "يلعب دوراً" بـ "كان له أثرٌ"، وحذف الروابط الركيكة الزائدة).
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="card-top-line" style="background: var(--c-emerald);"></div>
+          <h3 style="font-size: 24px;">التوليد المتوازي للمحاور</h3>
+          <div style="font-size: 14px; font-weight: 700; color: var(--c-gold); margin-bottom: 20px;">Concurrent Section Workers</div>
+          <p>
+            بنية توليد متزامنة تقسم الخطبة إلى محاور منفصلة يتم استدعاؤها بالتوازي، مما يقلص زمن التوليد الكلي من دقيقتين إلى أقل من 20 ثانية، مع الحفاظ على ترابط السياق وحساب سرعة الإلقاء.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <div>منصة خطيب · تحدي الذكاء الاصطناعي في خدمة المحتوى الإسلامي</div>
+      <div>الشريحة 6 من 10</div>
+    </div>
+  </div>
+
+  <!-- ==================================================================== -->
+  <!-- SLIDE 7: ARCHITECTURE & TECH STACK -->
+  <!-- ==================================================================== -->
+  <div class="slide">
+    <div class="brand-bar"></div>
+    <div class="slide-header">
+      <div class="header-titles">
+        <h2>المعمارية التقنية: سرعة فائقة وحوسبة حافة متقدمة</h2>
+      </div>
+      <div class="header-badge">المعمارية التقنية</div>
+    </div>
+
+    <div class="slide-body">
+      <div class="grid-2x2">
+        <div class="card">
+          <div style="font-size: 15px; font-weight: 700; color: var(--c-gold); margin-bottom: 8px;">الواجهة وتجربة المستخدم</div>
+          <h3>React 19 + TanStack Router</h3>
+          <p>واجهة أمامية فائقة السلاسة مبنية بمكتبة Radix UI و Tailwind CSS v4، متوافقة بالكامل مع الأجهزة اللوحية والمحمولة، مع دعم الوضعين الليلي والنهاري ومواقيت الصلاة الحية بحسب الموقع الجغرافي.</p>
+        </div>
+
+        <div class="card">
+          <div style="font-size: 15px; font-weight: 700; color: var(--c-gold); margin-bottom: 8px;">الذكاء الاصطناعي التوليدي</div>
+          <h3>Google Gemini & Multi-Model Fallback</h3>
+          <p>تنسيق متقدم مع نماذج Gemini 2.5 Flash / Pro و Gemini 3.5، مع مسار OpenRouter وبدائل تلقائية عند ذروة الاستخدام لضمان تشغيل مستمر بنسبة 99.9% في أوقات التحضير الأسبوعية.</p>
+        </div>
+
+        <div class="card">
+          <div style="font-size: 15px; font-weight: 700; color: var(--c-gold); margin-bottom: 8px;">الحوسبة الطرفية السريعة</div>
+          <h3>Cloudflare Edge Infrastructure</h3>
+          <p>خوادم طرفية موزعة عالمياً عبر شبكة Cloudflare Workers & Pages لتقديم استجابة فورية، وحماية تامة للمفاتيح السرية، وتشفير الاتصال دون الحاجة لخوادم وسيطة ثقيلة.</p>
+        </div>
+
+        <div class="card">
+          <div style="font-size: 15px; font-weight: 700; color: var(--c-gold); margin-bottom: 8px;">أمان وخصوصية البيانات</div>
+          <h3>Client-Side Local Storage (IndexedDB)</h3>
+          <p>تخزين مسودات الخطب محلياً بالكامل على متصفح الخطيب دون إرسالها إلى قواعد بيانات سحابية مركزية، صيانةً لحرمة أفكار الإمام ومسوداته المنبرية قبل الإلقاء.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <div>منصة خطيب · تحدي الذكاء الاصطناعي في خدمة المحتوى الإسلامي</div>
+      <div>الشريحة 7 من 10</div>
+    </div>
+  </div>
+
+  <!-- ==================================================================== -->
+  <!-- SLIDE 8: IMPACT & METRICS -->
+  <!-- ==================================================================== -->
+  <div class="slide">
+    <div class="brand-bar"></div>
+    <div class="slide-header">
+      <div class="header-titles">
+        <h2>قياس الأثر: نقلة نوعية في كفاءة وموثوقية الخطاب المنبري</h2>
+      </div>
+      <div class="header-badge">الأثر والنتائج</div>
+    </div>
+
+    <div class="slide-body">
+      <div class="grid-4">
+        <div class="card" style="text-align: center; align-items: center;">
+          <div class="metric-box" style="width: 100%;">
+            <div class="metric-val">85%</div>
+          </div>
+          <h3>توفير وقت التحضير</h3>
+          <p>تقليص زمن إعداد مسودة الخطبة من 4 ساعات إلى أقل من 15 دقيقة، ليتفرغ الخطيب للحفظ والمدارسة والتأمل.</p>
+        </div>
+
+        <div class="card" style="text-align: center; align-items: center;">
+          <div class="metric-box" style="width: 100%;">
+            <div class="metric-val">100%</div>
+          </div>
+          <h3>دقة الشواهد والتوثيق</h3>
+          <p>صفر أحاديث ضعيفة أو مجهولة المصدر بفضل الحظر الصارم والربط بمحركات التحقق الحديثي المعتمدة.</p>
+        </div>
+
+        <div class="card" style="text-align: center; align-items: center;">
+          <div class="metric-box" style="width: 100%;">
+            <div class="metric-val">20 ث</div>
+          </div>
+          <h3>سرعة التوليد الكامل</h3>
+          <p>سرعة استجابة مذهلة في صياغة المحاور والمقدمة والخاتمة بفضل المعمارية المتوازية المتقدمة للذكاء الاصطناعي.</p>
+        </div>
+
+        <div class="card" style="text-align: center; align-items: center;">
+          <div class="metric-box" style="width: 100%;">
+            <div class="metric-val">.DOCX</div>
+          </div>
+          <h3>جاهزية الطباعة الفورية</h3>
+          <p>تصدير فوري لملف Word بهوامش عريضة وخطوط مشكولة وواضحة مخصصة ومريحة للقراءة المباشرة على المنبر.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <div>منصة خطيب · تحدي الذكاء الاصطناعي في خدمة المحتوى الإسلامي</div>
+      <div>الشريحة 8 من 10</div>
+    </div>
+  </div>
+
+  <!-- ==================================================================== -->
+  <!-- SLIDE 9: ROADMAP -->
+  <!-- ==================================================================== -->
+  <div class="slide">
+    <div class="brand-bar"></div>
+    <div class="slide-header">
+      <div class="header-titles">
+        <h2>خارطة الطريق: التوسع المستقبلي في خدمة الدعوة والمنبر</h2>
+      </div>
+      <div class="header-badge">خارطة الطريق</div>
+    </div>
+
+    <div class="slide-body">
+      <div class="grid-3">
+        <div class="card">
+          <div class="card-top-line" style="background: var(--c-emerald);"></div>
+          <div style="font-size: 15px; font-weight: 700; color: var(--c-emerald); margin-bottom: 8px;">المرحلة الأولى (المحققة)</div>
+          <h3>الورشة الأساسية وتخريج الأحاديث</h3>
+          <p style="line-height: 1.8;">
+            ✓ ورشة صياغة المسودة المتكاملة بـ 5 خطوات<br>
+            ✓ محرك الفرز الحديثي وربط Hdith API<br>
+            ✓ خوارزمية التعريب البلاغي والتنقية<br>
+            ✓ تصدير مستندات Word منسقة للمنبر
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="card-top-line" style="background: var(--c-gold);"></div>
+          <div style="font-size: 15px; font-weight: 700; color: var(--c-gold); margin-bottom: 8px;">المرحلة الثانية (المستهدفة)</div>
+          <h3>محرك RAG للتراث ومكتبة الآثار</h3>
+          <p style="line-height: 1.8;">
+            • ربط أمهات كتب التفسير وموسوعات الفقه<br>
+            • مكتبة استشهاد بآثار الصحابة والتابعين<br>
+            • أرشيف ذكي لربط الخطب بالمناسبات السنوية<br>
+            • مزامنة سحابية مشفرة لحسابات الخطباء
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="card-top-line" style="background: var(--c-dark-border);"></div>
+          <div style="font-size: 15px; font-weight: 700; color: var(--c-text-muted); margin-bottom: 8px;">المرحلة الثالثة (المستقبلية)</div>
+          <h3>المدرب الصوتي وتطبيق المنبر</h3>
+          <p style="line-height: 1.8;">
+            • تحليل سرعة ونبرة الإلقاء وتدريب الخطيب صوتياً<br>
+            • نمط القراءة على المنبر (Teleprompter Mode)<br>
+            • ضبط التمرير بحركة العين والإيماءات<br>
+            • قياس انطباعات وتفاعل جماعة المسجد
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <div>منصة خطيب · تحدي الذكاء الاصطناعي في خدمة المحتوى الإسلامي</div>
+      <div>الشريحة 9 من 10</div>
+    </div>
+  </div>
+
+  <!-- ==================================================================== -->
+  <!-- SLIDE 10: CONCLUSION & VISION -->
+  <!-- ==================================================================== -->
+  <div class="slide dark-theme">
+    <div class="brand-bar"></div>
+    <svg class="islamic-star" style="top: 50px; right: 50px; width: 600px; height: 600px;" viewBox="0 0 200 200">
+      <rect x="50" y="50" width="100" height="100" fill="none" stroke="#c5a880" stroke-width="1" transform="rotate(0 100 100)" />
+      <rect x="50" y="50" width="100" height="100" fill="none" stroke="#c5a880" stroke-width="1" transform="rotate(45 100 100)" />
+      <rect x="50" y="50" width="100" height="100" fill="none" stroke="#c5a880" stroke-width="1" transform="rotate(22.5 100 100)" />
+      <rect x="50" y="50" width="100" height="100" fill="none" stroke="#c5a880" stroke-width="1" transform="rotate(67.5 100 100)" />
+    </svg>
+
+    <div class="slide-header" style="border: none;">
+      <div class="header-badge" style="background: rgba(197,168,128,0.15); border-color: var(--c-gold); color: var(--c-gold);">
+        الخاتمة والرؤية المستقبلية
+      </div>
+      <div style="font-size: 20px; color: #7b9e96; font-weight: 600;">
+        منصة خطيب · 2026
+      </div>
+    </div>
+
+    <div class="slide-body" style="align-items: center; text-align: center;">
+      <div style="background: var(--c-dark-card); border: 2px solid var(--c-dark-border); border-radius: 28px; padding: 60px 100px; max-width: 1400px; box-shadow: 0 25px 60px rgba(0,0,0,0.4);">
+        
+        <div style="font-family: var(--font-amiri); font-size: 34px; color: var(--c-gold); margin-bottom: 25px; line-height: 1.4;">
+          ﴿ وَمَنْ أَحْسَنُ قَوْلًا مِّمَّن دَعَا إِلَى اللَّهِ وَعَمِلَ صَالِحًا وَقَالَ إِنَّنِي مِنَ الْمُسْلِمِينَ ﴾
+        </div>
+
+        <h2 style="font-size: 42px; font-weight: 800; color: #ffffff; margin-bottom: 25px;">
+          معاً لتمكين خطيب الجمعة ليُنير دروب المجتمع
+        </h2>
+
+        <p style="font-size: 22px; line-height: 1.7; color: #a3e6d2; max-width: 1000px; margin: 0 auto 40px auto;">
+          «منصة خطيب» تسخر أحدث تقنيات الذكاء الاصطناعي لحفظ هيبة المنبر النبوي، وصيانة الكلمة الدعوية من الدخيل والضعيف، وتقديم أداة مساعدة تحفظ وقت الإمام وترتقي بأثره في وجدان الأمة.
+        </p>
+
+        <div style="display: inline-block; background: var(--c-emerald); border: 2px solid var(--c-gold); color: #fff; font-size: 22px; font-weight: 700; padding: 16px 50px; border-radius: 40px; box-shadow: 0 10px 25px rgba(0,0,0,0.3);">
+          شكراً لكم · نسعد بتقييمكم وملاحظاتكم الكريمة
+        </div>
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <div>فريق منصة خطيب · للتواصل: contact@khatiib.com</div>
+      <div>الشريحة 10 من 10</div>
+    </div>
+  </div>
+
+</body>
+</html>

@@ -35,3 +35,7 @@ dist-ssr
 
 # ShipStudio metadata
 .shipstudio/
+
+# Understand Anything cache & local tools
+.ua/
+.kilo/
