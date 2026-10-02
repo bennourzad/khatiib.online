@@ -208,7 +208,7 @@ export const Route = createFileRoute("/api/public/hdith-proxy")({
         const upstream = await fetch(targetUrl, {
           headers: {
             "accept-language": "ar,en;q=0.8",
-            "user-agent": "Mozilla/5.0 (compatible; Lovable Hadith Proxy)",
+            "user-agent": "Mozilla/5.0 (compatible; Khatiib Hadith Proxy)",
           },
         });
 

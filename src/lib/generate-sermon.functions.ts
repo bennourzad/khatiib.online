@@ -195,7 +195,7 @@ async function callGatewayText({
       });
 
       if (res.status === 429) throw new Error("تجاوزت حد الاستخدام، حاول بعد قليل");
-      if (res.status === 402) throw new Error("نفدت أرصدة Lovable AI، يرجى الشحن من إعدادات الحساب");
+      if (res.status === 402) throw new Error("نفد رصيد خدمة الذكاء الاصطناعي، يرجى التحقق من الرصيد في الإعدادات");
 
       if (!res.ok) {
         const txt = await res.text();
