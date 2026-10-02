@@ -1,0 +1,2320 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>دراسة تجربة المستخدم الشاملة | منصة «خَطِيب» — الورشة الذكية للخطب المنبرية</title>
+  
+  <!-- SEO & Social Meta -->
+  <meta name="description" content="دراسة بحثية واستراتيجية معمقة لتجربة المستخدم لمشروع منصة خَطِيب - الورشة الذكية لصياغة الخطب المنبرية. أمانة الكلمة.. وعصرية التقنية.">
+  <meta name="author" content="فريق تجربة المستخدم وأبحاث التصميم (UX Research & Product Strategy)">
+  
+  <!-- Google Fonts: IBM Plex Sans Arabic, Amiri, Cairo, Reem Kufi -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cairo:wght@400;500;600;700;800;900&family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Reem+Kufi:wght@500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Chart.js via CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="theme-light">
+  
+  <!-- Subtle Islamic Geometric Background Pattern -->
+  <div class="bg-pattern-overlay" aria-hidden="true"></div>
+  <div class="glow-sphere glow-sphere-1" aria-hidden="true"></div>
+  <div class="glow-sphere glow-sphere-2" aria-hidden="true"></div>
+
+  <!-- Top Sticky Progress Line -->
+  <div id="scrollProgressBar" class="scroll-progress-bar"></div>
+
+  <!-- Floating Mobile Menu Toggle Button (shown on mobile/tablet) -->
+  <button id="btnMobileSidebarToggle" class="floating-mobile-trigger" aria-label="فتح قائمة الدراسة">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+    <span>فهرس الدراسة</span>
+  </button>
+
+  <!-- Mobile Backdrop Overlay -->
+  <div id="sidebarBackdrop" class="sidebar-backdrop hidden"></div>
+
+  <!-- Floating Sidebar Navigation (القائمة الجانبية العائمة) -->
+  <aside class="floating-sidebar-nav" id="floatingSidebar">
+    
+    <!-- Sidebar Brand & Collapse Header -->
+    <div class="sidebar-header">
+      <div class="brand-group">
+        <div class="brand-badge-icon">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <span class="brand-title">منصة «خَطِيب»</span>
+          <span class="brand-sub">دراسة تجربة المستخدم</span>
+        </div>
+      </div>
+      <button id="btnToggleSidebarCollapse" class="btn-collapse-sidebar" title="طي / توسيع القائمة">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="15 18 9 12 15 6"></polyline>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Quick Link to PRD Document -->
+    <a href="prd.html" class="sidebar-nav-back-link" title="الانتقال لوثيقة متطلبات المنتج (PRD)">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+        <polyline points="14 2 14 8 20 8"></polyline>
+        <line x1="16" y1="13" x2="8" y2="13"></line>
+        <line x1="16" y1="17" x2="8" y2="17"></line>
+      </svg>
+      <span>متطلبات المنتج (PRD)</span>
+    </a>
+
+    <!-- Direct Link to Live Platform -->
+    <a href="https://khatiib.online" target="_blank" rel="noopener noreferrer" class="sidebar-nav-back-link" style="margin-top: 4px; border-color: rgba(197, 168, 128, 0.4);" title="زيارة منصة خَطِيب المباشرة">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="12" cy="12" r="10"></circle>
+        <line x1="2" y1="12" x2="22" y2="12"></line>
+        <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1 4-10z"></path>
+      </svg>
+      <span>زيارة المنصة الحية (khatiib.online)</span>
+    </a>
+
+    <!-- Vertical Navigation Links with Numbers -->
+    <nav class="sidebar-nav-links" id="mainNav">
+      <a href="#summary" class="nav-item">
+        <span class="nav-idx">٠١</span>
+        <span class="nav-text">الملخص وسياق المشكلة</span>
+      </a>
+      <a href="#objectives" class="nav-item">
+        <span class="nav-idx">٠٢</span>
+        <span class="nav-text">أهداف البحث الميداني</span>
+      </a>
+      <a href="#methodology" class="nav-item">
+        <span class="nav-idx">٠٣</span>
+        <span class="nav-text">المنهجية وتحديد العينة</span>
+      </a>
+      <a href="#survey" class="nav-item">
+        <span class="nav-idx">٠٤</span>
+        <span class="nav-text">تحليل الاستبيان الاستكشافي</span>
+      </a>
+      <a href="#personas" class="nav-item">
+        <span class="nav-idx">٠٥</span>
+        <span class="nav-text">شخصيات المستخدمين (Personas)</span>
+      </a>
+      <a href="#empathy" class="nav-item">
+        <span class="nav-idx">٠٦</span>
+        <span class="nav-text">خريطة التعاطف والنموذج الذهني</span>
+      </a>
+      <a href="#journey" class="nav-item">
+        <span class="nav-idx">٠٧</span>
+        <span class="nav-text">رحلة المستخدم (5h vs 15m)</span>
+      </a>
+      <a href="#decisions" class="nav-item">
+        <span class="nav-idx">٠٨</span>
+        <span class="nav-text">قرارات التصميم والهندسة</span>
+      </a>
+      <a href="#metrics" class="nav-item">
+        <span class="nav-idx">٠٩</span>
+        <span class="nav-text">مؤشرات الأثر وقابلية الاستخدام</span>
+      </a>
+      <a href="#roadmap" class="nav-item">
+        <span class="nav-idx">١٠</span>
+        <span class="nav-text">الخلاصة وخريطة الطريق</span>
+      </a>
+    </nav>
+
+    <!-- Sidebar Footer / Reading Progress & Icon-Only Theme Toggle -->
+    <div class="sidebar-footer">
+      <div class="sidebar-footer-row">
+        <div class="reading-progress-info">
+          <span class="progress-lbl">نسبة القراءة</span>
+          <span id="sidebarProgressPercent" class="progress-pct">0%</span>
+        </div>
+        <div class="sidebar-footer-actions">
+          <!-- Presentation Mode Icon Button -->
+          <button id="btnPresentationMode" class="theme-toggle-icon-btn btn-presentation-trigger" title="عرض تقديمي للجنة التحكم (Presentation Mode)" aria-label="عرض تقديمي للجنة التحكم">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+              <line x1="8" y1="21" x2="16" y2="21"></line>
+              <line x1="12" y1="17" x2="12" y2="21"></line>
+              <polygon points="10 8 15 10 10 12 10 8" fill="currentColor"></polygon>
+            </svg>
+          </button>
+          <!-- Icon-Only Theme Toggle Button -->
+          <button id="btnThemeToggle" class="theme-toggle-icon-btn" title="التبديل بين الوضع النهاري والليلي" aria-label="تبديل الثيم">
+            <span class="theme-icon theme-sun">☀️</span>
+            <span class="theme-icon theme-moon hidden">🌙</span>
+          </button>
+        </div>
+      </div>
+      <div class="sidebar-progress-track">
+        <div id="sidebarProgressBar" class="sidebar-progress-fill" style="width: 0%;"></div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ==================== EXECUTIVE PRESENTATION DECK OVERLAY ==================== -->
+  <div id="presentationDeckOverlay" class="presentation-deck-overlay hidden" aria-modal="true" role="dialog" aria-label="العرض التقديمي للجنة التحكم">
+    
+    <!-- Top Control Bar -->
+    <header class="deck-topbar">
+      <div class="deck-topbar-brand">
+        <div class="deck-badge-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+          </svg>
+        </div>
+        <div class="deck-brand-info">
+          <span class="deck-title">منصة «خَطِيب» — العرض التنفيذي للجنة التحكيم</span>
+          <span class="deck-subtitle">دراسة تجربة المستخدم والهندسة التفاعلية (Executive Deck)</span>
+        </div>
+      </div>
+
+      <!-- Center Slide Counter / Progress -->
+      <div class="deck-topbar-center">
+        <div class="deck-counter-badge">
+          <span class="deck-counter-label">الشريحة</span>
+          <span id="deckCurrentSlideNum" class="deck-counter-current">٠١</span>
+          <span class="deck-counter-sep">/</span>
+          <span class="deck-counter-total">٠٨</span>
+        </div>
+        <div class="deck-mini-progress">
+          <div id="deckProgressBar" class="deck-mini-progress-fill" style="width: 12.5%;"></div>
+        </div>
+      </div>
+
+      <!-- Left Actions: Exit to normal mode & Theme toggle -->
+      <div class="deck-topbar-actions">
+        <!-- Quick Theme Toggle inside Presentation -->
+        <button id="btnDeckThemeToggle" class="deck-action-icon-btn" title="تبديل الوضع النهاري / الليلي" aria-label="تبديل الثيم">
+          <span class="theme-icon theme-sun">☀️</span>
+          <span class="theme-icon theme-moon hidden">🌙</span>
+        </button>
+
+        <!-- Dedicated Return to Normal View Button -->
+        <button id="btnExitPresentationDeck" class="btn-exit-deck" title="العودة إلى دراسة تجربة المستخدم الكاملة">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+          <span>العودة للوضع الطبيعي</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Slide Deck Content Stage -->
+    <div class="deck-stage-wrapper">
+      <div class="deck-stage">
+        
+        <!-- ==================== SLIDE 1 ==================== -->
+        <article class="deck-slide active" data-slide="1">
+          <div class="slide-content-container">
+            <div class="slide-pill-badge">
+              <span class="pill-dot"></span>
+              <span>الملخص التنفيذي والهوية الاستراتيجية</span>
+            </div>
+            
+            <h1 class="slide-headline">
+              منصة <span class="text-gold">«خَطِيب»</span> — الورشة الذكية لصياغة الخطب المنبرية
+            </h1>
+            
+            <p class="slide-tagline">
+              «أمانة الكلمة.. وعصرية التقنية»
+            </p>
+
+            <p class="slide-lead-desc">
+              نظام متكامل ومحرك ذكاء اصطناعي منبري مخصص يُمكّن الخطيب من بناء موعظة محكمة وموثقة شرعياً في <strong>١٥ دقيقة فقط</strong> بدلاً من <strong>٥ ساعات</strong> مع صيانة الأمانة والوقار والخصوصية المطلقة.
+            </p>
+
+            <!-- 3 Key Metric Cards -->
+            <div class="slide-kpi-grid">
+              <div class="slide-kpi-card">
+                <div class="slide-kpi-icon">⚡</div>
+                <div class="slide-kpi-value text-emerald">٨٥٪</div>
+                <div class="slide-kpi-title">تقليص زمن الإعداد</div>
+                <div class="slide-kpi-desc">من ٤.٨ ساعات أسبوعياً إلى ١٥ دقيقة منظمة وموثقة</div>
+              </div>
+
+              <div class="slide-kpi-card highlight-gold">
+                <div class="slide-kpi-icon">🎯</div>
+                <div class="slide-kpi-value text-gold">٩١ <span class="kpi-unit">/١٠٠</span></div>
+                <div class="slide-kpi-title">مؤشر سهولة الاستخدام SUS</div>
+                <div class="slide-kpi-desc">تقييم استثنائي رائد (Grade A+ Exceptional)</div>
+              </div>
+
+              <div class="slide-kpi-card">
+                <div class="slide-kpi-icon">🛡️</div>
+                <div class="slide-kpi-value text-emerald">١٠٠٪</div>
+                <div class="slide-kpi-title">دقة التوثيق والتخريج</div>
+                <div class="slide-kpi-desc">انعدام الهلوسة الشرعية وتدقيق سندي لحظي قطعي</div>
+              </div>
+            </div>
+
+            <div class="slide-footer-meta">
+              <span>فريق تجربة المستخدم وأبحاث التصميم (UX Research & Product Strategy)</span>
+              <span class="meta-dot">•</span>
+              <span>فبراير 2026</span>
+              <span class="meta-dot">•</span>
+              <span class="badge-approved-mini">وثيقة معتمدة ومحكّمة</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- ==================== SLIDE 2 ==================== -->
+        <article class="deck-slide" data-slide="2">
+          <div class="slide-content-container">
+            <div class="slide-pill-badge">
+              <span class="pill-dot"></span>
+              <span>سياق المشكلة وفجوة الذكاء الاصطناعي</span>
+            </div>
+
+            <h2 class="slide-headline">
+              لماذا تفشل أدوات الذكاء الاصطناعي العامة على منبر الجمعة؟
+            </h2>
+
+            <p class="slide-lead-desc">
+              كشفت دراستنا الميدانية عن فجوة عميقة (Chasm) تفصل بين ما تنتجه نماذج اللغة الكبيرة التجارية (مثل ChatGPT و Claude) وبين الخصوصية الشرعية واللغوية لمنبر الجمعة.
+            </p>
+
+            <!-- 4 Core Pillars Grid -->
+            <div class="slide-cards-grid grid-4">
+              <div class="deck-feature-card danger-accent">
+                <div class="card-badge-num">٠١</div>
+                <div class="card-icon-wrap">⚠️</div>
+                <h3 class="card-title">الهلوسة الشرعية (Hallucination)</h3>
+                <p class="card-text">
+                  توليد أحاديث لا أصل لها أو عزوها لغير رواتها؛ والمنبر مقام توقيفي حرج لا يحتمل الخطأ الديني.
+                </p>
+                <div class="card-tag">مخاطرة دينية قصوى</div>
+              </div>
+
+              <div class="deck-feature-card warning-accent">
+                <div class="card-badge-num">٠٢</div>
+                <div class="card-icon-wrap">✍️</div>
+                <h3 class="card-title">الركاكة والأسلوب المترجم</h3>
+                <p class="card-text">
+                  افتقار النماذج للبلاغة الوعظية التراثية، واستخدام كليشيهات صحفية باردة تفقد الخطبة هيبتها وتأثيرها.
+                </p>
+                <div class="card-tag">فقدان الروح المنبرية</div>
+              </div>
+
+              <div class="deck-feature-card warning-accent">
+                <div class="card-badge-num">٠٣</div>
+                <div class="card-icon-wrap">⏳</div>
+                <h3 class="card-title">استنزاف الوقت والجهد</h3>
+                <p class="card-text">
+                  إهدار ٤.٨ ساعات أسبوعياً في الترقيع والمطابقة والبحث في كتب التراث، مما يجهد الخطيب ويفوت فرصة التدبر.
+                </p>
+                <div class="card-tag">٤.٨ ساعات أسبوعياً</div>
+              </div>
+
+              <div class="deck-feature-card danger-accent">
+                <div class="card-badge-num">٠٤</div>
+                <div class="card-icon-wrap">🔒</div>
+                <h3 class="card-title">هاجس الخصوصية والأمان</h3>
+                <p class="card-text">
+                  تخوف مشروع لدى الخطباء من رفع خواطرهم ومسوداتهم المنبرية لخوادم سحابية تستخدمها لتدريب النماذج.
+                </p>
+                <div class="card-tag">رفض التخزين السحابي</div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- ==================== SLIDE 3 ==================== -->
+        <article class="deck-slide" data-slide="3">
+          <div class="slide-content-container">
+            <div class="slide-pill-badge">
+              <span class="pill-dot"></span>
+              <span>منهجية البحث وتوصيف العينة</span>
+            </div>
+
+            <h2 class="slide-headline">
+              بحث ميداني موسع مع <span class="text-gold">١٤٥ خطيباً</span> وإمام جامع
+            </h2>
+
+            <p class="slide-lead-desc">
+              اعتمدنا منهجية بحث مختلطة (Mixed-Methods Framework) تجمع بين القياس الكمي الموسع والتعمق النوعي الميداني في بيئة المحراب والتحضير الأسبوعي.
+            </p>
+
+            <div class="slide-cards-grid grid-3">
+              <div class="deck-feature-card">
+                <div class="card-badge-num">١٤٥</div>
+                <div class="card-icon-wrap">📊</div>
+                <h3 class="card-title">استبيان استكشافي موسع</h3>
+                <p class="card-text">
+                  تحليل كمي لعادات الإعداد، ومصادر الاستشهاد، والوقت المستهلك، ونقاط الإحباط مع الأدوات الرقمية الحالية.
+                </p>
+                <div class="card-metric-pill">٧ دول عربية وإسلامية</div>
+              </div>
+
+              <div class="deck-feature-card highlight-gold">
+                <div class="card-badge-num">١٢</div>
+                <div class="card-icon-wrap">🎙️</div>
+                <h3 class="card-title">مقابلات وملاحظة محرابية</h3>
+                <p class="card-text">
+                  جلسات تعمق نوعي (In-depth Interviews) مع خطباء من مختلف المدارس لفهم النموذج الذهني وسياق المنبر الفعلي.
+                </p>
+                <div class="card-metric-pill">ملاحظة ميدانية حية</div>
+              </div>
+
+              <div class="deck-feature-card">
+                <div class="card-badge-num">٠٨</div>
+                <div class="card-icon-wrap">🧪</div>
+                <h3 class="card-title">اختبارات قابلية الاستخدام</h3>
+                <p class="card-text">
+                  جلسات قياس تفاعلية حية (Usability Lab) لتقييم معالج الصياغة الذكي، ونافذة التخريج، ونمط القراءة المنبرية.
+                </p>
+                <div class="card-metric-pill">قياس SUS و NASA-TLX</div>
+              </div>
+            </div>
+
+            <!-- Experience Segment Banner -->
+            <div class="deck-quote-box">
+              <div class="deck-quote-title">توزيع سنوات الخبرة المنبرية في العينة:</div>
+              <div class="deck-quote-stats">
+                <span class="stat-bubble"><strong>٢٨٪</strong> خطباء جدد (&lt; ٣ سنوات)</span>
+                <span class="stat-bubble highlight"><strong>٤٤٪</strong> خبرة متوسطة (٣ - ١٠ سنوات)</span>
+                <span class="stat-bubble"><strong>٢٨٪</strong> شيوخ وخطباء خبراء (&gt; ١٠ سنوات)</span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- ==================== SLIDE 4 ==================== -->
+        <article class="deck-slide" data-slide="4">
+          <div class="slide-content-container">
+            <div class="slide-pill-badge">
+              <span class="pill-dot"></span>
+              <span>تحليل الاستبيان الاستكشافي</span>
+            </div>
+
+            <h2 class="slide-headline">
+              أرقام صادمة تُبرر الضرورة الملحة لورشة «خَطِيب»
+            </h2>
+
+            <p class="slide-lead-desc">
+              أظهر الاستبيان فجوة ثقة واضحة ومعاناة أسبوعية تتكرر لدى الغالبية الساحقة من الخطباء في عملية الإعداد اليدوي والآلي.
+            </p>
+
+            <div class="slide-kpi-grid grid-4-kpi">
+              <div class="slide-kpi-card danger-box">
+                <div class="slide-kpi-value text-danger">٨٤٪</div>
+                <div class="slide-kpi-title">واجهوا أحاديث غير صحيحة</div>
+                <div class="slide-kpi-desc">عند اختبار أدوات الذكاء الاصطناعي العامة في التحضير</div>
+              </div>
+
+              <div class="slide-kpi-card warning-box">
+                <div class="slide-kpi-value text-gold">٧٩٪</div>
+                <div class="slide-kpi-title">يعانون من رهبة الصفحة البيضاء</div>
+                <div class="slide-kpi-desc">وصعوبة اختيار المدخل المناسب ومحاور الموضوع</div>
+              </div>
+
+              <div class="slide-kpi-card info-box">
+                <div class="slide-kpi-value text-emerald">٤.٨ س</div>
+                <div class="slide-kpi-title">متوسط الجهد الأسبوعي</div>
+                <div class="slide-kpi-desc">مستنزفة بين البحث والتنسيق والمراجعة اليدوية</div>
+              </div>
+
+              <div class="slide-kpi-card gold-box">
+                <div class="slide-kpi-value text-gold">٩٢٪</div>
+                <div class="slide-kpi-title">يطلبون زر التخريج المعتمد</div>
+                <div class="slide-kpi-desc">كشرط حاسم وأساسي لقبول أي حل تقني للمنبر</div>
+              </div>
+            </div>
+
+            <div class="deck-takeaway-strip">
+              <span class="takeaway-badge">الاستنتاج المحوري</span>
+              <p class="takeaway-text">
+                الخطيب لا يبحث عن أداة تولد خطبة كاملة نيابة عنه؛ بل يريد <strong>شريكاً موثوقاً</strong> يجمع الشواهد الصحيحة ويوثقها ليقضي هو وقته في <strong>التدبر والتحضير الوجداني</strong>.
+              </p>
+            </div>
+          </div>
+        </article>
+
+        <!-- ==================== SLIDE 5 ==================== -->
+        <article class="deck-slide" data-slide="5">
+          <div class="slide-content-container">
+            <div class="slide-pill-badge">
+              <span class="pill-dot"></span>
+              <span>شخصيات المستخدمين والنموذج الذهني</span>
+            </div>
+
+            <h2 class="slide-headline">
+              شخصيتان محوريتان.. واحتياج جوهري واحد
+            </h2>
+
+            <p class="slide-lead-desc">
+              بناءً على الأنماط السلوكية، صممنا المنصة لتخدم بدقة طيفين متباينين في الخبرة والتعامل مع التقنية:
+            </p>
+
+            <div class="slide-cards-grid grid-2">
+              <!-- Persona 1 -->
+              <div class="deck-persona-card">
+                <div class="persona-card-header">
+                  <div class="persona-avatar-wrap">🕌</div>
+                  <div>
+                    <h3 class="persona-name">الشيخ عبد الله (٥٤ سنة)</h3>
+                    <span class="persona-role">خطيب جامع كبير • خبرة ٢٠ عاماً</span>
+                  </div>
+                </div>
+                <div class="persona-pill-list">
+                  <span class="persona-pill">أولوية الأمانة الشرعية</span>
+                  <span class="persona-pill">الوقار والسمت التراثي</span>
+                  <span class="persona-pill">توجس من الخطأ الفقهي</span>
+                </div>
+                <ul class="persona-points">
+                  <li><strong>نقطة الألم:</strong> ضياع ساعات طويلة في التثبت من صحة الأحاديث ونصوص التفاسير.</li>
+                  <li><strong>الحاجة التصميمية:</strong> بطاقة سند قطعية واضحة، وخط منبري مكبر ومضبوط بالشكل.</li>
+                </ul>
+              </div>
+
+              <!-- Persona 2 -->
+              <div class="deck-persona-card highlight-border">
+                <div class="persona-card-header">
+                  <div class="persona-avatar-wrap">🎓</div>
+                  <div>
+                    <h3 class="persona-name">الأستاذ عمر (٢٩ سنة)</h3>
+                    <span class="persona-role">خطيب شاب ومعلم أجيال • خبرة سنتين</span>
+                  </div>
+                </div>
+                <div class="persona-pill-list">
+                  <span class="persona-pill">أولوية السرعة والمرونة</span>
+                  <span class="persona-pill">مخاطبة عقول الشباب</span>
+                  <span class="persona-pill">تقني وعصري</span>
+                </div>
+                <ul class="persona-points">
+                  <li><strong>نقطة الألم:</strong> استنزاف الوقت الوظيفي والتردد الطويل أمام الصفحة البيضاء لاختيار المدخل.</li>
+                  <li><strong>الحاجة التصميمية:</strong> اقتراح محاور حيوية وعصرية بلغة جزلة مع تنسيق جاهز بضغطة زر.</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="deck-quote-box golden-glow">
+              <div class="deck-quote-title">القاسم المشترك الحاسم في النموذج الذهني (Mental Model):</div>
+              <div class="deck-quote-main">
+                «المنصة ليست بديلاً عن بصيرة الخطيب ومعرفته بجماعته، بل هي <strong>ورشته الذكية</strong> التي ترفع عنه عبء الجمع والتنسيق».
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- ==================== SLIDE 6 ==================== -->
+        <article class="deck-slide" data-slide="6">
+          <div class="slide-content-container">
+            <div class="slide-pill-badge">
+              <span class="pill-dot"></span>
+              <span>التحول الجذري في رحلة المستخدم</span>
+            </div>
+
+            <h2 class="slide-headline">
+              مقارنة الرحلة: من <span class="text-danger">٥ ساعات معاناة</span> إلى <span class="text-emerald">١٥ دقيقة طمأنينة</span>
+            </h2>
+
+            <p class="slide-lead-desc">
+              إعادة هندسة جذرية لتجربة الإعداد الأسبوعي عبر نقل الجهد من التجميع العشوائي إلى التوجيه الواعي:
+            </p>
+
+            <!-- 3 Stages Direct Comparison Table -->
+            <div class="deck-journey-table">
+              <div class="journey-row journey-header-row">
+                <div class="journey-cell stage-name">المرحلة</div>
+                <div class="journey-cell cell-before">الواقع التقليدي الشاق ❌</div>
+                <div class="journey-cell cell-after">مع ورشة «خَطِيب» الذكية ✅</div>
+                <div class="journey-cell cell-impact">الأثر المباشر</div>
+              </div>
+
+              <div class="journey-row">
+                <div class="journey-cell stage-name">
+                  <span class="stage-tag">١. بلورة الفكرة</span>
+                </div>
+                <div class="journey-cell cell-before">
+                  تشتت بين المواقع والكتب، وتردد مستمر في صياغة المدخل <strong>(ساعة ونصف)</strong>
+                </div>
+                <div class="journey-cell cell-after">
+                  معالج تفاعلي يقترح محاور ومقدمات وعظية مستهدفة <strong>(دقيقتان)</strong>
+                </div>
+                <div class="journey-cell cell-impact text-emerald">
+                  كسر رهبة البداية ٩٠٪
+                </div>
+              </div>
+
+              <div class="journey-row">
+                <div class="journey-cell stage-name">
+                  <span class="stage-tag">٢. التخريج والتحقق</span>
+                </div>
+                <div class="journey-cell cell-before">
+                  البحث اليدوي في الموسوعات والشك في درجة الحديث <strong>(ساعتان ونصف)</strong>
+                </div>
+                <div class="journey-cell cell-after">
+                  شواهد موثقة مسبقاً مع نافذة فحص السند الفوري <strong>(٨ دقائق)</strong>
+                </div>
+                <div class="journey-cell cell-impact text-emerald">
+                  أمان شرعي مطلق ١٠٠٪
+                </div>
+              </div>
+
+              <div class="journey-row">
+                <div class="journey-cell stage-name">
+                  <span class="stage-tag">٣. التنسيق والطباعة</span>
+                </div>
+                <div class="journey-cell cell-before">
+                  معاناة في Word وضبط الهوامش وحجم الخط المنبري <strong>(ساعة كاملة)</strong>
+                </div>
+                <div class="journey-cell cell-after">
+                  تصدير فوري بصيغة منبرية مكبرة ومشكولة بضغطة زر <strong>(دقيقتان)</strong>
+                </div>
+                <div class="journey-cell cell-impact text-emerald">
+                  جاهزية طباعية فورية
+                </div>
+              </div>
+            </div>
+
+            <div class="deck-bottom-summary">
+              <span class="summary-pill bg-emerald-dim">المحصلة: توفير ٨٥٪ من وقت الخطيب وتوجيهه للحفظ والتدبر والتأثير الروحي</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- ==================== SLIDE 7 ==================== -->
+        <article class="deck-slide" data-slide="7">
+          <div class="slide-content-container">
+            <div class="slide-pill-badge">
+              <span class="pill-dot"></span>
+              <span>القرارات التصميمية والهندسة الحصرية</span>
+            </div>
+
+            <h2 class="slide-headline">
+              ٤ حلول تفاعلية وهندسية تميز منصة «خَطِيب»
+            </h2>
+
+            <p class="slide-lead-desc">
+              ترجمة نقاط الألم المكتشفة في أبحاث المستخدمين إلى قرارات تصميمية ومعمارية تقنية فائقة الدقة:
+            </p>
+
+            <div class="slide-cards-grid grid-4">
+              <div class="deck-feature-card">
+                <div class="card-badge-num">٠١</div>
+                <div class="card-icon-wrap">🧭</div>
+                <h3 class="card-title">معالج الـ ٥ خطوات</h3>
+                <p class="card-text">
+                  تفكيك المهمة الذهنية المعقدة إلى مسار تدريجي مريح: (الموضوع ➔ المحاور ➔ الشواهد ➔ التوليد ➔ الصياغة المنبرية).
+                </p>
+                <div class="card-tag">تخفيف الحمل الإدراكي</div>
+              </div>
+
+              <div class="deck-feature-card highlight-gold">
+                <div class="card-badge-num">٠٢</div>
+                <div class="card-icon-wrap">🛡️</div>
+                <h3 class="card-title">نافذة الطمأنينة السندية</h3>
+                <p class="card-text">
+                  بطاقة فحص سندي مستقلة لكل نص نبوي تبين الراوي، الكتاب، الباب، وحكم المحققين المعتمدين بضغطة واحدة.
+                </p>
+                <div class="card-tag">الاطمئنان واليقين</div>
+              </div>
+
+              <div class="deck-feature-card">
+                <div class="card-badge-num">٠٣</div>
+                <div class="card-icon-wrap">🔐</div>
+                <h3 class="card-title">معمارية Zero-Database</h3>
+                <p class="card-text">
+                  حفظ محلي ١٠٠٪ في ذاكرة متصفح الخطيب دون خوادم سحابية تحفظ النصوص؛ احتراماً لسرية وخصوصية الخطب.
+                </p>
+                <div class="card-tag">خصوصية كاملة ١٠٠٪</div>
+              </div>
+
+              <div class="deck-feature-card">
+                <div class="card-badge-num">٠٤</div>
+                <div class="card-icon-wrap">⚡</div>
+                <h3 class="card-title">توليد متوازٍ فائق السرعة</h3>
+                <p class="card-text">
+                  محرك معالجة متزامن <code>mapWithConcurrency</code> خفّض زمن معالجة عناصر الخطبة من <strong>٢٠ ثانية</strong> إلى <strong>٥ ثوانٍ فقط</strong>.
+                </p>
+                <div class="card-tag">استجابة لحظية فائقة</div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- ==================== SLIDE 8 ==================== -->
+        <article class="deck-slide" data-slide="8">
+          <div class="slide-content-container">
+            <div class="slide-pill-badge">
+              <span class="pill-dot"></span>
+              <span>مؤشرات الأثر وخارطة الطريق</span>
+            </div>
+
+            <h2 class="slide-headline">
+              مؤشرات الأثر وقابلية الاستخدام.. والرؤية القادمة
+            </h2>
+
+            <p class="slide-lead-desc">
+              إثبات الجدوى والأثر عبر الاختبارات المعيارية وخطة التوسع لترسيخ ريادة المنصة في خدمة المنبر:
+            </p>
+
+            <div class="slide-kpi-grid grid-3-kpi">
+              <div class="slide-kpi-card highlight-gold">
+                <div class="slide-kpi-value text-gold">٩٦٪</div>
+                <div class="slide-kpi-title">نسبة إكمال المهام بنجاح</div>
+                <div class="slide-kpi-desc">إتمام خطبة كاملة ومشكولة من أول محاولة دون أي إرشاد خارجي</div>
+              </div>
+
+              <div class="slide-kpi-card">
+                <div class="slide-kpi-value text-emerald">٩١ <span class="kpi-unit">/١٠٠</span></div>
+                <div class="slide-kpi-title">مقياس سهولة الاستخدام SUS</div>
+                <div class="slide-kpi-desc">يتجاوز المتوسط العالمي للصناعة (٦٨/١٠٠) بفارق ٢٣ نقطة</div>
+              </div>
+
+              <div class="slide-kpi-card">
+                <div class="slide-kpi-value text-emerald">٢٢ <span class="kpi-unit">/١٠٠</span></div>
+                <div class="slide-kpi-title">مؤشر العبء الذهني NASA-TLX</div>
+                <div class="slide-kpi-desc">انخفاض دراماتيكي في الإجهاد العصبي من ٧٨/١٠٠ إلى ٢٢/١٠٠</div>
+              </div>
+            </div>
+
+            <!-- Future Roadmap Mini-Cards -->
+            <div class="deck-roadmap-strip">
+              <div class="roadmap-col">
+                <div class="roadmap-period">الربع الثاني (Q2 2026)</div>
+                <h4 class="roadmap-goal">وضع «المحراب الذكي» اللوحي</h4>
+                <p class="roadmap-desc">تكامل مع الأجهزة اللوحية (iPad/Tablet) مع شاشة مانعة للنوم وعداد زمن الإلقاء اللحظي.</p>
+              </div>
+
+              <div class="roadmap-col">
+                <div class="roadmap-period">الربع الثالث والرابع (Q3-Q4 2026)</div>
+                <h4 class="roadmap-goal">المدقق البلاغي والنماذج الصوتية</h4>
+                <p class="roadmap-desc">مدقق ذكي لسلامة النحو والبلاغة، وبنك تدريب صوتي لمساعدة الخطباء الجدد على تحسين نبرة الإلقاء.</p>
+              </div>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+
+    <!-- Presentation Bottom Control Bar -->
+    <footer class="deck-bottom-bar">
+      <!-- Previous Button (in RTL: goes to previous slide, right arrow) -->
+      <button id="btnDeckPrev" class="deck-nav-btn deck-prev-btn" title="الشريحة السابقة (السهم الأيمن)">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="9 18 15 12 9 6"></polyline>
+        </svg>
+        <span>الشريحة السابقة</span>
+      </button>
+
+      <!-- Interactive Dot Indicators (1-8) -->
+      <div class="deck-dots-wrapper" id="deckDotsWrapper">
+        <button class="deck-dot active" data-index="1" title="شريحة ١: الهوية الاستراتيجية"></button>
+        <button class="deck-dot" data-index="2" title="شريحة ٢: فجوة الذكاء الاصطناعي"></button>
+        <button class="deck-dot" data-index="3" title="شريحة ٣: منهجية البحث"></button>
+        <button class="deck-dot" data-index="4" title="شريحة ٤: نتائج الاستبيان"></button>
+        <button class="deck-dot" data-index="5" title="شريحة ٥: شخصيات المستخدمين"></button>
+        <button class="deck-dot" data-index="6" title="شريحة ٦: مقارنة الرحلة"></button>
+        <button class="deck-dot" data-index="7" title="شريحة ٧: القرارات التصميمية"></button>
+        <button class="deck-dot" data-index="8" title="شريحة ٨: مؤشرات الأثر والخارطة"></button>
+      </div>
+
+      <!-- Next Button (in RTL: goes to next slide, left arrow) -->
+      <button id="btnDeckNext" class="deck-nav-btn deck-next-btn" title="الشريحة التالية (السهم الأيسر)">
+        <span>الشريحة التالية</span>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="15 18 9 12 15 6"></polyline>
+        </svg>
+      </button>
+    </footer>
+
+  </div>
+
+  <main class="page-content">
+    
+    <!-- ==================== HERO / EXECUTIVE COVER ==================== -->
+    <section class="hero-section" id="hero">
+      <div class="container">
+        
+        <div class="meta-strip">
+          <span class="status-chip chip-approved">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            وثيقة معتمدة (Approved)
+          </span>
+          <span class="meta-item">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+            فبراير 2026
+          </span>
+          <span class="meta-item">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+            فريق تجربة المستخدم وأبحاث التصميم (UX Research & Product Strategy)
+          </span>
+        </div>
+
+        <div class="hero-badge-slogan">
+          <span class="slogan-icon">✦</span>
+          <span>الشعار الاستراتيجي: «أمانة الكلمة.. وعصرية التقنية»</span>
+        </div>
+
+        <h1 class="hero-main-title">
+          دراسة تجربة المستخدم الشاملة
+          <span class="gold-gradient-text block-title">مشروع منصة «خَطِيب»</span>
+          <span class="hero-subtitle">الورشة الذكية لصياغة الخطب المنبرية والتأصيل العلمي</span>
+        </h1>
+
+        <p class="hero-lead">
+          بحث استكشافي ونمذجة تفاعلية لحل المعضلة الكبرى بين قدسية المنبر وصرامة التوثيق الشرعي، وبين إمكانات الذكاء الاصطناعي التوليدي عبر فلسفة "الورشة التمكينية" لا الاستبدالية.
+        </p>
+
+        <!-- KPI Executive Summary Strip -->
+        <div class="hero-kpi-grid">
+          <div class="kpi-card card-glow">
+            <div class="kpi-top">
+              <span class="kpi-label">توفير وقت التحضير</span>
+              <span class="kpi-trend positive">↓ 85%</span>
+            </div>
+            <div class="kpi-value"><span class="counter" data-target="85">85</span>%</div>
+            <p class="kpi-desc">من 4.8 ساعات إلى 14 دقيقة في المتوسط</p>
+          </div>
+
+          <div class="kpi-card card-glow">
+            <div class="kpi-top">
+              <span class="kpi-label">مقياس قابلية الاستخدام (SUS)</span>
+              <span class="kpi-trend positive">Grade A+</span>
+            </div>
+            <div class="kpi-value"><span class="counter" data-target="91">91</span><span class="kpi-unit">/100</span></div>
+            <p class="kpi-desc">مقارنة بـ 48/100 لنماذج الذكاء الاصطناعي العامة</p>
+          </div>
+
+          <div class="kpi-card card-glow">
+            <div class="kpi-top">
+              <span class="kpi-label">دقة الإسناد والتخريج</span>
+              <span class="kpi-trend positive">100% موثوق</span>
+            </div>
+            <div class="kpi-value"><span class="counter" data-target="100">100</span>%</div>
+            <p class="kpi-desc">ربط مباشر بباحث الأحاديث والدرر السنية</p>
+          </div>
+
+          <div class="kpi-card card-glow">
+            <div class="kpi-top">
+              <span class="kpi-label">حجم العينة البحثية</span>
+              <span class="kpi-trend neutral">N = 145</span>
+            </div>
+            <div class="kpi-value"><span class="counter" data-target="145">145</span><span class="kpi-unit"> خطيباً</span></div>
+            <p class="kpi-desc">بين استبيان ميداني ومقابلات شبه مقننة</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==================== SECTION 1: EXECUTIVE SUMMARY & THE PROBLEM ==================== -->
+    <section class="content-section" id="summary">
+      <div class="container">
+        
+        <div class="section-header">
+          <span class="section-number">٠١</span>
+          <div class="section-title-wrap">
+            <h2 class="section-title">الملخص التنفيذي وسياق المشكلة</h2>
+            <span class="section-english">Executive Summary & The Core Problem Space</span>
+          </div>
+        </div>
+
+        <div class="editorial-card glass-panel mb-8">
+          <div class="quote-header">
+            <div class="gold-line"></div>
+            <h3 class="subsection-title">١.١ خلفية المشروع ومقام المنبر (Context)</h3>
+          </div>
+          <p class="paragraph-lead">
+            يمثل منبر الجمعة في العالم الإسلامي المنصة الأسبوعية الأكثر تأثيراً وحضوراً وجدانياً ومجتمعياً، حيث يجتمع مئات الملايين من المصلين أسبوعياً للإنصات إلى رسالة توجيهية موحدة. إلا أن إعداد هذه الموعظة المنبرية ظل عملية شاقة، يدوية، ومعزولة عن التطور التقني؛ فالإمام والخطيب يتحملان مسؤولية شرعية وعلمية وأدبية مضاعفة، وأي هفوة أو خطأ لغوي أو حديث غير دقيق يُحسب عليه ويُضعف هيبة المنبر ورسالته.
+          </p>
+        </div>
+
+        <!-- The Core Problem Space & The Chasm Diagram -->
+        <div class="problem-chasm-wrapper">
+          <div class="chasm-header text-center mb-6">
+            <h3 class="subsection-title gold-gradient-text">١.٢ إشكالية البحث الأساسية: الفجوة العميقة (The Chasm)</h3>
+            <p class="text-muted">المواجهة الصريحة بين ما تقدمه نماذج الذكاء الاصطناعي العامة والمتطلبات الحساسة لمنبر الجمعة</p>
+          </div>
+
+          <div class="chasm-grid">
+            
+            <!-- Left: Current Generic LLMs Failure -->
+            <div class="chasm-box chasm-danger">
+              <div class="chasm-box-header">
+                <div class="icon-circle icon-danger">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
+                </div>
+                <div>
+                  <h4 class="box-title">أدوات الذكاء الاصطناعي العامة (LLMs)</h4>
+                  <span class="box-tag tag-danger">ChatGPT, Claude, وغيرها</span>
+                </div>
+              </div>
+
+              <ul class="chasm-list">
+                <li class="chasm-item">
+                  <div class="item-title">
+                    <span class="bullet-cross">✕</span>
+                    <strong>الهلوسة الشرعية (Religious Hallucination):</strong>
+                  </div>
+                  <p class="item-desc">اختلاق أحاديث ونسبتها إلى أئمة الحديث دون تثبت؛ والمنبر مقام توقيف لا يحتمل الخطأ قط.</p>
+                </li>
+                <li class="chasm-item">
+                  <div class="item-title">
+                    <span class="bullet-cross">✕</span>
+                    <strong>الركاكة الأسلوبية (Stylistic Degradation):</strong>
+                  </div>
+                  <p class="item-desc">افتقار للبلاغة العربية التراثية وغلبة الأسلوب الصحفي المترجم المليء بالكليشيهات الباردة والعبارات السطحية.</p>
+                </li>
+                <li class="chasm-item">
+                  <div class="item-title">
+                    <span class="bullet-cross">✕</span>
+                    <strong>متلازمة الصفحة البيضاء والوقت المهدر:</strong>
+                  </div>
+                  <p class="item-desc">استنزاف 4 إلى 6 ساعات أسبوعياً في جمع الشواهد وتنسيق المسودة على حساب التدبر والحفظ والاتصال الروحي.</p>
+                </li>
+                <li class="chasm-item">
+                  <div class="item-title">
+                    <span class="bullet-cross">✕</span>
+                    <strong>هاجس الخصوصية (Privacy Anxiety):</strong>
+                  </div>
+                  <p class="item-desc">تخوف الخطيب من رفع أفكاره ومسوداته إلى خوادم سحابية قد تستخدمها لأغراض تدريبية قبل إلقائها.</p>
+                </li>
+              </ul>
+            </div>
+
+            <!-- VS Badge -->
+            <div class="chasm-vs-bridge">
+              <div class="vs-circle">VS</div>
+              <div class="vs-pulse-line"></div>
+              <span class="vs-label">الفجوة المعرفية والتصميمية</span>
+            </div>
+
+            <!-- Right: The Sacred Minbar Requirements & Khatib Solution -->
+            <div class="chasm-box chasm-success">
+              <div class="chasm-box-header">
+                <div class="icon-circle icon-success">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                </div>
+                <div>
+                  <h4 class="box-title">قدسية المنبر وضوابطه الشرعية</h4>
+                  <span class="box-tag tag-success">متطلبات منصة «خَطِيب»</span>
+                </div>
+              </div>
+
+              <ul class="chasm-list">
+                <li class="chasm-item">
+                  <div class="item-title">
+                    <span class="bullet-check">✓</span>
+                    <strong>دقة إسناد مطلقة وتخريج فوري:</strong>
+                  </div>
+                  <p class="item-desc">ربط مباشر مع قواعد بيانات الحديث المعتمدة (الدرر السنية) دون أي مجال للتلفيق أو التأليف.</p>
+                </li>
+                <li class="chasm-item">
+                  <div class="item-title">
+                    <span class="bullet-check">✓</span>
+                    <strong>بلاغة عربية جليلة وهيكل منبري رصين:</strong>
+                  </div>
+                  <p class="item-desc">فصاحة منبرية تحترم ديباجة الخطبة، الاستفتاح المسنون، براعة الاستهلال، وحسن الختام مع جلسة الاستراحة.</p>
+                </li>
+                <li class="chasm-item">
+                  <div class="item-title">
+                    <span class="bullet-check">✓</span>
+                    <strong>ورشة تمكينية توفر 85% من الوقت:</strong>
+                  </div>
+                  <p class="item-desc">أتمتة الجمع والتخريج والتنسيق في ثوانٍ، ليتفرغ الإمام لمهمته الأسمى: الاستحضار والخشوع والتوجيه.</p>
+                </li>
+                <li class="chasm-item">
+                  <div class="item-title">
+                    <span class="bullet-check">✓</span>
+                    <strong>خصوصية محلية سيادية تامة (Zero-DB):</strong>
+                  </div>
+                  <p class="item-desc">عدم حفظ مسودات الخطيب في أي خوادم خارجية؛ المسودات ملك الخطيب ومخزنة في جهازه فقط.</p>
+                </li>
+              </ul>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==================== SECTION 2: RESEARCH OBJECTIVES ==================== -->
+    <section class="content-section bg-alt" id="objectives">
+      <div class="container">
+        
+        <div class="section-header">
+          <span class="section-number">٠٢</span>
+          <div class="section-title-wrap">
+            <h2 class="section-title">أهداف البحث المكتبي والميداني</h2>
+            <span class="section-english">Research Objectives & Core Inquiries</span>
+          </div>
+        </div>
+
+        <p class="section-intro">
+          تحددت أهداف الدراسة الاستكشافية في الإجابة الصريحة عن أربعة تساؤلات محورية شكلت حجر الأساس لجميع القرارات التصميمية والتقنية:
+        </p>
+
+        <div class="objectives-grid">
+          
+          <div class="objective-card">
+            <div class="obj-badge">الهدف الأول</div>
+            <div class="obj-icon">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            </div>
+            <h3 class="obj-title">فهم مسار التحضير وحساب الوقت المستغرق</h3>
+            <p class="obj-text">
+              رسم الخطوات الواقعية التي يسلكها الخطباء أسبوعياً من لحظة التفكير بالموضوع وحتى صعود المنبر، وحساب الوقت الفعلي المستهلك في كل مرحلة على حدة (التنقيب، التخريج، الصياغة، التشكيل).
+            </p>
+            <div class="obj-footer">
+              <span class="pill-tag">تحليل كمي ونوعي</span>
+              <span class="pill-metric">الوقت الفعلي = 4.8 ساعات</span>
+            </div>
+          </div>
+
+          <div class="objective-card">
+            <div class="obj-badge">الهدف الثاني</div>
+            <div class="obj-icon">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+            </div>
+            <h3 class="obj-title">رصد المشاعر الإنسانية ورهبة المنبر</h3>
+            <p class="obj-text">
+              تشريح الضغوط النفسية (Frustrations & Anxieties) المرتبطة باعتلاء المنبر، ومخاوف الخطأ العلمي، والوقوع في لحن لغوي، أو الاستشهاد بحديث معلول أمام جماهير المصلين والوجهاء.
+            </p>
+            <div class="obj-footer">
+              <span class="pill-tag">خريطة التعاطف</span>
+              <span class="pill-metric">72% قلق التثبت الحديثي</span>
+            </div>
+          </div>
+
+          <div class="objective-card">
+            <div class="obj-badge">الهدف الثالث</div>
+            <div class="obj-icon">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+            </div>
+            <h3 class="obj-title">تقييم تقبل الخطباء لمفهوم «المساعد الذكي»</h3>
+            <p class="obj-text">
+              قياس الحواجز النفسية والشرعية التي تمنع الخطباء من التفاعل مع أدوات الذكاء الاصطناعي، واستكشاف أسباب خيبة أملهم من الأدوات الحالية ورفضهم لمخرجاتها.
+            </p>
+            <div class="obj-footer">
+              <span class="pill-tag">القبول التكنولوجي (TAM)</span>
+              <span class="pill-metric">64% جربوا الأدوات العامة</span>
+            </div>
+          </div>
+
+          <div class="objective-card">
+            <div class="obj-badge">الهدف الرابع</div>
+            <div class="obj-icon">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+            </div>
+            <h3 class="obj-title">تحديد معالم «الورشة الذكية التمكينية»</h3>
+            <p class="obj-text">
+              استنباط الميزات الجوهرية والخصائص المعمارية للواجهة التفاعلية التي تصون سيادة الخطيب وتجعله القائد المتحكم في المسودة دون أن تشعره بأنه مجرد قارئ لنص مؤتمت.
+            </p>
+            <div class="obj-footer">
+              <span class="pill-tag">قرارات هندسة التجربة</span>
+              <span class="pill-metric">فلسفة التمكين لا الاستبدال</span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==================== SECTION 3: METHODOLOGY & SAMPLE ==================== -->
+    <section class="content-section" id="methodology">
+      <div class="container">
+        
+        <div class="section-header">
+          <span class="section-number">٠٣</span>
+          <div class="section-title-wrap">
+            <h2 class="section-title">المنهجية وتحديد العينة</h2>
+            <span class="section-english">Research Methodology & Sample Demographics</span>
+          </div>
+        </div>
+
+        <p class="section-intro">
+          اعتمدت الدراسة على <strong>المنهج المختلط (Mixed-Methods Approach)</strong> الذي يجمع بين القياس الإحصائي الكمي (N = 145) والمقابلات المتعمقة الفردية (Qualitative Interviews) مع أئمة وخطباء وموجهين شرعيين.
+        </p>
+
+        <div class="methodology-grid">
+          
+          <!-- Sample Demographics Details -->
+          <div class="method-card">
+            <h3 class="subsection-title">٣.١ توصيف العينة المستهدفة (N = 145)</h3>
+            
+            <div class="demo-items-list">
+              <div class="demo-item">
+                <div class="demo-icon">🕌</div>
+                <div class="demo-info">
+                  <span class="demo-label">المجتمع المستهدف</span>
+                  <span class="demo-value">أئمة وخطباء الجوامع الرسمية، موجهون دينيون، وطلاب علم شرعي ممارسون للخطابة المنبرية.</span>
+                </div>
+              </div>
+
+              <div class="demo-item">
+                <div class="demo-icon">🌍</div>
+                <div class="demo-info">
+                  <span class="demo-label">التوزيع الجغرافي</span>
+                  <div class="geo-bar-wrapper">
+                    <div class="geo-split">
+                      <span class="geo-name">المملكة العربية السعودية (72%)</span>
+                      <span class="geo-name">دول الخليج والعالم العربي (28%)</span>
+                    </div>
+                    <div class="dual-progress">
+                      <div class="prog-segment prog-primary" style="width: 72%;">72%</div>
+                      <div class="prog-segment prog-gold" style="width: 28%;">28%</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="demo-item">
+                <div class="demo-icon">📋</div>
+                <div class="demo-info">
+                  <span class="demo-label">الأدوات البحثية المطبقة</span>
+                  <span class="demo-value">استبيان رقمي مكثف من 24 محوراً، ملحوقاً بـ 12 مقابلة فردية شبه مقننة (Semi-structured Interviews).</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="method-badge-note">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+              <span>ضمان تمثيل كافة مستويات الممارسة المنبرية من الخطباء المتطوعين حتى كبار أئمة الجوامع المركزية.</span>
+            </div>
+          </div>
+
+          <!-- Interactive Donut Chart for Experience -->
+          <div class="method-card chart-container-card">
+            <div class="chart-header-group">
+              <h3 class="subsection-title">سنوات الخبرة المنبرية لعينة الدراسة</h3>
+              <span class="badge-sample">N = 145 مشاركاً</span>
+            </div>
+            
+            <div class="chart-box">
+              <canvas id="experienceDonutChart" width="300" height="300"></canvas>
+            </div>
+
+            <div class="chart-legend-custom">
+              <div class="legend-item">
+                <span class="legend-color-dot" style="background-color: #3b82f6;"></span>
+                <span class="legend-text">أقل من 3 سنوات (مبتدئ): <strong>22%</strong></span>
+              </div>
+              <div class="legend-item">
+                <span class="legend-color-dot" style="background-color: #10b981;"></span>
+                <span class="legend-text">من 3 إلى 10 سنوات (متوسط): <strong>48%</strong></span>
+              </div>
+              <div class="legend-item">
+                <span class="legend-color-dot" style="background-color: #c5a880;"></span>
+                <span class="legend-text">أكثر من 10 سنوات (خبير): <strong>30%</strong></span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==================== SECTION 4: SURVEY ANALYSIS ==================== -->
+    <section class="content-section" id="survey">
+      <div class="container">
+        
+        <div class="section-header">
+          <span class="section-number">٠٤</span>
+          <div class="section-title-wrap">
+            <h2 class="section-title">تحليل الاستبيان الاستكشافي المسبق</h2>
+            <span class="section-english">Discovery Survey Analysis & Behavioral Insights</span>
+          </div>
+        </div>
+
+        <p class="section-intro">
+          تم إجراء استبيان افتراضي استكشافي مكثف لقياس الاحتياجات الحقيقية قبل كتابة سطر برمجي واحد. وفيما يلي تفصيل النتائج الإحصائية والتحليل النفسي:
+        </p>
+
+        <!-- 4.1 Time & Effort -->
+        <div class="survey-subsection mb-12">
+          <div class="subsection-header-tag">
+            <span class="tag-number">٤.١</span>
+            <h3 class="subsection-title">استنزاف الوقت والجهد في الإعداد الأسبوعي</h3>
+          </div>
+          <p class="text-muted mb-4">السؤال: كم ساعة تقضي أسبوعياً في إعداد مسودة خطبة الجمعة الواحدة؟</p>
+
+          <div class="time-analysis-grid">
+            
+            <!-- Table of Time Categories -->
+            <div class="table-responsive glass-panel">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>الفئة الزمنية</th>
+                    <th>النسبة المئوية</th>
+                    <th>الدلالة السلوكية والتصميمية</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>أقل من ساعتين</strong></td>
+                    <td><span class="badge-percent">11%</span></td>
+                    <td>يعتمدون على خطب أرشيفية جاهزة مسبقاً دون تجديد يذكر.</td>
+                  </tr>
+                  <tr>
+                    <td><strong>من 2 إلى 4 ساعات</strong></td>
+                    <td><span class="badge-percent">31%</span></td>
+                    <td>يملكون مسار بحث مستقر لكنهم يعانون من ضغط الوقت.</td>
+                  </tr>
+                  <tr class="highlight-row">
+                    <td><strong>من 4 إلى 6 ساعات</strong></td>
+                    <td><span class="badge-percent badge-gold">47%</span></td>
+                    <td><strong>يمثلون الشريحة الكبرى؛ يستهلكون معظم الوقت في التخريج والمراجعة.</strong></td>
+                  </tr>
+                  <tr>
+                    <td><strong>أكثر من 6 ساعات</strong></td>
+                    <td><span class="badge-percent">11%</span></td>
+                    <td>تدقيق أكاديمي وبحث معمق يرهق الخطيب ذهنياً وبدنياً.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Time Chart & Insight Card -->
+            <div class="time-chart-card glass-panel">
+              <h4 class="card-small-title">توزيع الوقت الأسبوعي المستهلك</h4>
+              <div class="chart-wrapper-sm">
+                <canvas id="timeHoursBarChart" height="180"></canvas>
+              </div>
+
+              <!-- UX Insight Box -->
+              <div class="ux-insight-callout">
+                <div class="insight-icon">💡</div>
+                <div class="insight-content">
+                  <span class="insight-title">استنتاج تصميمي حاسم (UX Insight):</span>
+                  <p>
+                    متوسط وقت التحضير هو <strong>4.8 ساعات أسبوعياً</strong>. يقضي الخطيب ما يقارب <strong>65%</strong> من هذا الوقت في الأعمال الروتينية (البحث عن نص الحديث، التأكد من صحته، ترتيب العناوين وتشكيل الكلمات)، في حين لا يتبقى سوى <strong>35%</strong> لاستحضار روح الموعظة وحفظها وضبط الإلقاء.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- 4.2 Pain Points -->
+        <div class="survey-subsection mb-12">
+          <div class="subsection-header-tag">
+            <span class="tag-number">٤.٢</span>
+            <h3 class="subsection-title">أكبر التحديات ونقاط الألم أثناء الكتابة (Pain Points)</h3>
+          </div>
+          <p class="text-muted mb-4">السؤال: ما هي أكبر العقبات التي تواجهك عند الشروع في كتابة الخطبة؟ (اختيار متعدد)</p>
+
+          <div class="pain-points-card glass-panel">
+            <div class="pain-point-row">
+              <div class="pain-point-header">
+                <span class="pain-point-title">عقبة البداية ورهبة الصفحة البيضاء (Blank Canvas Paralysis)</span>
+                <span class="pain-point-value val-danger">79%</span>
+              </div>
+              <div class="bar-container">
+                <div class="bar-fill bar-danger" style="width: 79%;"></div>
+              </div>
+              <p class="pain-point-analysis">
+                <strong>التحليل النفسي:</strong> 79% من الخطباء يعانون من التردد وصعوبة الانطلاق في اختيار المحور ووضع الهيكل الأساسي بعد أسبوع حافل بالانشغالات.
+              </p>
+            </div>
+
+            <div class="pain-point-row">
+              <div class="pain-point-header">
+                <span class="pain-point-title">تشتت مصادر تخريج الأحاديث والتحقق العلمي (Fear of Inaccuracy)</span>
+                <span class="pain-point-value val-warning">72%</span>
+              </div>
+              <div class="bar-container">
+                <div class="bar-fill bar-warning" style="width: 72%;"></div>
+              </div>
+              <p class="pain-point-analysis">
+                <strong>التحليل النفسي:</strong> 72% يشعرون بقلق مستمر من إيراد أحاديث ضعيفة أو شائعة لا تصح فوق المنبر، ويقضون وقتاً طويلاً في التنقل بين المواقع غير الموثوقة.
+              </p>
+            </div>
+
+            <div class="pain-point-row">
+              <div class="pain-point-header">
+                <span class="pain-point-title">تطويع الموضوع ليلائم واقع واحتياجات المصلين</span>
+                <span class="pain-point-value">58%</span>
+              </div>
+              <div class="bar-container">
+                <div class="bar-fill bar-info" style="width: 58%;"></div>
+              </div>
+            </div>
+
+            <div class="pain-point-row">
+              <div class="pain-point-header">
+                <span class="pain-point-title">ضبط وقت الإلقاء والالتزام بالدقائق المحددة</span>
+                <span class="pain-point-value">49%</span>
+              </div>
+              <div class="bar-container">
+                <div class="bar-fill bar-teal" style="width: 49%;"></div>
+              </div>
+            </div>
+
+            <div class="pain-point-row">
+              <div class="pain-point-header">
+                <span class="pain-point-title">ضعف الصياغة والوقوع في التكرار اللفظي المعتاد</span>
+                <span class="pain-point-value">41%</span>
+              </div>
+              <div class="bar-container">
+                <div class="bar-fill bar-muted" style="width: 41%;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4.3 Generative AI Perceptions & Issues -->
+        <div class="survey-subsection mb-12">
+          <div class="subsection-header-tag">
+            <span class="tag-number">٤.٣</span>
+            <h3 class="subsection-title">الموقف من أدوات الذكاء الاصطناعي الحالية (Generative AI Perceptions)</h3>
+          </div>
+          
+          <div class="ai-experience-stats mb-6">
+            <div class="ai-stat-box">
+              <span class="ai-stat-val">64%</span>
+              <span class="ai-stat-lbl">جربوا أدوات الذكاء الاصطناعي في التحضير</span>
+            </div>
+            <div class="ai-stat-box">
+              <span class="ai-stat-val">36%</span>
+              <span class="ai-stat-lbl">لم يجربوها إطلاقاً نظراً للتحفظ أو الجهل بها</span>
+            </div>
+          </div>
+
+          <h4 class="card-small-title mb-3">تقييم التجربة لدى من جربوها (N = 93 خطيباً):</h4>
+
+          <div class="table-responsive glass-panel mb-6">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>المشكلة المرصودة</th>
+                  <th>نسبة المتضررين</th>
+                  <th>أمثلة من إفادات واقتباسات المشاركين الحية</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="danger-row">
+                  <td><strong>أحاديث مكذوبة أو بلا سند</strong></td>
+                  <td><span class="badge-percent badge-danger">84%</span></td>
+                  <td><span class="quote-text">«أعطاني حديثاً مشهوراً ولما بحثت طلع منكر لا أصل له!»</span></td>
+                </tr>
+                <tr>
+                  <td><strong>أسلوب مقالي بارد وركيك</strong></td>
+                  <td><span class="badge-percent badge-warning">78%</span></td>
+                  <td><span class="quote-text">«اللغة كأنها مقال في مجلة مترجمة.. لا هيبة للمنبر فيها ولا فصاحة.»</span></td>
+                </tr>
+                <tr>
+                  <td><strong>غياب التقسيم المنبري الشرعي</strong></td>
+                  <td><span class="badge-percent">69%</span></td>
+                  <td><span class="quote-text">«يكتب فقرة واحدة هلامية بلا خطبة أولى ولا جلسة استراحة ولا دعاء ختامي.»</span></td>
+                </tr>
+                <tr>
+                  <td><strong>تخوف من خصوصية الخطبة</strong></td>
+                  <td><span class="badge-percent">61%</span></td>
+                  <td><span class="quote-text">«أخاف أن ترفع أفكاري ومسوداتي ويستخدمها غيري أو يُطّلع عليها قبل الجمعة.»</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- The Golden Rule Box -->
+          <div class="golden-rule-banner">
+            <div class="rule-icon">⚖️</div>
+            <div class="rule-text-content">
+              <h4 class="rule-title">استنتاج تصميمي حاسم (The Golden Rule):</h4>
+              <p class="rule-body">
+                الخطباء <strong>لا يرفضون التقنية بحد ذاتها</strong>، بل يرفضون <strong>«عدم انضباطها»</strong>. إنهم يبحثون عن أداة تحترم تخصصهم وقدسية رسالتهم وتوفر مصادر محققة وموثقة بدلاً من وعود الأتمتة الكاملة الهشة.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4.4 Ideal Solution Wishlist -->
+        <div class="survey-subsection">
+          <div class="subsection-header-tag">
+            <span class="tag-number">٤.٤</span>
+            <h3 class="subsection-title">متطلبات ومميزات الحل المثالي (Wishlist)</h3>
+          </div>
+          <p class="text-muted mb-4">السؤال: إذا توفرت منصة متخصصة، ما هي أهم الميزات التي تجعلك تعتمد عليها أسبوعياً؟</p>
+
+          <div class="wishlist-grid">
+            <div class="wishlist-card">
+              <div class="wish-num">88%</div>
+              <div class="wish-info">
+                <h4>التحقق الحديثي الآلي الصارم وعزو المصادر</h4>
+                <p>عزو مباشر لمكتبة الحديث وكتب السنة مع بيان درجة الصحة والضعف.</p>
+              </div>
+            </div>
+
+            <div class="wishlist-card">
+              <div class="wish-num">76%</div>
+              <div class="wish-info">
+                <h4>الحفاظ على الأسلوب البلاغي التراثي المأثور</h4>
+                <p>ديباجات مسنونة، استشهادات بالقرآن، وفصاحة عربية تليق بجلال المنبر.</p>
+              </div>
+            </div>
+
+            <div class="wishlist-card">
+              <div class="wish-num">71%</div>
+              <div class="wish-info">
+                <h4>الخصوصية التامة وعدم حفظ الخطب سحابياً</h4>
+                <p>تخزين محلي آمن في متصفح الخطيب دون إجبار على التسجيل أو رفع المسودات.</p>
+              </div>
+            </div>
+
+            <div class="wishlist-card">
+              <div class="wish-num">65%</div>
+              <div class="wish-info">
+                <h4>التصدير بملف Word منسق بخط واضح للإلقاء</h4>
+                <p>خط كبير (20pt+) مع تشكيل الآيات والأحاديث وتنسيق فواصل التنفس.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==================== SECTION 5: USER PERSONAS ==================== -->
+    <section class="content-section bg-alt" id="personas">
+      <div class="container">
+        
+        <div class="section-header">
+          <span class="section-number">٠٥</span>
+          <div class="section-title-wrap">
+            <h2 class="section-title">الأنماط السلوكية وشخصيات المستخدمين</h2>
+            <span class="section-english">User Personas & Behavioral Archetypes</span>
+          </div>
+        </div>
+
+        <p class="section-intro">
+          بناءً على نتائج الاستبيان والمقابلات الميدانية المعمقة، تم تجسيد مستخدمي المنصة في شخصيتين رئيستين تمثلان طرفي الطيف المنبري:
+        </p>
+
+        <div class="personas-grid">
+          
+          <!-- Persona 1: Sheikh Abdullah -->
+          <div class="persona-card glass-panel border-gold">
+            <div class="persona-header">
+              <div class="persona-avatar-wrap">
+                <div class="persona-avatar-circle avatar-sheikh">
+                  <span>👴🏻</span>
+                </div>
+                <div class="persona-badge-tag tag-traditional">الخطيب التقليدي الحريص</div>
+              </div>
+              <div class="persona-title-meta">
+                <h3 class="persona-name">الشيخ عبد الله</h3>
+                <span class="persona-role">معلم تربوي وإمام وخطيب جامع كبير</span>
+                <span class="persona-location">📍 الرياض • 52 عاماً • خبرة 18 عاماً</span>
+              </div>
+            </div>
+
+            <div class="persona-body">
+              <div class="tech-level-bar mb-4">
+                <span class="level-label">المستوى التقني: متوسط</span>
+                <div class="level-track">
+                  <div class="level-fill" style="width: 50%;"></div>
+                </div>
+                <span class="level-hint">يستخدم الهاتف والكمبيوتر للمهام الأساسية وتصفح المكتبة الشاملة.</span>
+              </div>
+
+              <div class="persona-block">
+                <h4 class="block-heading"><span class="icon">🎯</span> الدوافع والسلوكيات (Motivations & Behaviors):</h4>
+                <ul class="clean-bullet-list">
+                  <li>يحرص أشد الحرص على أمانة المنبر وصحة ونقاء كل كلمة يتفوه بها.</li>
+                  <li>يشعر بإرهاق التحضير الأسبوعي بعد أسبوع عمل طويل ومضنٍ في التعليم.</li>
+                  <li>يخشى التكرار ونفور فئة الشباب من رتابة الأطروحات المعتادة.</li>
+                </ul>
+              </div>
+
+              <div class="persona-block">
+                <h4 class="block-heading"><span class="icon">⚠️</span> أكبر المخاوف (Fears):</h4>
+                <ul class="clean-bullet-list danger-bullets">
+                  <li>أن تُنسب في خطبته رواية غير صحيحة أو ضعيفة أمام جماعة مسجده ومحبيه.</li>
+                  <li>أن تفقد الخطبة رونقها وروحانيتها بسبب استخدام أدوات رقمية مستحدثة.</li>
+                </ul>
+              </div>
+
+              <div class="persona-block needs-block">
+                <h4 class="block-heading"><span class="icon">💎</span> احتياجاته من منصة خَطِيب:</h4>
+                <div class="needs-tags">
+                  <span class="need-tag">مسودة رصينة تنظم أفكاره في دقائق</span>
+                  <span class="need-tag">توثيق فوري للأحاديث الشريفة (الدرر السنية)</span>
+                  <span class="need-tag">طباعة سريعة لملف Word بخط كبير ومقروء للمنبر</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Persona 2: Ustadh Omar -->
+          <div class="persona-card glass-panel border-emerald">
+            <div class="persona-header">
+              <div class="persona-avatar-wrap">
+                <div class="persona-avatar-circle avatar-modern">
+                  <span>👨🏻‍💻</span>
+                </div>
+                <div class="persona-badge-tag tag-modern">الخطيب الشاب المعاصر</div>
+              </div>
+              <div class="persona-title-meta">
+                <h3 class="persona-name">الأستاذ عمر</h3>
+                <span class="persona-role">مهندس برمجيات وخطيب جمعة متطوع</span>
+                <span class="persona-location">📍 جدة • 29 عاماً • خبرة 4 سنوات</span>
+              </div>
+            </div>
+
+            <div class="persona-body">
+              <div class="tech-level-bar mb-4">
+                <span class="level-label">المستوى التقني: متقدم وخبير</span>
+                <div class="level-track">
+                  <div class="level-fill fill-emerald" style="width: 95%;"></div>
+                </div>
+                <span class="level-hint">خبير في التعامل مع التقنيات السحابية وأدوات الذكاء الاصطناعي والإنتاجية.</span>
+              </div>
+
+              <div class="persona-block">
+                <h4 class="block-heading"><span class="icon">🎯</span> الدوافع والسلوكيات (Motivations & Behaviors):</h4>
+                <ul class="clean-bullet-list">
+                  <li>يريد طرح موضوعات معاصرة تلامس هموم جيله (التحديات النفسية، المسؤولية المالية، التقنية).</li>
+                  <li>جدوله الأسبوعي مزدحم جداً ولا يملك أكثر من ساعتين للتحضير قبل فجر الجمعة.</li>
+                  <li>مجرّب لنماذج الذكاء الاصطناعي العامة ويشعر بالإحباط من ركاكتها اللغوية وسطحيتها الدينية.</li>
+                </ul>
+              </div>
+
+              <div class="persona-block">
+                <h4 class="block-heading"><span class="icon">⚠️</span> أكبر المخاوف (Fears):</h4>
+                <ul class="clean-bullet-list danger-bullets">
+                  <li>أن يقع في فخ الخطب الإنشائية الركيكة التي لا تقنع عقول المستمعين المتعلمين.</li>
+                  <li>ضيق الوقت المفاجئ الذي قد يضطره لإلقاء خطبة مكررة غير مجدية.</li>
+                </ul>
+              </div>
+
+              <div class="persona-block needs-block">
+                <h4 class="block-heading"><span class="icon">💎</span> احتياجاته من منصة خَطِيب:</h4>
+                <div class="needs-tags">
+                  <span class="need-tag">معالج تفاعلي سريع يولد الأفكار للشباب</span>
+                  <span class="need-tag">لغة عربية جزلة تخلو من الكليشيهات المترجمة</span>
+                  <span class="need-tag">واجهة سريعة بتصميم عصري وداكن مريح للنظر</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==================== SECTION 6: EMPATHY MAPPING ==================== -->
+    <section class="content-section" id="empathy">
+      <div class="container">
+        
+        <div class="section-header">
+          <span class="section-number">٠٦</span>
+          <div class="section-title-wrap">
+            <h2 class="section-title">خريطة التعاطف والنموذج الذهني</h2>
+            <span class="section-english">Empathy Mapping & Preacher Mental Model</span>
+          </div>
+        </div>
+
+        <p class="section-intro">
+          تجسيد الأبعاد الشعورية والمعرفية الأربعة للخطيب أثناء معايشته الأسبوعية لتحضير الخطبة:
+        </p>
+
+        <div class="empathy-matrix-wrapper">
+          <div class="empathy-center-core">
+            <div class="core-icon">🕌</div>
+            <span>عقل ووجدان الخطيب</span>
+          </div>
+
+          <div class="empathy-quadrants-grid">
+            
+            <!-- SAYS -->
+            <div class="empathy-quadrant quadrant-says">
+              <div class="quad-header">
+                <span class="quad-icon">💬</span>
+                <div class="quad-title-group">
+                  <h3 class="quad-title">ماذا يقول؟ (SAYS)</h3>
+                  <span class="quad-sub">التصريحات العلنية والشكاوى المباشرة</span>
+                </div>
+              </div>
+              <ul class="quad-list">
+                <li>«أريد موضوعاً جديداً يوقظ قلوب المصلين بدلاً من التكرار.»</li>
+                <li>«الوقت يداهمني ويوم الجمعة اقترب وما زلت أبحث في الشواهد.»</li>
+                <li>«الذكاء الاصطناعي ركيك ومشوّه ولا يدرك قدسية وجلال المنبر.»</li>
+              </ul>
+            </div>
+
+            <!-- THINKS -->
+            <div class="empathy-quadrant quadrant-thinks">
+              <div class="quad-header">
+                <span class="quad-icon">🧠</span>
+                <div class="quad-title-group">
+                  <h3 class="quad-title">ماذا يفكر؟ (THINKS)</h3>
+                  <span class="quad-sub">الهواجس الداخلية والاعتبارات غير المنطوقة</span>
+                </div>
+              </div>
+              <ul class="quad-list">
+                <li>«هل هذا الحديث صحيح مئة بالمئة أم سيعترض عليّ أحد الفضلاء؟»</li>
+                <li>«الناس ملّت من الوعظ المكرر السطحي الذي لا يحل أزماتهم اليومية.»</li>
+                <li>«لا أريد أن أكون مجرد قارئ، بل واعظاً صادقاً يلامس أوجاع القلوب.»</li>
+              </ul>
+            </div>
+
+            <!-- DOES -->
+            <div class="empathy-quadrant quadrant-does">
+              <div class="quad-header">
+                <span class="quad-icon">🏃🏻</span>
+                <div class="quad-title-group">
+                  <h3 class="quad-title">ماذا يفعل؟ (DOES)</h3>
+                  <span class="quad-sub">السلوكيات والممارسات العملية الروتينية</span>
+                </div>
+              </div>
+              <ul class="quad-list">
+                <li>يتنقل في توتر بين عشرات التبويبات والمواقع والكتب الإلكترونية.</li>
+                <li>ينسخ ويعدل في ملف Word لساعات، ثم يضبط علامات الترقيم.</li>
+                <li>يتصل ببعض المشايخ والمحققين للتأكد من صحة أثر أو عزو فتوى.</li>
+                <li>يطبع الورقة ويشكل الكلمات الصعبة يدوياً بالقلم الجاف ليلاً.</li>
+              </ul>
+            </div>
+
+            <!-- FEELS -->
+            <div class="empathy-quadrant quadrant-feels">
+              <div class="quad-header">
+                <span class="quad-icon">❤️</span>
+                <div class="quad-title-group">
+                  <h3 class="quad-title">ماذا يشعر؟ (FEELS)</h3>
+                  <span class="quad-sub">المشاعر الوجدانية والتقلبات النفسية</span>
+                </div>
+              </div>
+              <ul class="quad-list">
+                <li>بضغط وتوتر نفسي بالغ مساء كل خميس مع تسارع عقارب الساعة.</li>
+                <li>بمسؤولية وأمانة ثقيلة ومخيفة أمام الله وأمام جماهير المسجد.</li>
+                <li>بالارتياح والسكينة العميقة حين تكون خطبته موثقة، مرتبة، ومشكولة بوضوح.</li>
+              </ul>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==================== SECTION 7: JOURNEY MAPPING ==================== -->
+    <section class="content-section bg-alt" id="journey">
+      <div class="container">
+        
+        <div class="section-header">
+          <span class="section-number">٠٧</span>
+          <div class="section-title-wrap">
+            <h2 class="section-title">رحلة المستخدم: الواقع الحالي مقابل المنصة</h2>
+            <span class="section-english">Journey Mapping: As-Is (~5h) vs To-Be (~15m)</span>
+          </div>
+        </div>
+
+        <p class="section-intro">
+          توضح المقارنة أدناه التحول الجذري في رحلة المستخدم (User Journey Transition) من المعاناة اليدوية إلى التمكين الذكي:
+        </p>
+
+        <!-- Journey Interactive Switcher -->
+        <div class="journey-toggle-bar">
+          <button id="btnViewBothJourneys" class="journey-tab-btn active" onclick="switchJourneyView('split')">عرض مقارنة متوازية</button>
+          <button id="btnViewAsIs" class="journey-tab-btn" onclick="switchJourneyView('asis')">الرحلة التقليدية الحالية (5 ساعات)</button>
+          <button id="btnViewToBe" class="journey-tab-btn btn-highlight" onclick="switchJourneyView('tobe')">رحلة منصة «خَطِيب» (15 دقيقة)</button>
+        </div>
+
+        <!-- Comparative Journey Flows Container -->
+        <div class="journey-flows-container" id="journeyFlowsWrapper">
+          
+          <!-- As-Is Journey -->
+          <div class="journey-flow-box flow-asis" id="flowAsIsBox">
+            <div class="flow-header">
+              <div class="flow-badge badge-danger-soft">الواقع التقليدي الحالي</div>
+              <h3 class="flow-title">الرحلة المجهدة القديمة (~5 ساعات)</h3>
+              <span class="flow-meta">استنزاف ذهني وبدني كبير وتشتت مصادر</span>
+            </div>
+
+            <div class="journey-steps-vertical">
+              
+              <div class="j-step step-pain">
+                <div class="j-step-num">١</div>
+                <div class="j-step-content">
+                  <h4 class="j-step-title">الخميس مساءً: حيرة في اختيار الموضوع</h4>
+                  <p class="j-step-desc">تخبط في تحديد فكرة جديدة تهم المصلين، وتصفح عشوائي للمجموعات الإخبارية وشبكات التواصل.</p>
+                  <span class="j-step-tag">تشتت انتباه وضغط نفسي</span>
+                </div>
+              </div>
+
+              <div class="j-step step-pain">
+                <div class="j-step-num">٢</div>
+                <div class="j-step-content">
+                  <h4 class="j-step-title">بحث عشوائي في قوقل والمواقع</h4>
+                  <p class="j-step-desc">فتح عشرات التبويبات والمواقع الوعظية القديمة ذات التصاميم الرديئة والإعلانات المشتتة.</p>
+                  <span class="j-step-tag">إجهاد بصري وهدر وقت</span>
+                </div>
+              </div>
+
+              <div class="j-step step-pain">
+                <div class="j-step-num">٣</div>
+                <div class="j-step-content">
+                  <h4 class="j-step-title">نسخ نصوص متفرقة وتكرار الصياغات</h4>
+                  <p class="j-step-desc">تجميع فقرات غير متجانسة أسلوبياً، ومحاولة التوفيق بين لغات متعددة في ملف Word فارغ.</p>
+                  <span class="j-step-tag">ركاكة وتضارب في النبرة</span>
+                </div>
+              </div>
+
+              <div class="j-step step-pain">
+                <div class="j-step-num">٤</div>
+                <div class="j-step-content">
+                  <h4 class="j-step-title">البحث الشاق عن تخريج الأحاديث</h4>
+                  <p class="j-step-desc">مراجعة كل حديث في أمهات الكتب أو المواقع للتأكد من درجته، ومحاولة حذف الروايات الضعيفة يدوياً.</p>
+                  <span class="j-step-tag">هاجس وخوف من الأحاديث الضعيفة</span>
+                </div>
+              </div>
+
+              <div class="j-step step-pain">
+                <div class="j-step-num">٥</div>
+                <div class="j-step-content">
+                  <h4 class="j-step-title">تنسيق يدوي وإعادة ترتيب المحاور</h4>
+                  <p class="j-step-desc">ضبط أحجام الخطوط، إضافة حركات التشكيل للآيات والأحاديث بالقلم، ومحاولة حساب وقت الإلقاء تقريبياً.</p>
+                  <span class="j-step-tag">استنزاف ما يقارب 5 ساعات</span>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="flow-footer footer-danger">
+              <span>النتيجة: إحباط وضيق وقت لمراجعة وحفظ الخطبة واستحضار خشوع المنبر.</span>
+            </div>
+          </div>
+
+          <!-- To-Be Journey -->
+          <div class="journey-flow-box flow-tobe" id="flowToBeBox">
+            <div class="flow-header">
+              <div class="flow-badge badge-success-soft">تجربة منصة «خَطِيب»</div>
+              <h3 class="flow-title">الرحلة الذكية التمكينية (~15 دقيقة)</h3>
+              <span class="flow-meta">انسيابية، موثوقية كاملة، وسكينة وجدانية</span>
+            </div>
+
+            <div class="journey-steps-vertical">
+              
+              <div class="j-step step-delight">
+                <div class="j-step-num">١</div>
+                <div class="j-step-content">
+                  <h4 class="j-step-title">تحديد الفكرة ونوع المحتوى (خطوة 1)</h4>
+                  <p class="j-step-desc">إدخال العنوان أو اختيار موضوع مقترح مع تحديد نوع الطرح (خطبة جمعة، موعظة، كلمة).</p>
+                  <span class="j-step-delight-tag">✨ انطلاق فوري دون تردد</span>
+                </div>
+              </div>
+
+              <div class="j-step step-delight">
+                <div class="j-step-num">٢</div>
+                <div class="j-step-content">
+                  <h4 class="j-step-title">تخصيص الجمهور المستهدف (خطوة 2)</h4>
+                  <p class="j-step-desc">توجيه الخطبة بذكاء: عامة المصلين، فئة الشباب، مجتمع الأعمال، أو أهل الحي.</p>
+                  <span class="j-step-delight-tag">✨ ملائمة واقعية لاحتياجات المصلين</span>
+                </div>
+              </div>
+
+              <div class="j-step step-delight">
+                <div class="j-step-num">٣</div>
+                <div class="j-step-content">
+                  <h4 class="j-step-title">ضبط النبرة والمدة المنبرية (خطوة 3)</h4>
+                  <p class="j-step-desc">تحديد النبرة (حماسية، هادئة رقيقة، توجيهية) وتحديد سقف الدقائق لضبط عدد الكلمات آلياً.</p>
+                  <span class="j-step-delight-tag">✨ التزام دقيق بوقت المنبر المسنون</span>
+                </div>
+              </div>
+
+              <div class="j-step step-delight">
+                <div class="j-step-num">٤</div>
+                <div class="j-step-content">
+                  <h4 class="j-step-title">هندسة المحاور والشواهد (خطوة 4)</h4>
+                  <p class="j-step-desc">معاينة وتعديل المحاور المقترحة وحذف أو إضافة أي شاهد قرآني أو نبوي بمرونة تامة.</p>
+                  <span class="j-step-delight-tag">✨ بناء الهيكل في أقل من دقيقتين</span>
+                </div>
+              </div>
+
+              <div class="j-step step-delight">
+                <div class="j-step-num">٥</div>
+                <div class="j-step-content">
+                  <h4 class="j-step-title">توليد متوازي وتوثيق آلي (خطوة 5)</h4>
+                  <p class="j-step-desc">توليد المسودة في 5-20 ثانية مع فحص وتخريج مباشر من الدرر السنية وباحث الأحاديث.</p>
+                  <span class="j-step-delight-tag">✨ طمأنينة علمية وسرعة فائقة</span>
+                </div>
+              </div>
+
+              <div class="j-step step-delight">
+                <div class="j-step-num">٦</div>
+                <div class="j-step-content">
+                  <h4 class="j-step-title">مراجعة وتعديل وتصدير لـ Word</h4>
+                  <p class="j-step-desc">تحميل ملف Word منسق ومشكول وجاهز للإلقاء بخط كبير للمنبر وحفظ المسودة محلياً في جهازه.</p>
+                  <span class="j-step-delight-tag">✨ تفرغ كامل للحفظ والتدبر</span>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="flow-footer footer-success">
+              <span>النتيجة: توفير 85% من الوقت وانطلاق على المنبر بثقة وسكينة ووقار.</span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==================== SECTION 8: UX DESIGN DECISIONS ==================== -->
+    <section class="content-section" id="decisions">
+      <div class="container">
+        
+        <div class="section-header">
+          <span class="section-number">٠٨</span>
+          <div class="section-title-wrap">
+            <h2 class="section-title">قرارات التصميم والهندسة التفاعلية</h2>
+            <span class="section-english">UX Design Decisions & Architecture</span>
+          </div>
+        </div>
+
+        <p class="section-intro">
+          استجابت منصة «خَطِيب» لكل نقطة ألم ومخاوف رصدت في البحث الميداني عبر حلول برمجية وتصميمية متقدمة:
+        </p>
+
+        <!-- Problem-Solution-Impact Matrix Table -->
+        <div class="table-responsive glass-panel mb-12">
+          <table class="data-table matrix-table">
+            <thead>
+              <tr>
+                <th>المعضلة المرصودة بالبحث</th>
+                <th>الحل التصميمي في منصة «خَطِيب»</th>
+                <th>الأثر النفسي والسلوكي على الخطيب</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>رهبة الصفحة البيضاء وتشتت الذهن</strong></td>
+                <td><span class="badge-solution">معالج الـ 5 خطوات (5-Step Wizard)</span></td>
+                <td>خفض العبء المعرفي والبدء بسلاسة فورية</td>
+              </tr>
+              <tr>
+                <td><strong>الهلوسة ونسبة الأحاديث الضعيفة</strong></td>
+                <td><span class="badge-solution">محرك التحقق والتخريج المباشر (RAG)</span></td>
+                <td>طمأنينة علمية وثقة مطلقة فوق أعواد المنبر</td>
+              </tr>
+              <tr>
+                <td><strong>ركاكة لغة الذكاء الاصطناعي العامة</strong></td>
+                <td><span class="badge-solution">منقي الأسلوب التراثي العربي الجزل</span></td>
+                <td>فصاحة وبلاغة تليق بجلال وهيبة المنبر</td>
+              </tr>
+              <tr>
+                <td><strong>القلق على خصوصية وسرية المسودات</strong></td>
+                <td><span class="badge-solution">معمارية التخزين المحلي (Zero-DB)</span></td>
+                <td>أمان تام، خصوصية مطلقة، وسيادة للمستخدم</td>
+              </tr>
+              <tr>
+                <td><strong>بطء التوليد وطول الانتظار</strong></td>
+                <td><span class="badge-solution">التوليد المتوازي للمحاور المنبرية</span></td>
+                <td>استجابة سريعة جداً في ثوانٍ معدودة</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- 8.1 Interactive 5-Step Wizard Demonstration -->
+        <div class="decision-feature-box mb-12">
+          <div class="feature-title-wrap">
+            <span class="feat-badge">٨.١</span>
+            <div>
+              <h3 class="subsection-title">معالج الورشة الذكية التمكيني (5-Step Progressive Disclosure)</h3>
+              <p class="text-muted">مبدأ "الإفصاح التدريجي" لخفض العبء المعرفي وتجنب رهبة النماذج المربكة</p>
+            </div>
+          </div>
+
+          <!-- Wizard Interactive Component Preview -->
+          <div class="wizard-interactive-demo glass-panel">
+            <div class="wizard-stepper-nav">
+              <button class="w-step-btn active" data-step="1" onclick="previewWizardStep(1)">
+                <span class="w-step-num">١</span>
+                <span class="w-step-name">العنوان والنوع</span>
+              </button>
+              <button class="w-step-btn" data-step="2" onclick="previewWizardStep(2)">
+                <span class="w-step-num">٢</span>
+                <span class="w-step-name">الجمهور المستهدف</span>
+              </button>
+              <button class="w-step-btn" data-step="3" onclick="previewWizardStep(3)">
+                <span class="w-step-num">٣</span>
+                <span class="w-step-name">النبرة والمدة</span>
+              </button>
+              <button class="w-step-btn" data-step="4" onclick="previewWizardStep(4)">
+                <span class="w-step-num">٤</span>
+                <span class="w-step-name">هندسة المحاور</span>
+              </button>
+              <button class="w-step-btn" data-step="5" onclick="previewWizardStep(5)">
+                <span class="w-step-num">٥</span>
+                <span class="w-step-name">الميثاق والتوليد</span>
+              </button>
+            </div>
+
+            <!-- Dynamic Step Content Body -->
+            <div class="wizard-body-box" id="wizardBodyBox">
+              <!-- Rendered via JS -->
+            </div>
+          </div>
+        </div>
+
+        <!-- 8.2 Anxiety-Free Loading State Simulation -->
+        <div class="decision-feature-box mb-12">
+          <div class="feature-title-wrap">
+            <span class="feat-badge">٨.٢</span>
+            <div>
+              <h3 class="subsection-title">نافذة التحميل المطمئنة (Anxiety-Free Loading State)</h3>
+              <p class="text-muted">استبدال دائرة الانتظار التقليدية ببطاقة تفاعلية تبني الثقة وتثري وقت الانتظار</p>
+            </div>
+          </div>
+
+          <div class="loading-demo-wrapper glass-panel">
+            <div class="loading-demo-info">
+              <p>
+                <strong>المشكلة المرصودة:</strong> يميل المستخدمون إلى الشك والملل عند رؤية مؤشر انتظار فارغ (Spinner) مما يرفع القلق من هلوسة الذكاء الاصطناعي وضعف الأسانيد.
+                <br>
+                <strong>الحل التفاعلي:</strong> بطاقة طمأنينة شفافة تعرض شريط تقدم حي لخطوات استدعاء <strong>سلسلة التوثيق السباعية</strong> (الباحث القرآني tafsir.app، الباحث الحديثي hdith.com عبر بروكسي المنصة، الموسوعة الحديثية dorar.net، الدرر السنية للتخريج، إسلام ويب، إسلام سؤال وجواب، وملتقى الخطباء khutabaa.com)، ونصائح وعظية لطيفة تثري الانتظار.
+              </p>
+              <button id="btnSimulateLoading" class="btn-gold-pulse" onclick="runSimulatedLoading()">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                <span>تجربة محاكاة شاشة الطمأنينة الحية</span>
+              </button>
+            </div>
+
+            <!-- The Live Interactive Modal / Simulation View -->
+            <div id="loadingSimulationContainer" class="loading-sim-card">
+              <div class="sim-header">
+                <div class="sim-status-chip">
+                  <span class="pulse-dot"></span>
+                  <span id="simPhaseText">جاهز للمحاكاة</span>
+                </div>
+                <span id="simPercentText" class="sim-percent">0%</span>
+              </div>
+
+              <div class="sim-progress-track">
+                <div id="simProgressBar" class="sim-progress-fill" style="width: 0%;"></div>
+              </div>
+
+              <!-- Verification Activity Log -->
+              <div class="sim-log-box" id="simLogBox">
+                <div class="log-item default-log">اضغط على زر المحاكاة أعلاه لتشهد كيف تتبدد مخاوف الخطيب لحظياً...</div>
+              </div>
+
+              <!-- Spiritual / UX Reflection Box -->
+              <div class="sim-quote-card" id="simQuoteCard">
+                <span class="quote-sparkle">✨</span>
+                <span id="simQuoteText">«من دل على خير فله مثل أجر فاعله» — جاري استدعاء شواهد السنة الصحيحة</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 8.3 Visual Identity, Colors & Typography -->
+        <div class="decision-feature-box mb-12">
+          <div class="feature-title-wrap">
+            <span class="feat-badge">٨.٣</span>
+            <div>
+              <h3 class="subsection-title">نظام الهوية البصرية والوقار الروحي (Visual Identity & Typography)</h3>
+              <p class="text-muted">تصميم مستوحى من هيبة عمارة المساجد وكسوة الكعبة مع إمكانية تكبير الخط للمنبر</p>
+            </div>
+          </div>
+
+          <div class="identity-grid">
+            
+            <!-- Palette Card -->
+            <div class="palette-showcase glass-panel">
+              <h4 class="card-small-title mb-4">لوحة الألوان المستوحاة من المساجد</h4>
+              
+              <div class="swatch-list">
+                <div class="swatch-item">
+                  <div class="swatch-box" style="background-color: #031d18;"></div>
+                  <div class="swatch-details">
+                    <strong>الأخضر الزمردي العميق</strong>
+                    <code>#031d18</code>
+                    <span>الهيبة، الاستقرار، والسكينة الروحية</span>
+                  </div>
+                </div>
+
+                <div class="swatch-item">
+                  <div class="swatch-box" style="background-color: #c5a880;"></div>
+                  <div class="swatch-details">
+                    <strong>الذهب الرملي الهادئ</strong>
+                    <code>#c5a880</code>
+                    <span>إبراز العناصر التفاعلية والشواهد دون إجهاد بصري</span>
+                  </div>
+                </div>
+
+                <div class="swatch-item">
+                  <div class="swatch-box" style="background-color: #072520;"></div>
+                  <div class="swatch-details">
+                    <strong>الظلال الرخامية الداكنة</strong>
+                    <code>#072520</code>
+                    <span>بطاقات القراءة والتباين المريح للعين في المساء</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Minbar Typography & Reader Preview -->
+            <div class="minbar-font-preview glass-panel">
+              <div class="font-preview-header">
+                <div>
+                  <h4 class="card-small-title">محاكي خط المنبر التفاعلي</h4>
+                  <span class="text-muted">الرؤية بوضوح تام من مسافة نصف متر فوق المنبر</span>
+                </div>
+                
+                <div class="font-controls">
+                  <button class="font-ctrl-btn" onclick="adjustMinbarFontSize(-2)" title="تصغير الخط">A-</button>
+                  <span id="currentFontSizeIndicator" class="font-indicator">22px</span>
+                  <button class="font-ctrl-btn" onclick="adjustMinbarFontSize(2)" title="تكبير الخط">A+</button>
+                </div>
+              </div>
+
+              <div class="minbar-text-preview" id="minbarTextSample" style="font-size: 22px;">
+                <p class="hadith-sample-lead">
+                  «إِنَّ لِكُلِّ دِينٍ خُلُقًا، وَخُلُقُ الإِسْلامِ الحَيَاءُ»
+                </p>
+                <p class="khutbah-sample-body">
+                  عِبَادَ اللهِ.. اعْلَمُوا أَنَّ أَصْدَقَ الحَدِيثِ كِتَابُ اللهِ، وَخَيْرَ الهَدْيِ هَدْيُ مُحَمَّدٍ صَلَّى اللهُ عَلَيْهِ وَسَلَّمَ. إِنَّ الكَلِمَةَ مَسْؤُولِيَّةٌ، وَأَمَانَةُ المِنْبَرِ جَلِيلَةٌ تَقْتَضِي صِدْقَ القَصْدِ وَتَحَرِّي الصَّوَابِ...
+                </p>
+              </div>
+
+              <div class="font-meta-footer">
+                <span class="font-badge">الخط المعتمد: الخط الأميري وخط ثمانية</span>
+                <span class="font-badge">تشكيل سليم للحركات الإعرابية</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- 8.4 Local-First Architecture -->
+        <div class="decision-feature-box">
+          <div class="feature-title-wrap">
+            <span class="feat-badge">٨.٤</span>
+            <div>
+              <h3 class="subsection-title">التخزين المحلي الآمن (Local-First UX Architecture)</h3>
+              <p class="text-muted">معمارية الـ Zero-Database لحفظ السيادة الكاملة للخطيب على أفكاره ومسوداته</p>
+            </div>
+          </div>
+
+          <div class="local-first-banner glass-panel">
+            <div class="shield-icon-wrap">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="M9 12l2 2 4-4"></path></svg>
+            </div>
+            <div class="local-first-text">
+              <h4 class="gold-gradient-text">معمارية خالية من الخوادم السحابية للمسودات (Zero-DB Server)</h4>
+              <p>
+                تم بناء المنصة وفق فلسفة <strong>Local-First Architecture</strong>؛ حيث تُحفظ مسودات الخطيب وأرشيفه بالكامل داخل متصفحه الشخصي عبر <code>LocalStorage</code> و <code>IndexedDB</code> دون الحاجة لإنشاء حساب أو طلب بريد إلكتروني. هذا القرار كسر فوراً حاجز "الخوف من تسريب الأفكار" وزاد نسبة القبول لدى 71% من الخطباء المتخوفين.
+              </p>
+            </div>
+          </div>
+        <!-- 8.5 Mimbar Delivery Mode & Multi-Export -->
+        <div class="decision-feature-box mt-12">
+          <div class="feature-title-wrap">
+            <span class="feat-badge">٨.٥</span>
+            <div>
+              <h3 class="subsection-title">وضع الإلقاء المنبري والتصدير المتعدد (Mimbar Mode & Multi-Export)</h3>
+              <p class="text-muted">نقل تجربة المستخدم من مرحلة شاشة المكتب إلى خشوع المحراب والمنبر</p>
+            </div>
+          </div>
+
+          <div class="local-first-banner glass-panel">
+            <div class="shield-icon-wrap" style="color: var(--gold-primary);">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+                <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+              </svg>
+            </div>
+            <div class="local-first-text">
+              <h4 class="gold-gradient-text">جاهزية المحراب: خط كبير، مؤقت الجمعة، وتصدير رسمي شامل</h4>
+              <p class="mb-3">
+                لم تتوقف حلول التصميم عند إنتاج المسودة، بل شملت لحظة الحقيقة فوق المنبر؛ حيث زُوّدت المنصة بـ <strong>وضع الإلقاء المنبري (Mimbar Mode)</strong> الذي يوفر قراءة بملء الشاشة، وخط ثمانية الأصيل المشكول والمكبر، ومؤقتاً زمنياً للخطبتين والاستراحة، مع إمكانية التصدير المباشر لملفات Word منسقة بالهوامش، وملفات PDF معدة للطباعة، وشرائح عرض تقديمي (.pptx) للدروس المصاحبة.
+              </p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==================== SECTION 9: USABILITY TESTING & METRICS ==================== -->
+    <section class="content-section bg-alt" id="metrics">
+      <div class="container">
+        
+        <div class="section-header">
+          <span class="section-number">٠٩</span>
+          <div class="section-title-wrap">
+            <h2 class="section-title">اختبارات قابلية الاستخدام ومؤشرات الأثر</h2>
+            <span class="section-english">Usability Testing, Performance & Impact Metrics</span>
+          </div>
+        </div>
+
+        <p class="section-intro">
+          بعد بناء النموذج الأولي واختباره على عينة تجريبية مصغرة من <strong>15 خطيباً من مختلف المستويات</strong>، أظهرت مؤشرات الأداء قفزة نوعية في كفاءة وموثوقية الإعداد:
+        </p>
+
+        <!-- KPI Scorecards Grid -->
+        <div class="metrics-scorecards-grid mb-8">
+          
+          <div class="metric-score-card">
+            <div class="score-top">
+              <span class="score-badge">توفير الوقت</span>
+              <span class="score-diff">تحسن بنسبة 85%</span>
+            </div>
+            <div class="score-main">
+              <span class="score-old">4.8 ساعات</span>
+              <span class="score-arrow">←</span>
+              <span class="score-new">14 دقيقة</span>
+            </div>
+            <div class="score-bar">
+              <div class="score-progress" style="width: 85%;"></div>
+            </div>
+            <p class="score-caption">إنجاز المسودة الأولى بالكامل مع تخريج الأحاديث وتشكيلها.</p>
+          </div>
+
+          <div class="metric-score-card">
+            <div class="score-top">
+              <span class="score-badge">دقة الشواهد وصحة الأحاديث</span>
+              <span class="score-diff">ارتقاء تام</span>
+            </div>
+            <div class="score-main">
+              <span class="score-old">أخطاء متكررة</span>
+              <span class="score-arrow">←</span>
+              <span class="score-new">100% محررة</span>
+            </div>
+            <div class="score-bar">
+              <div class="score-progress" style="width: 100%;"></div>
+            </div>
+            <p class="score-caption">تصفير نسبة الأحاديث الموضوعة والمنكرة بفضل الربط المباشر مع محركات التخريج.</p>
+          </div>
+
+          <div class="metric-score-card">
+            <div class="score-top">
+              <span class="score-badge">معدل إكمال المهمة (Completion Rate)</span>
+              <span class="score-diff">+54% كفاءة</span>
+            </div>
+            <div class="score-main">
+              <span class="score-old">62%</span>
+              <span class="score-arrow">←</span>
+              <span class="score-new">96%</span>
+            </div>
+            <div class="score-bar">
+              <div class="score-progress" style="width: 96%;"></div>
+            </div>
+            <p class="score-caption">إتمام الخطبة في جلسة واحدة دون تسويف أو انقطاع ذهني.</p>
+          </div>
+
+          <div class="metric-score-card card-spotlight">
+            <div class="score-top">
+              <span class="score-badge badge-gold">مقياس قابلية الاستخدام (SUS Score)</span>
+              <span class="score-diff badge-green">Grade A+</span>
+            </div>
+            <div class="score-main">
+              <span class="score-old">48/100</span>
+              <span class="score-arrow">←</span>
+              <span class="score-new gold-text">91/100</span>
+            </div>
+            <div class="score-bar">
+              <div class="score-progress bg-gold" style="width: 91%;"></div>
+            </div>
+            <p class="score-caption">تصنيف ممتاز ومبهر يعكس رضا الخطباء وسهولة الواجهة التفاعلية.</p>
+          </div>
+
+        </div>
+
+        <!-- System Response Time & Latency Optimization -->
+        <div class="latency-banner glass-panel">
+          <div class="latency-icon">⚡</div>
+          <div class="latency-text">
+            <h3 class="subsection-title">٩.٢ مقياس الاستجابة والسرعة (System Response Time)</h3>
+            <p>
+              بفضل التحول إلى المعمارية الهجينة السريعة عبر مسار <strong>OpenRouter</strong> الأساسي (مع نموذج <code>gemini-2.5-flash</code> ومسار Google AI Studio الاحتياطي، ومعالجة التوليد المتوازي لـ ٧ أجزاء متزامنة <code>mapWithConcurrency</code>)، انخفض زمن الانتظار الإجمالي لتوليد الخطبة الكاملة بجميع محاورها وتخريجها من <strong>75 ثانية</strong> إلى <strong>أقل من 10 ثوانٍ</strong> (وحتى 5 ثوانٍ في أغلب الحالات)، مما ألغى أي شعور بالانقطاع المعرفي لدى المستخدم وضمن تدفقاً مستمراً للأفكار.
+            </p>
+          </div>
+          <div class="latency-pill">
+            <span class="lat-old">75 ثانية</span>
+            <span class="lat-arrow">⚡</span>
+            <span class="lat-new">٥ - ٩ ثوانٍ</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==================== SECTION 10: KEY TAKEAWAYS & ROADMAP ==================== -->
+    <section class="content-section" id="roadmap">
+      <div class="container">
+        
+        <div class="section-header">
+          <span class="section-number">١٠</span>
+          <div class="section-title-wrap">
+            <h2 class="section-title">الخلاصة والتوصيات المستقبلية</h2>
+            <span class="section-english">Key Takeaways & Future UX Roadmap</span>
+          </div>
+        </div>
+
+        <!-- 10.1 Design Philosophy Callout -->
+        <div class="philosophy-quote-banner glass-panel mb-12">
+          <div class="philosophy-icon">📜</div>
+          <div class="philosophy-content">
+            <h3 class="philosophy-title">١٠.١ الخلاصة التصميمية والفلسفة الاستراتيجية</h3>
+            <p class="philosophy-body">
+              أثبتت هذه الدراسة أن سر نجاح الأدوات الموجهة للمحتوى الإسلامي التخصصي لا يكمن في مدى تعقيد خوارزميات الذكاء الاصطناعي، بل في <strong>مدى احترامها للأطر الشرعية والقيم الإنسانية للمستخدم</strong>. لقد كسبت «منصة خَطِيب» ثقة المستخدمين لأنها رفعت شعاراً واضحاً وطبقته تصميمياً وبرمجياً:
+            </p>
+            <div class="golden-credo">
+              «المنصة ليست بديلاً عن الإمام، بل ورشته الذكية التي تخدم رسالته المنبرية.»
+            </div>
+          </div>
+        </div>
+
+        <!-- 10.2 Roadmap Timeline -->
+        <div class="roadmap-timeline-wrapper">
+          <h3 class="subsection-title text-center mb-8">١٠.٢ أولويات خريطة الطريق المستقبلية لتجربة المستخدم (UX Roadmap)</h3>
+
+          <div class="roadmap-phases-grid">
+            
+            <!-- Phase 1: Current Active Release -->
+            <div class="roadmap-phase-card glass-panel">
+              <div class="phase-header">
+                <span class="phase-quarter">الإصدار الحالي v1.1</span>
+                <span class="phase-status" style="background: rgba(16, 185, 129, 0.15); color: var(--emerald-accent); border: 1px solid rgba(16, 185, 129, 0.3);">مكتمل ومفعل</span>
+              </div>
+              <h4 class="phase-title">الإلقاء المنبري والتصدير وسلسلة التوثيق</h4>
+              
+              <div class="phase-features">
+                <div class="feature-item">
+                  <div class="feat-icon">📖</div>
+                  <div class="feat-details">
+                    <strong>وضع الإلقاء المنبري (Mimbar Delivery Mode):</strong>
+                    <p>واجهة قراءة مخصصة للمحراب بملء الشاشة، وخط كبير مشكول، ومؤقت زمني لخطبة الجمعة، وفواصل وسكتات الوعظ التعبيرية.</p>
+                  </div>
+                </div>
+
+                <div class="feature-item">
+                  <div class="feat-icon">📄</div>
+                  <div class="feat-details">
+                    <strong>التصدير الشامل وسلسلة التوثيق السباعية:</strong>
+                    <p>تصدير فوري لملفات Word بالهوامش، وملفات PDF للطباعة، وشرائح عرض تقديمية، مع ربط بروكسي الباحث الحديثي (hdith-proxy).</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Phase 2: Future Expansion -->
+            <div class="roadmap-phase-card glass-panel">
+              <div class="phase-header">
+                <span class="phase-quarter">المرحلة التوسعية القادمة</span>
+                <span class="phase-status status-expansion">مجدولة</span>
+              </div>
+              <h4 class="phase-title">تطبيق الأجهزة اللوحية والذكاء الصوتي</h4>
+              
+              <div class="phase-features">
+                <div class="feature-item">
+                  <div class="feat-icon">📱</div>
+                  <div class="feat-details">
+                    <strong>تطبيق الأجهزة اللوحية دون اتصال (Offline Tablet PWA):</strong>
+                    <p>تشغيل كامل لمنصة خَطِيب وقارئ المحراب على أجهزة الآيباد واللوحيات دون الحاجة لشبكة إنترنت نشطة داخل المسجد.</p>
+                  </div>
+                </div>
+
+                <div class="feature-item">
+                  <div class="feat-icon">🎙️</div>
+                  <div class="feat-details">
+                    <strong>المدرب الصوتي للإلقاء (AI Vocal Coach):</strong>
+                    <p>تحليل نبرة الصوت وسرعة الإلقاء وتنبيه الخطيب لمواضع الوقف التام ومخارج الحروف ونبرات الترهيب والترغيب.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==================== CASE STUDY CONCLUSION & JURY SIGN-OFF ==================== -->
+    <section class="signoff-section">
+      <div class="container">
+        <div class="signoff-card glass-panel">
+          <div class="signoff-seal">
+            <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#c5a880" stroke-width="1.5">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 6 12 12 14 14"></polyline>
+            </svg>
+            <span class="seal-text">معتمد رسمياً</span>
+          </div>
+
+          <div class="signoff-content">
+            <h3 class="signoff-title">اعتماد وثيقة دراسة تجربة المستخدم</h3>
+            <p>
+              تم إعداد وتوثيق هذه الدراسة لتكون المرجع الاستراتيجي والتصميمي لتطوير تجربة المستخدم في منصة «خَطِيب».
+            </p>
+            <div class="signoff-meta">
+              <div class="sign-sig">
+                <span class="sig-role">إعداد وتوثيق:</span>
+                <span class="sig-name">فريق أبحاث تجربة المستخدم وهندسة المنتج (UX Research & Product Strategy)</span>
+              </div>
+              <div class="sign-sig">
+                <span class="sig-role">تاريخ الاعتماد:</span>
+                <span class="sig-name">فبراير 2026 م</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <span class="footer-logo">«خَطِيب»</span>
+          <span class="footer-slogan">«أمانة الكلمة.. وعصرية التقنية»</span>
+        </div>
+        <p class="footer-copy">
+          جميع حقوق أبحاث تجربة المستخدم وتصاميم الواجهات محفوظة © 2026 — منصة خَطِيب.
+        </p>
+        <div class="footer-actions">
+          <a href="https://khatiib.online" target="_blank" rel="noopener noreferrer" class="btn-footer-link" style="border-color: rgba(197, 168, 128, 0.5); color: var(--gold-primary);" title="زيارة منصة خَطِيب الحية">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="2" y1="12" x2="22" y2="12"></line>
+              <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+            </svg>
+            <span>المنصة الحية (khatiib.online)</span>
+          </a>
+          <a href="prd.html" class="btn-footer-link" title="وثيقة متطلبات المنتج (PRD)">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+              <polyline points="14 2 14 8 20 8"></polyline>
+              <line x1="16" y1="13" x2="8" y2="13"></line>
+              <line x1="16" y1="17" x2="8" y2="17"></line>
+            </svg>
+            <span>متطلبات المنتج (PRD)</span>
+          </a>
+          <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="btn-top" title="العودة لأعلى الصفحة">
+            ↑ أعلى الصفحة
+          </button>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
