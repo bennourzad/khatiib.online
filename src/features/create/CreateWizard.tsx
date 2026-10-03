@@ -15,7 +15,6 @@ import {
   BookmarkPlus,
   Copy,
   AlertTriangle,
-  X,
 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
@@ -138,25 +137,6 @@ export function CreateWizard() {
   const [savedId, setSavedId] = useState<string | null>(null);
   const [showSuccessDialog, setShowSuccessDialog] = useState(false);
   const [philosophyAck, setPhilosophyAck] = useState(false);
-  const [showAlert, setShowAlert] = useState(true);
-  const [isNearBottom, setIsNearBottom] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollHeight = document.documentElement.scrollHeight;
-      const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-      const clientHeight = document.documentElement.clientHeight;
-      const distanceToBottom = scrollHeight - scrollTop - clientHeight;
-      setIsNearBottom(distanceToBottom < 220);
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    const timer = setTimeout(handleScroll, 100);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-      clearTimeout(timer);
-    };
-  }, []);
 
 
   const generate = useServerFn(generateSermonAI);
@@ -273,34 +253,6 @@ export function CreateWizard() {
 
   return (
     <div className="mx-auto w-full max-w-3xl px-4 py-6 sm:py-10">
-
-      {/* تنبيه فلسفة المنصة العائم */}
-      {showAlert && (
-        <div
-          className={cn(
-            "fixed right-4 md:right-6 left-4 md:left-auto md:max-w-md z-50 rounded-2xl border-r-4 border-primary bg-card/95 backdrop-blur p-4 shadow-elegant animate-in fade-in slide-in-from-bottom-5 transition-all duration-500",
-            isNearBottom ? "bottom-[135px] md:bottom-[105px]" : "bottom-4 md:bottom-6"
-          )}
-        >
-          <button
-            type="button"
-            onClick={() => setShowAlert(false)}
-            className="absolute left-3 top-3 rounded-lg p-1 text-muted-foreground hover:bg-muted hover:text-foreground transition-colors cursor-pointer"
-            aria-label="إغلاق التنبيه"
-          >
-            <X className="h-4 w-4" />
-          </button>
-          <div className="flex items-start gap-3 pl-6">
-            <AlertTriangle className="mt-0.5 h-5 w-5 shrink-0 text-primary" />
-            <div>
-              <p className="text-sm font-semibold text-foreground">تنبيه هام</p>
-              <p className="mt-1 text-xs leading-relaxed text-muted-foreground">
-                نمنحك مسودة ذكية تختصر وقتك وتُشعل فكرة انطلاقك، لتتولى أنت كخطيب وإمام صياغة محتواك الفريد وتعديله بحرية. (ليست خطبة جاهزة للإلقاء).
-              </p>
-            </div>
-          </div>
-        </div>
-      )}
 
       {/* Hero header — mithaq-style */}
       <section className="mb-6 text-center">
@@ -643,26 +595,28 @@ export function CreateWizard() {
         {step < 5 && (
           <>
             {step === 1 && (
-              <div className="mt-6 rounded-lg border border-amber-300 bg-amber-50 p-3 dark:border-amber-700 dark:bg-amber-950">
-                <div className="flex items-center gap-2">
+              <div className="mt-6 rounded-xl border border-amber-300/80 bg-amber-50/70 p-3.5 dark:border-amber-700/60 dark:bg-amber-950/40">
+                <div className="flex items-start gap-2.5">
                   <Checkbox
                     id="philosophy-ack"
                     checked={philosophyAck}
                     onCheckedChange={(v) => setPhilosophyAck(v === true)}
-                    className="rounded-none"
+                    className="mt-0.5 rounded"
                   />
-                  <Label
-                    htmlFor="philosophy-ack"
-                    className="cursor-pointer text-sm font-medium text-amber-900 dark:text-amber-100"
-                  >
-                    أدرك أن هذه مجرد مسودة أولية، وأنا المسؤول عن صياغة الخطبة النهائية.
-                  </Label>
-                </div>
-                <div className="mt-2 flex items-center gap-2 text-xs text-amber-800 dark:text-amber-200">
-                  <AlertTriangle className="h-4 w-4 shrink-0" />
-                  <span>
-                    يجب تحديد هذا الخيار للمتابعة — هذا التأكيد يضمن أنك تفهم طبيعة المنصة ومسؤوليتك عن المحتوى النهائي.
-                  </span>
+                  <div className="space-y-1.5">
+                    <Label
+                      htmlFor="philosophy-ack"
+                      className="cursor-pointer text-sm font-semibold leading-relaxed text-amber-950 dark:text-amber-100"
+                    >
+                      أتحمل أمانة الكلمة، وأُقر بأن ما سيُولَّد هو مسودة أسترشد بها وأتولى مراجعتها وتعديلها بنفسي.
+                    </Label>
+                    <p className="flex items-start gap-1.5 text-xs leading-relaxed text-amber-800 dark:text-amber-200">
+                      <AlertTriangle className="h-3.5 w-3.5 shrink-0 mt-0.5" />
+                      <span>
+                        التقنية تُعينك على جمع الفكرة، وأنت صاحب المنبر والمسؤول الأول أمام الله والمصلين.
+                      </span>
+                    </p>
+                  </div>
                 </div>
               </div>
             )}
