@@ -2,7 +2,6 @@
 
 
 https://khatiib.online/
-<img width="1599" height="1066" alt="Screenshot 2026-10-04 114139" src="https://github.com/user-attachments/assets/c38f8a0c-8537-431d-a3eb-33c121ae19cf" />
 
 -----
 # وثيقة متطلبات المنتج (PRD) — منصة خطيب (Khatiib)
@@ -22,6 +21,7 @@ https://khatiib.online/
 * أئمة مساجد وخطباء صلاة الجمعة في العالم الإسلامي.
 * الدعاة والوعاظ والموجهون الدينيون.
 * طلاب العلم الشرعي الذين يستعدون للممارسة المنبرية.
+<img width="1599" height="1066" alt="Screenshot 2026-10-04 114139" src="https://github.com/user-attachments/assets/c38f8a0c-8537-431d-a3eb-33c121ae19cf" />
 
 ---
 
@@ -48,6 +48,7 @@ https://khatiib.online/
 ---
 
 ## ٣. الميزات والوظائف التفصيلية (Core Features)
+<img width="1259" height="1016" alt="Screenshot 2026-10-04 114313" src="https://github.com/user-attachments/assets/824dffb9-fc62-4e73-a42a-0bfbb2e2606f" />
 
 ### ٣.١ ورشة صياغة مسودة الخطبة (Create Wizard)
 معالج تفاعلي ذكي يتكون من 5 خطوات متكاملة لصياغة الخطبة:
