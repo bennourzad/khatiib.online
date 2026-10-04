@@ -1,3 +1,6 @@
+<img width="2115" height="1080" alt="Screenshot 2026-10-04 113502" src="https://github.com/user-attachments/assets/78478a30-e395-49a2-87b0-7d1f0ec66dba" />
+
+
 https://khatiib.online/
 -----
 # وثيقة متطلبات المنتج (PRD) — منصة خطيب (Khatiib)
