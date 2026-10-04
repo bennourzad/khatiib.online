@@ -142,7 +142,7 @@ def create_presentation(output_path):
     sl_box = s1.shapes.add_textbox(Inches(2.0), Inches(4.5), Inches(9.333), Inches(0.6))
     p = sl_box.text_frame.paragraphs[0]
     p.alignment = PP_ALIGN.CENTER
-    p.text = "« أمانة الكلمة .. وعصرية التقنية »"
+    p.text = "« كلمة تُؤثِر .. وتقنية تُمكّن »"
     p.font.name = FONT_FAMILY
     p.font.size = Pt(15)
     p.font.italic = True

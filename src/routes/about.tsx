@@ -22,7 +22,7 @@ import challengeBg from "@/assets/bg-khatiib-01.webp";
 export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
-      { title: "عن خطيب — أمانة الكلمة وعصرية التقنية" },
+      { title: "عن خطيب — كلمة تُؤثِر.. وتقنية تُمكّن" },
       {
         name: "description",
         content: "تعرف على رؤية وفلسفة منصة خطيب لمساعدة خطباء وأئمة المساجد في كتابة وصياغة خطبهم بطريقة شرعية وعلمية موثوقة.",
@@ -132,9 +132,9 @@ function HeroSection() {
         </span>
 
         <h1 className="mt-8 font-black text-4xl leading-[1.2] tracking-tight sm:text-5xl lg:text-6xl text-white">
-          أمانة الكلمة..
+          كلمة تُؤثِر..
           <br />
-          <span className="bg-gradient-to-r from-emerald-400 to-cyan-300 bg-clip-text text-transparent">وعصرية التقنية.</span>
+          <span className="bg-gradient-to-r from-emerald-400 to-cyan-300 bg-clip-text text-transparent">وتقنية تُمكّن.</span>
         </h1>
 
         <p className="mx-auto mt-6 max-w-2xl text-base leading-loose text-white/95 sm:text-lg">
