@@ -237,7 +237,7 @@ function renderCharts(theme) {
             rtl: true,
             callbacks: {
               label: function(context) {
-                return ` ${context.label}: ${context.raw}% (${Math.round(context.raw * 145 / 100)} خطيباً)`;
+                return ` ${context.label}: ${context.raw}% (${Math.round(context.raw * 145 / 100)} خطيباً - محاكاة)`;
               }
             }
           }
@@ -319,8 +319,8 @@ function renderSvgChartFallbacks() {
         <circle cx="100" cy="100" r="70" fill="transparent" stroke="#0284c7" stroke-width="26" stroke-dasharray="96.7 440" stroke-dashoffset="0"></circle>
         <circle cx="100" cy="100" r="70" fill="transparent" stroke="#059669" stroke-width="26" stroke-dasharray="211.1 440" stroke-dashoffset="-96.7"></circle>
         <circle cx="100" cy="100" r="70" fill="transparent" stroke="#946e37" stroke-width="26" stroke-dasharray="131.9 440" stroke-dashoffset="-307.8"></circle>
-        <text x="100" y="96" text-anchor="middle" fill="currentColor" font-size="18" font-weight="bold" font-family="'thmanyahseriftext', sans-serif">N = 145</text>
-        <text x="100" y="116" text-anchor="middle" fill="#946e37" font-size="12" font-family="'thmanyahseriftext', sans-serif">خطيباً</text>
+        <text x="100" y="94" text-anchor="middle" fill="currentColor" font-size="16" font-weight="bold" font-family="'thmanyahseriftext', sans-serif">N = 145</text>
+        <text x="100" y="114" text-anchor="middle" fill="#946e37" font-size="11" font-family="'thmanyahseriftext', sans-serif">خطيباً (محاكاة)</text>
       </svg>
     `;
   }
