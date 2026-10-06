@@ -117,4 +117,4 @@ https://khatiib.online/
 
 للاطلاع على العرض التفاعلي ودراسة تجربة المستخدم ونمذجة المحاكاة المعيارية للمشروع:
 
-🔗 <a href="uxstudy-khatiib/index.html" target="_blank" rel="noopener noreferrer"><strong>استعراض دراسة تجربة المستخدم — منصة «خَطِيب» (فتح في صفحة خارجية) ↗</strong></a>
+🔗 <a href="https://khatiib.online/uxstudy-khatiib/index.html" target="_blank" rel="noopener noreferrer"><strong>استعراض دراسة تجربة المستخدم — منصة «خَطِيب» (فتح في صفحة خارجية) ↗</strong></a>

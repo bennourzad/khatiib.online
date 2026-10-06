@@ -1,0 +1,1668 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>وثيقة متطلبات المنتج (PRD) — منصة «خَطِيب» | كلمة تُؤثِر.. وتقنية تُمكّن</title>
+  
+  <!-- SEO & Social Meta -->
+  <meta name="description" content="وثيقة متطلبات المنتج (PRD) لمنصة خَطِيب — الورشة الذكية لصياغة الخطب المنبرية. المرجع الأساسي لرؤية المشروع، الميزات الفنية والشرعية، والسياسات الأمنية.">
+  <meta name="author" content="فريق هندسة وتطوير المنتج — منصة خَطِيب">
+  
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="theme-light">
+  
+  <!-- Subtle Islamic Geometric Background Pattern -->
+  <div class="bg-pattern-overlay" aria-hidden="true"></div>
+  <div class="glow-sphere glow-sphere-1" aria-hidden="true"></div>
+  <div class="glow-sphere glow-sphere-2" aria-hidden="true"></div>
+
+  <!-- Top Sticky Progress Line -->
+  <div id="scrollProgressBar" class="scroll-progress-bar"></div>
+
+  <!-- Floating Mobile Menu Toggle Button (shown on mobile/tablet) -->
+  <button id="btnMobileSidebarToggle" class="floating-mobile-trigger" aria-label="فتح قائمة الوثيقة">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+    <span>فهرس الـ PRD</span>
+  </button>
+
+  <!-- Mobile Backdrop Overlay -->
+  <div id="sidebarBackdrop" class="sidebar-backdrop hidden"></div>
+
+  <!-- Floating Sidebar Navigation (القائمة الجانبية العائمة الخاصة بالـ PRD) -->
+  <aside class="floating-sidebar-nav" id="floatingSidebar">
+    
+    <!-- Sidebar Brand & Collapse Header -->
+    <div class="sidebar-header">
+      <div class="brand-group">
+        <div class="brand-badge-icon">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+            <polyline points="14 2 14 8 20 8"></polyline>
+            <line x1="16" y1="13" x2="8" y2="13"></line>
+            <line x1="16" y1="17" x2="8" y2="17"></line>
+            <polyline points="10 9 9 9 8 9"></polyline>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <span class="brand-title">وثيقة الـ PRD</span>
+          <span class="brand-sub">متطلبات منصة «خَطِيب»</span>
+        </div>
+      </div>
+      <button id="btnToggleSidebarCollapse" class="btn-collapse-sidebar" title="طي / توسيع القائمة">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="15 18 9 12 15 6"></polyline>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Quick Back to UX Study Link -->
+    <a href="index.html" class="sidebar-nav-back-link" title="العودة لصفحة دراسة تجربة المستخدم">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <line x1="19" y1="12" x2="5" y2="12"></line>
+        <polyline points="12 19 5 12 12 5"></polyline>
+      </svg>
+      <span>دراسة تجربة المستخدم (UX Study)</span>
+    </a>
+
+    <!-- Quick Link to Criteria Document -->
+    <a href="criteria.html" class="sidebar-nav-back-link" style="margin-top: 4px; border-color: rgba(148, 110, 55, 0.4);" title="الانتقال لصفحة معايير القبول والترشيح">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
+      </svg>
+      <span>معايير القبول والترشيح</span>
+    </a>
+
+    <!-- Direct Link to Live Platform -->
+    <a href="https://khatiib.online" target="_blank" rel="noopener noreferrer" class="sidebar-nav-back-link" style="margin-top: 4px; border-color: rgba(197, 168, 128, 0.4);" title="زيارة منصة خَطِيب المباشرة">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="12" cy="12" r="10"></circle>
+        <line x1="2" y1="12" x2="22" y2="12"></line>
+        <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1 4-10z"></path>
+      </svg>
+      <span>زيارة المنصة الحية (khatiib.online)</span>
+    </a>
+
+    <!-- Vertical Navigation Links for PRD Sections -->
+    <nav class="sidebar-nav-links" id="mainNav">
+      <a href="#vision" class="nav-item">
+        <span class="nav-idx">٠١</span>
+        <span class="nav-text">الرؤية العامة والفلسفة</span>
+      </a>
+      <a href="#tech" class="nav-item">
+        <span class="nav-idx">٠٢</span>
+        <span class="nav-text">البنية التقنية والفنية</span>
+      </a>
+      <a href="#features" class="nav-item">
+        <span class="nav-idx">٠٣</span>
+        <span class="nav-text">الميزات والوظائف التفصيلية</span>
+      </a>
+      <a href="#uiux" class="nav-item">
+        <span class="nav-idx">٠٤</span>
+        <span class="nav-text">الهوية البصرية وتجربة المستخدم</span>
+      </a>
+      <a href="#covenants" class="nav-item">
+        <span class="nav-idx">٠٥</span>
+        <span class="nav-text">الأمانة العلمية والالتزام الأخلاقي</span>
+      </a>
+      <a href="#roadmap" class="nav-item">
+        <span class="nav-idx">٠٦</span>
+        <span class="nav-text">خارطة الطريق والتوسعات</span>
+      </a>
+    </nav>
+
+    <!-- Sidebar Footer / Reading Progress & Icon-Only Theme Toggle -->
+    <div class="sidebar-footer">
+      <div class="sidebar-footer-row">
+        <div class="reading-progress-info">
+          <span class="progress-lbl">نسبة القراءة</span>
+          <span id="sidebarProgressPercent" class="progress-pct">0%</span>
+        </div>
+        <div class="sidebar-footer-actions">
+          <!-- Presentation Mode Icon Button -->
+          <button id="btnPresentationMode" class="theme-toggle-icon-btn btn-presentation-trigger" title="عرض تقديمي لوثيقة متطلبات المنتج (PRD Presentation Deck)" aria-label="عرض تقديمي لوثيقة متطلبات المنتج">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+              <line x1="8" y1="21" x2="16" y2="21"></line>
+              <line x1="12" y1="17" x2="12" y2="21"></line>
+              <polygon points="10 8 15 10 10 12 10 8" fill="currentColor"></polygon>
+            </svg>
+          </button>
+          <!-- Icon-Only Theme Toggle Button -->
+          <button id="btnThemeToggle" class="theme-toggle-icon-btn" title="التبديل بين الوضع النهاري والليلي" aria-label="تبديل الثيم">
+            <span class="theme-icon theme-sun">☀️</span>
+            <span class="theme-icon theme-moon hidden">🌙</span>
+          </button>
+        </div>
+      </div>
+      <div class="sidebar-progress-track">
+        <div id="sidebarProgressBar" class="sidebar-progress-fill" style="width: 0%;"></div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ==================== EXECUTIVE PRESENTATION DECK OVERLAY (PRD) ==================== -->
+  <div id="presentationDeckOverlay" class="presentation-deck-overlay hidden" aria-modal="true" role="dialog" aria-label="العرض التقديمي لوثيقة متطلبات المنتج">
+    
+    <!-- Top Control Bar -->
+    <header class="deck-topbar">
+      <div class="deck-topbar-brand">
+        <div class="deck-badge-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+          </svg>
+        </div>
+        <div class="deck-brand-info">
+          <span class="deck-title">منصة «خَطِيب» — العرض التنفيذي لوثيقة متطلبات المنتج (PRD)</span>
+          <span class="deck-subtitle">المرجع الأساسي للمواصفات الفنية والشرعية (Product Requirements Deck)</span>
+        </div>
+      </div>
+
+      <!-- Center Slide Counter / Progress -->
+      <div class="deck-topbar-center">
+        <div class="deck-counter-badge">
+          <span class="deck-counter-label">الشريحة</span>
+          <span id="deckCurrentSlideNum" class="deck-counter-current">٠١</span>
+          <span class="deck-counter-sep">/</span>
+          <span class="deck-counter-total">٠٧</span>
+        </div>
+        <div class="deck-mini-progress">
+          <div id="deckProgressBar" class="deck-mini-progress-fill" style="width: 14.28%;"></div>
+        </div>
+      </div>
+
+      <!-- Left Actions: Exit to normal mode & Theme toggle -->
+      <div class="deck-topbar-actions">
+        <!-- Quick Theme Toggle inside Presentation -->
+        <button id="btnDeckThemeToggle" class="deck-action-icon-btn" title="تبديل الوضع النهاري / الليلي" aria-label="تبديل الثيم">
+          <span class="theme-icon theme-sun">☀️</span>
+          <span class="theme-icon theme-moon hidden">🌙</span>
+        </button>
+
+        <!-- Dedicated Return to Normal View Button -->
+        <button id="btnExitPresentationDeck" class="btn-exit-deck" title="العودة إلى وثيقة متطلبات المنتج الكاملة">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+          <span>العودة للوضع الطبيعي</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Slide Deck Content Stage -->
+    <div class="deck-stage-wrapper">
+      <div class="deck-stage">
+        
+        <!-- ==================== SLIDE 1 ==================== -->
+        <article class="deck-slide active" data-slide="1">
+          <div class="slide-content-container">
+            <div class="slide-pill-badge">
+              <span class="pill-dot"></span>
+              <span>وثيقة متطلبات المنتج الأساسية (PRD v1.0)</span>
+            </div>
+            
+            <h1 class="slide-headline">
+              وثيقة متطلبات المنتج — منصة <span class="text-gold">«خَطِيب»</span> الذكية
+            </h1>
+            
+            <p class="slide-tagline">
+              «كلمة تُؤثِر.. وتقنية تُمكّن»
+            </p>
+
+            <p class="slide-lead-desc">
+              المرجع الأساسي لرؤية المنصة، محدداتها الفنية والشرعية، ومعماريتها التقنية المبتكرة لتمكين الإمام والخطيب من إعداد موعظة محكمة وموثقة دون المساس بقدسية وأمانة المنبر.
+            </p>
+
+            <!-- 4 Key Metric Cards -->
+            <div class="slide-kpi-grid grid-4-kpi">
+              <div class="slide-kpi-card highlight-gold">
+                <div class="slide-kpi-icon">⚡</div>
+                <div class="slide-kpi-value text-gold">٥ <span class="kpi-unit">ثوانٍ</span></div>
+                <div class="slide-kpi-title">زمن التوليد المباشر</div>
+                <div class="slide-kpi-desc">تسريع ٤ أضعاف عبر محرك التوليد المتوازي</div>
+              </div>
+
+              <div class="slide-kpi-card">
+                <div class="slide-kpi-icon">🔒</div>
+                <div class="slide-kpi-value text-emerald">Zero-DB</div>
+                <div class="slide-kpi-title">سياسة الخصوصية السيادية</div>
+                <div class="slide-kpi-desc">تخزين محلي حصري داخل المتصفح دون خوادم سحابية</div>
+              </div>
+
+              <div class="slide-kpi-card">
+                <div class="slide-kpi-icon">📚</div>
+                <div class="slide-kpi-value text-emerald">٦ <span class="kpi-unit">موسوعات</span></div>
+                <div class="slide-kpi-title">المصادر المعتمدة المفتوحة</div>
+                <div class="slide-kpi-desc">ربط رقمي مباشر بالدرر السنية وباحث الأحاديث والقرآن</div>
+              </div>
+
+              <div class="slide-kpi-card">
+                <div class="slide-kpi-icon">🧭</div>
+                <div class="slide-kpi-value text-gold">٥ <span class="kpi-unit">خطوات</span></div>
+                <div class="slide-kpi-title">معالج صياغة موجه</div>
+                <div class="slide-kpi-desc">مسار إعداد ذكي مشروط بميثاق الأمانة المنبرية</div>
+              </div>
+            </div>
+
+            <div class="slide-footer-meta">
+              <span>فريق إدارة المنتج وهندسة النظم — منصة خَطِيب</span>
+              <span class="meta-dot">•</span>
+              <span>فبراير 2026</span>
+              <span class="meta-dot">•</span>
+              <span class="badge-approved-mini">معتمد رسمياً للإصدار الأول v1.0</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- ==================== SLIDE 2 ==================== -->
+        <article class="deck-slide" data-slide="2">
+          <div class="slide-content-container">
+            <div class="slide-pill-badge">
+              <span class="pill-dot"></span>
+              <span>الرؤية الاستراتيجية وفلسفة الورشة والشرائح</span>
+            </div>
+
+            <h2 class="slide-headline">
+              المنبر رسالة مقدسة وأمانة لا تقبل التنازل
+            </h2>
+
+            <p class="slide-lead-desc">
+              تأسست منصة «خَطِيب» بناءً على فلسفة دعوية واضحة: المنصة <strong>ليست بديلاً</strong> عن الإمام، بل <strong>ورشته الذكية</strong> التي تكسر جمود الصفحة البيضاء وتوثق مصادره ليتفرغ لروح موعظته وتأثيرها في المصلين.
+            </p>
+
+            <!-- 3 Target Audiences Grid -->
+            <div class="slide-cards-grid grid-3">
+              <div class="deck-feature-card highlight-gold">
+                <div class="card-badge-num">٠١</div>
+                <div class="card-icon-wrap">🕌</div>
+                <h3 class="card-title">أئمة وخطباء الجمعة</h3>
+                <p class="card-text">
+                  أئمة المساجد في العالم الإسلامي الذين يتحملون العبء الأسبوعي لتحضير وإلقاء خطبتي الجمعة أمام جماهير المصلين.
+                </p>
+                <div class="card-metric-pill">أولوية: توفير الوقت ودقة الإسناد</div>
+              </div>
+
+              <div class="deck-feature-card">
+                <div class="card-badge-num">٠٢</div>
+                <div class="card-icon-wrap">🎙️</div>
+                <h3 class="card-title">الدعاة والوعاظ والموجهون</h3>
+                <p class="card-text">
+                  الموجهون الذين يقدمون كلمات بين الصلوات، دروساً علمية دورية، ومحاضرات توعوية في الجمعيات والمراكز.
+                </p>
+                <div class="card-tag">أولوية: تطويع الطرح لنوع الجمهور</div>
+              </div>
+
+              <div class="deck-feature-card">
+                <div class="card-badge-num">٠٣</div>
+                <div class="card-icon-wrap">📖</div>
+                <h3 class="card-title">طلاب العلم الشرعي</h3>
+                <p class="card-text">
+                  الدارسون في الكليات الشرعية والمعاهد الدعوية الذين يتدربون على بناء الخطب الموزونة وصياغة الأفكار بفصاحة.
+                </p>
+                <div class="card-metric-pill">أولوية: التقسيم المنبري التراثي</div>
+              </div>
+            </div>
+
+            <div class="deck-quote-box golden-glow">
+              <div class="deck-quote-title">المبدأ الاستراتيجي الحاكم للمنتج:</div>
+              <div class="deck-quote-main">
+                «تمكين الخطيب تكنولوجياً مع صيانة هيبة المحراب، ومكافحة الاعتماد السلبي الأعمى على نماذج الذكاء الاصطناعي العامة».
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- ==================== SLIDE 3 ==================== -->
+        <article class="deck-slide" data-slide="3">
+          <div class="slide-content-container">
+            <div class="slide-pill-badge">
+              <span class="pill-dot"></span>
+              <span>البنية التقنية والتوليد المتوازي السريع</span>
+            </div>
+
+            <h2 class="slide-headline">
+              معمارية حديثة باستجابة تضاهي سرعة التفكير البشري
+            </h2>
+
+            <p class="slide-lead-desc">
+              تم تحسين كفاءة استهلاك الموارد بنسبة <strong>٤ أضعاف</strong> عبر استراتيجية هندسية تجمع بين أحدث أطر الويب والتنفيذ المتوازي المتزامن:
+            </p>
+
+            <div class="slide-cards-grid grid-4">
+              <div class="deck-feature-card">
+                <div class="card-badge-num">⚛️</div>
+                <h3 class="card-title">React 19 + Vite 7</h3>
+                <p class="card-text">
+                  بيئة تشغيل فائقة الخفة توفر تصييراً فورياً مع تجميع كودي بأعلى معايير السرعة والاستقرار.
+                </p>
+                <div class="card-tag">Core Engine</div>
+              </div>
+
+              <div class="deck-feature-card">
+                <div class="card-badge-num">🧭</div>
+                <h3 class="card-title">TanStack Router</h3>
+                <p class="card-text">
+                  توجيه مسارات متقدم يضمن التنقل اللحظي بين صفحات الورشة والأرشيف دون أي إعادة تحميل للصفحة.
+                </p>
+                <div class="card-tag">Instant Routing</div>
+              </div>
+
+              <div class="deck-feature-card highlight-gold">
+                <div class="card-badge-num">🤖</div>
+                <h3 class="card-title">OpenRouter & Gemini Architecture</h3>
+                <p class="card-text">
+                  تكامل هجين ذكي: مسار <strong>OpenRouter</strong> الأساسي مع <code>gemini-2.5-flash</code> ومسار <strong>Google AI Studio المباشر</strong> مع تدوير تلقائي (Fallback) بين Pro و Flash لضمان أقصى سرعة واستقرار.
+                </p>
+                <div class="card-metric-pill">استمرارية 99.9%</div>
+              </div>
+
+              <div class="deck-feature-card highlight-gold">
+                <div class="card-badge-num">🚀</div>
+                <h3 class="card-title">التوليد المتوازي المتزامن</h3>
+                <p class="card-text">
+                  محرك <code>mapWithConcurrency</code> لمعالجة عناصر الخطبة بالتوازي بدلاً من التسلسل البطيء التقليدي.
+                </p>
+                <div class="card-metric-pill">Parallel Loop</div>
+              </div>
+            </div>
+
+            <div class="deck-takeaway-strip">
+              <span class="takeaway-badge">مؤشر كفاءة الزمن</span>
+              <p class="takeaway-text">
+                تقلص زمن صياغة الخطبة الكاملة بجميع محاورها وعزوها من <strong>٢٠ ثانية</strong> إلى <strong>٥ ثوانٍ فقط</strong>، موفراً تجربة استجابة تفاعلية لحظية.
+              </p>
+            </div>
+          </div>
+        </article>
+
+        <!-- ==================== SLIDE 4 ==================== -->
+        <article class="deck-slide" data-slide="4">
+          <div class="slide-content-container">
+            <div class="slide-pill-badge">
+              <span class="pill-dot"></span>
+              <span>الخصوصية المطلقة والسيادة الرقمية</span>
+            </div>
+
+            <h2 class="slide-headline">
+              معمارية <span class="text-emerald">Zero-Database</span>: مسوداتك ملكك وحدك بنسبة ١٠٠٪
+            </h2>
+
+            <p class="slide-lead-desc">
+              احتراماً لخصوصية وسرية مؤلفات الخطيب الفقهية والمنبرية، لا تملك المنصة أي خادم لحفظ نصوص الخطب أو الاطلاع عليها:
+            </p>
+
+            <div class="slide-cards-grid grid-3">
+              <div class="deck-feature-card">
+                <div class="card-badge-num">💻</div>
+                <div class="card-icon-wrap">🛡️</div>
+                <h3 class="card-title">تخزين محلي حصري (Local-First)</h3>
+                <p class="card-text">
+                  تُحفظ كافة المسودات، والخطب المولدة، والأرشيف الشخصي بالكامل داخل ذاكرة متصفح الخطيب المحلية (LocalStorage & IndexedDB) تلقائياً.
+                </p>
+                <div class="card-metric-pill">حفظ محلي فوري</div>
+              </div>
+
+              <div class="deck-feature-card highlight-gold">
+                <div class="card-badge-num">🚫</div>
+                <div class="card-icon-wrap">🔐</div>
+                <h3 class="card-title">غياب قواعد البيانات السحابية</h3>
+                <p class="card-text">
+                  لا تطلب المنصة تسجيل حساب، أو إدخال بريد إلكتروني، أو كلمة مرور؛ مما يستحيل معه حدوث أي تسريب أو تجسس على خواطر الخطيب.
+                </p>
+                <div class="card-metric-pill">Zero Cloud Database</div>
+              </div>
+
+              <div class="deck-feature-card">
+                <div class="card-badge-num">📜</div>
+                <div class="card-icon-wrap">⚖️</div>
+                <h3 class="card-title">الملكية الفكرية المطلقة</h3>
+                <p class="card-text">
+                  المسودات ملك فكري خاص وحصري للخطيب؛ لا تطالب المنصة بأي حقوق عليها، ولا يُعاد استخدامها لتدريب أي نماذج أخرى، مع التصدير الذاتي المباشر.
+                </p>
+                <div class="card-metric-pill">سيادة كاملة ١٠٠٪</div>
+              </div>
+            </div>
+
+            <div class="deck-quote-box">
+              <div class="deck-quote-title">السياسة الأمنية المعتمدة:</div>
+              <div class="deck-quote-main">
+                «لا خوادم تحفظ كلماتك.. أفكارك ومسوداتك تظل في جهازك وتعتلي معك المنبر بكل طمأنينة».
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- ==================== SLIDE 5 ==================== -->
+        <article class="deck-slide" data-slide="5">
+          <div class="slide-content-container">
+            <div class="slide-pill-badge">
+              <span class="pill-dot"></span>
+              <span>ورشة الصياغة ومسؤولية المنبر</span>
+            </div>
+
+            <h2 class="slide-headline">
+              معالج الـ ٥ خطوات الذكي وميثاق أمانة المنبر
+            </h2>
+
+            <p class="slide-lead-desc">
+              تفكيك العملية الذهنية المعقدة إلى مسار تدريجي مريح من ٥ خطوات يحفظ وقت الخطيب ويركز بصيرته:
+            </p>
+
+            <div class="slide-cards-grid grid-3">
+              <div class="deck-feature-card">
+                <div class="card-badge-num">خطوة ١</div>
+                <h3 class="card-title">العنوان والموجز</h3>
+                <p class="card-text">تحديد الفكرة الرئيسية أو العنوان المقترح لتركيز الطرح ومنع التشتت الفكري.</p>
+                <div class="card-tag">تركيز الفكرة</div>
+              </div>
+
+              <div class="deck-feature-card">
+                <div class="card-badge-num">خطوة ٢</div>
+                <h3 class="card-title">نوع المحتوى</h3>
+                <p class="card-text">خطبة جمعة كاملة (قسمان مع جلسة استراحة)، كلمة وعظية قصيرة، أو درس علمي مفصل.</p>
+                <div class="card-tag">القالب المنبري</div>
+              </div>
+
+              <div class="deck-feature-card">
+                <div class="card-badge-num">خطوة ٣</div>
+                <h3 class="card-title">الفئة المستهدفة</h3>
+                <p class="card-text">تطويع المفردات والأمثلة: جمهور عام، الشباب، أهل الحي، النساء، الناشئة، أو طلبة العلم.</p>
+                <div class="card-tag">تطويع الخطاب</div>
+              </div>
+
+              <div class="deck-feature-card">
+                <div class="card-badge-num">خطوة ٤</div>
+                <h3 class="card-title">النبرة والأسلوب</h3>
+                <p class="card-text">وعظي مؤثر رقيق، علمي تأصيلي رصين، تربوي تحفيزي، أو اجتماعي معالج لهموم المصلين.</p>
+                <div class="card-tag">الروح البلاغية</div>
+              </div>
+
+              <div class="deck-feature-card highlight-gold" style="grid-column: span 2;">
+                <div class="card-badge-num">خطوة ٥</div>
+                <h3 class="card-title">المحاور والأدلة الشرعية المطلوبة</h3>
+                <p class="card-text">تحديد العناصر المنبرية: الآيات القرآنية بالرسم العثماني، الأحاديث المسندة، شواهد السيرة، وثمرات خلقية معاصرة.</p>
+                <div class="card-metric-pill">التأصيل الإسنادي</div>
+              </div>
+            </div>
+
+            <!-- Preacher Covenant Box -->
+            <div class="deck-quote-box golden-glow">
+              <div class="deck-quote-title">ميثاق ومسؤولية المنبر (Preacher Covenant):</div>
+              <div class="deck-quote-main">
+                إقرار إلزامي يفعله الخطيب قبل التوليد: <em>«أدرك أن هذه مجرد مسودة أولية، وأنا المسؤول عن صياغة الخطبة النهائية ومراجعتها قبل اعتلاء المنبر.»</em>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- ==================== SLIDE 6 ==================== -->
+        <article class="deck-slide" data-slide="6">
+          <div class="slide-content-container">
+            <div class="slide-pill-badge">
+              <span class="pill-dot"></span>
+              <span>الموثوقية الشرعية ونظام التقييم</span>
+            </div>
+
+            <h2 class="slide-headline">
+              سلسلة التوثيق الذكي السباعية (<span class="text-gold">٧ مصادر معتمدة</span>) مع بروكسي الحديث المباشر
+            </h2>
+
+            <p class="slide-lead-desc">
+              تعتمد المنصة على التصفح الآمن للمواقع والموسوعات الفقهية العامة المتاحة للجميع مع بروكسي سحابي مخصص دون انتهاك لقواعد البيانات:
+            </p>
+
+            <!-- 7 Open Sources Grid -->
+            <div class="slide-cards-grid grid-3">
+              <div class="deck-feature-card">
+                <div class="card-badge-num">٠١</div>
+                <h3 class="card-title">الباحث القرآني (tafsir.app)</h3>
+                <p class="card-text">جلب الآيات الكريمة بنص مصحف المدينة والرسم العثماني المحرر وضبط تفاسير أئمة السلف المعتمدة.</p>
+                <div class="card-metric-pill">الرسم العثماني والتفسير</div>
+              </div>
+
+              <div class="deck-feature-card highlight-gold">
+                <div class="card-badge-num">٠٢</div>
+                <h3 class="card-title">الباحث الحديثي (hdith.com)</h3>
+                <p class="card-text">محرك بحث لحظي مدعوم ببروكسي الخادم المباشر (Khatiib Hadith Proxy) للتنقيب في بطون أمهات كتب السنة.</p>
+                <div class="card-metric-pill">بروكسي سحابي مباشر</div>
+              </div>
+
+              <div class="deck-feature-card">
+                <div class="card-badge-num">٠٣</div>
+                <h3 class="card-title">الموسوعة الحديثية (dorar.net)</h3>
+                <p class="card-text">مطابقة الشروح التراثية، وأقوال أئمة السلف، وضبط درجات الأحاديث النبوية وصحتها سنداً ومتناً.</p>
+                <div class="card-tag">الشروح وأقوال السلف</div>
+              </div>
+
+              <div class="deck-feature-card">
+                <div class="card-badge-num">٠٤</div>
+                <h3 class="card-title">الدرر السنية (التخريج)</h3>
+                <p class="card-text">عزو الروايات وأحكام كبار أئمة الحديث المتقدمين والمتأخرين لضمان سلامة الإسناد واستبعاد الضعيف.</p>
+                <div class="card-metric-pill">التخريج السندي</div>
+              </div>
+
+              <div class="deck-feature-card">
+                <div class="card-badge-num">٠٥</div>
+                <h3 class="card-title">إسلام ويب (islamweb.net)</h3>
+                <p class="card-text">تصفح التقسيمات الفقهية والترجيحات المعتمدة لدى المذاهب الأربعة لتعزيز استيعاب المسائل المنبرية.</p>
+                <div class="card-tag">الفقه المذهبي المعتمد</div>
+              </div>
+
+              <div class="deck-feature-card">
+                <div class="card-badge-num">٠٦</div>
+                <h3 class="card-title">إسلام سؤال وجواب (islamqa.info)</h3>
+                <p class="card-text">تأصيل النوازل والقضايا الحياتية والواقعية المعاصرة بضوابط فقهية محررة وموثوقة.</p>
+                <div class="card-tag">تأصيل النوازل المعاصرة</div>
+              </div>
+
+              <div class="deck-feature-card highlight-gold" style="grid-column: span 3;">
+                <div class="card-badge-num">٠٧</div>
+                <h3 class="card-title">ملتقى الخطباء (khutabaa.com)</h3>
+                <p class="card-text">دراسة البلاغة والوقفات المنبرية الحية وهندسة المقدمات والخواتيم المؤثرة لملامسة وجدان المصلين.</p>
+                <div class="card-metric-pill">البلاغة والوقفات المنبرية</div>
+              </div>
+            </div>
+
+            <!-- Feedback Widget Strip -->
+            <div class="deck-takeaway-strip">
+              <span class="takeaway-badge">استبيان التقييم التفاعلي</span>
+              <p class="takeaway-text">
+                أداة تقييم عائمة مريحة بمقياس ٥ نجوم تقيس <strong>٥ محاور استراتيجية</strong>: (الفكرة العامة، سرعة الصياغة، التصميم البصري، موثوقية الأدلة، وتوفير الوقت والجهد).
+              </p>
+            </div>
+          </div>
+        </article>
+
+        <!-- ==================== SLIDE 7 ==================== -->
+        <article class="deck-slide" data-slide="7">
+          <div class="slide-content-container">
+            <div class="slide-pill-badge">
+              <span class="pill-dot"></span>
+              <span>الهوية البصرية وخارطة طريق المنتج</span>
+            </div>
+
+            <h2 class="slide-headline">
+              وقار التصميم المنبري.. وخارطة التوسع المؤسسي
+            </h2>
+
+            <p class="slide-lead-desc">
+              منظومة تصميمية مستوحاة من هيبة المساجد مع مراحل إطلاق محددة لتعزيز خدمة الخطيب والمنبر:
+            </p>
+
+            <div class="slide-cards-grid grid-2">
+              <!-- Visual System Card -->
+              <div class="deck-feature-card">
+                <div class="card-badge-num">🎨</div>
+                <h3 class="card-title">الهوية البصرية ونظام الطباعة</h3>
+                <p class="card-text">
+                  • <strong>الأخضر الزمردي الغامق (#031d18):</strong> وقار وهيبة المنابر وكسوة المحاريب.<br>
+                  • <strong>الذهب الرملي النبيل (#c5a880):</strong> توهجات دافئة للأزرار والتفاعلات النشطة.<br>
+                  • <strong>العاج الرخامي (#fbf9f4):</strong> خلفية نهارية مريحة تحاكي أوراق المخطوطات التراثية.<br>
+                  • <strong>خط ثِمانية الأصيل (thmanyahseriftext):</strong> مقروئية عالية للتشكيل القرآني من مسافة نصف متر.
+                </p>
+                <div class="card-tag">هوية بصرية وقورة</div>
+              </div>
+
+              <!-- Roadmap Card -->
+              <div class="deck-feature-card highlight-gold">
+                <div class="card-badge-num">🗺️</div>
+                <h3 class="card-title">خارطة طريق المنتج (Product Status & Roadmap)</h3>
+                <p class="card-text">
+                  • <strong>الميزات المكتملة والمفعلة حالياً:</strong> نظام التصدير الشامل (Word بالهوامش، PDF بالخط المنبري، شرائح Presentation) + وضع الإلقاء المنبري (Mimbar Mode) + مكتبة تصنيفات المواسم والمناسبات + محرك البحث الأرشيفي.<br>
+                  • <strong>المرحلة التوسعية (مجدولة):</strong> تطبيق الأجهزة اللوحية دون اتصال بالإنترنت (Offline PWA) + المساعد الصوتي لتدريب الخطيب على نبرات الوعظ والتنفس.
+                </p>
+                <div class="card-metric-pill">إصدار v1.1 نشط وموثق</div>
+              </div>
+            </div>
+
+            <!-- Sign-off Seal Box -->
+            <div class="deck-quote-box golden-glow">
+              <div class="deck-quote-title">الاعتماد المؤسسي الرسمي:</div>
+              <div class="deck-quote-main">
+                وثيقة معتمدة ومحررة للإصدار الأول (v1.0) — <strong>فريق إدارة المنتج وهندسة النظم (منصة خَطِيب)</strong> — فبراير 2026 م.
+              </div>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+
+    <!-- Presentation Bottom Control Bar -->
+    <footer class="deck-bottom-bar">
+      <!-- Previous Button (in RTL: goes to previous slide, right arrow) -->
+      <button id="btnDeckPrev" class="deck-nav-btn deck-prev-btn" title="الشريحة السابقة (السهم الأيمن)">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="9 18 15 12 9 6"></polyline>
+        </svg>
+        <span>الشريحة السابقة</span>
+      </button>
+
+      <!-- Interactive Dot Indicators (1-7) -->
+      <div class="deck-dots-wrapper" id="deckDotsWrapper">
+        <button class="deck-dot active" data-index="1" title="شريحة ١: الهوية والمؤشرات"></button>
+        <button class="deck-dot" data-index="2" title="شريحة ٢: الرؤية والشرائح"></button>
+        <button class="deck-dot" data-index="3" title="شريحة ٣: المعمارية التقنية"></button>
+        <button class="deck-dot" data-index="4" title="شريحة ٤: أمان البيانات والخصوصية"></button>
+        <button class="deck-dot" data-index="5" title="شريحة ٥: معالج الصياغة والميثاق"></button>
+        <button class="deck-dot" data-index="6" title="شريحة ٦: المصادر المفتوحة والتقييم"></button>
+        <button class="deck-dot" data-index="7" title="شريحة ٧: الهوية وخارطة الطريق"></button>
+      </div>
+
+      <!-- Next Button (in RTL: goes to next slide, left arrow) -->
+      <button id="btnDeckNext" class="deck-nav-btn deck-next-btn" title="الشريحة التالية (السهم الأيسر)">
+        <span>الشريحة التالية</span>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="15 18 9 12 15 6"></polyline>
+        </svg>
+      </button>
+    </footer>
+
+  </div>
+
+  <!-- Main Document Content -->
+  <main class="page-content">
+    
+    <!-- ==================== HERO / PRD HEADER ==================== -->
+    <section class="hero-section" id="hero">
+      <div class="container">
+        
+        <div class="meta-strip">
+          <a href="index.html" class="status-chip chip-approved" style="text-decoration: none;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"></polyline></svg>
+            ← العودة لدراسة تجربة المستخدم
+          </a>
+          <span class="status-chip chip-approved">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            الإصدار 1.0 — معتمد (Approved)
+          </span>
+          <span class="meta-item">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+            فبراير 2026
+          </span>
+          <span class="meta-item">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+            وثيقة مواصفات المنتج الأساسية (PRD)
+          </span>
+        </div>
+
+        <div class="hero-badge-slogan">
+          <span class="slogan-icon">✦</span>
+          <span>الشعار الاستراتيجي: «كلمة تُؤثِر.. وتقنية تُمكّن»</span>
+        </div>
+
+        <h1 class="hero-main-title">
+          وثيقة متطلبات المنتج (PRD)
+          <span class="gold-gradient-text block-title">مشروع منصة «خَطِيب» (Khatiib)</span>
+          <span class="hero-subtitle">المرجع الأساسي لرؤية المشروع، الميزات الفنية والشرعية، والسياسات الأمنية</span>
+        </h1>
+
+        <p class="hero-lead">
+          توثيق شامل ومؤسسي لكافة المحددات الفنية، والخصائص الهندسية، والمعايير الشرعية، والمعمارية التقنية لمنصة «خَطِيب» لضمان التمكين الرقمي الكامل للإمام والخطيب دون المساس بجلال وأمانة المنبر.
+        </p>
+
+        <!-- PRD Key Pillars Scorecards -->
+        <div class="hero-kpi-grid">
+          <div class="kpi-card">
+            <div class="kpi-top">
+              <span class="kpi-label">زمن التوليد المباشر</span>
+              <span class="kpi-trend positive">سرعة فائقة</span>
+            </div>
+            <div class="kpi-value">5 <span class="kpi-unit">ثوانٍ</span></div>
+            <p class="kpi-desc">تقليص زمن الانتظار بنسبة 4 أضعاف عبر التوليد المتوازي</p>
+          </div>
+
+          <div class="kpi-card">
+            <div class="kpi-top">
+              <span class="kpi-label">سياسة الخصوصية</span>
+              <span class="kpi-trend positive">100% سيادية</span>
+            </div>
+            <div class="kpi-value">Zero-DB</div>
+            <p class="kpi-desc">تخزين محلي حصري داخل متصفح الخطيب بدون أي خوادم سحابية</p>
+          </div>
+
+          <div class="kpi-card">
+            <div class="kpi-top">
+              <span class="kpi-label">المصادر المعتمدة</span>
+              <span class="kpi-trend neutral">تأصيل شرعي</span>
+            </div>
+            <div class="kpi-value">6 <span class="kpi-unit">موسوعات</span></div>
+            <p class="kpi-desc">ربط آمن بالدرر السنية، الباحث الحديثي، الباحث القرآني وغيرها</p>
+          </div>
+
+          <div class="kpi-card">
+            <div class="kpi-top">
+              <span class="kpi-label">معالج الإعداد</span>
+              <span class="kpi-trend positive">5 خطوات</span>
+            </div>
+            <div class="kpi-value">Wizard</div>
+            <p class="kpi-desc">صياغة موجهة مع ميثاق وإقرار صريح بالمسؤولية المنبرية</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==================== SECTION 1: VISION & PHILOSOPHY ==================== -->
+    <section class="content-section" id="vision">
+      <div class="container">
+        
+        <div class="section-header">
+          <span class="section-number">٠١</span>
+          <div class="section-title-wrap">
+            <h2 class="section-title">الرؤية العامة والفلسفة</h2>
+            <span class="section-english">Vision & Core Philosophy</span>
+          </div>
+        </div>
+
+        <div class="editorial-card glass-panel mb-8">
+          <h3 class="subsection-title mb-3">١.١ فلسفة الورشة الذكية</h3>
+          <p class="paragraph-lead mb-4">
+            تأسست منصة <strong>«خَطِيب»</strong> بناءً على فلسفة دعوية واضحة وراسخة: <strong>المنبر أمانة عظيمة ورسالة مقدسة لا تقبل التنازل عنها</strong>.
+          </p>
+          <div class="golden-credo mb-4">
+            «إن منصة «خَطِيب» ليست بديلاً عن الإمام والخطيب صاحب البصيرة والعلم الشرعي وفهم واقع جماعة مسجده، بل هي ورشته الذكية التي تكسر جمود الصفحة البيضاء، وتنظم أفكاره، وتوثق مصادره، ليتفرغ لروح موعظته وتأثيرها في المصلين.»
+          </div>
+          <p class="text-secondary">
+            تسعى المنصة إلى إرساء معيار جديد في توظيف تقنيات الذكاء الاصطناعي التوليدي والأنظمة الخبيرة، بحيث تعمل كأداة تحضيرية مساندة تحترم الفقه الإسلامي وتقاليد الخطابة المنبرية الرصينة.
+          </p>
+        </div>
+
+        <!-- 1.2 Target Audience -->
+        <div class="target-audience-block">
+          <h3 class="subsection-title mb-4">١.٢ الفئة المستهدفة (Target Audience)</h3>
+
+          <div class="objectives-grid">
+            
+            <div class="objective-card">
+              <div class="obj-badge">الشريحة الأساسية</div>
+              <div class="obj-icon">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+              </div>
+              <h4 class="obj-title">أئمة وخطباء صلاة الجمعة</h4>
+              <p class="obj-text">
+                أئمة المساجد والجوامع في كافة أنحاء العالم الإسلامي الذين يتحملون العبء الأسبوعي لتحضير وإلقاء خطبتي الجمعة أمام جماهير المصلين.
+              </p>
+              <div class="obj-footer">
+                <span class="pill-tag">الاحتياج الأهم</span>
+                <span class="pill-metric">توفير الوقت ودقة الإسناد</span>
+              </div>
+            </div>
+
+            <div class="objective-card">
+              <div class="obj-badge">الشريحة التوجيهية</div>
+              <div class="obj-icon">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+              </div>
+              <h4 class="obj-title">الدعاة والوعاظ والموجهون الدينيون</h4>
+              <p class="obj-text">
+                الموجهون الذين يقدمون كلمات دورية بين الصلوات، دروساً علمية بعد العصر أو العشاء، ومحاضرات توعوية في الجمعيات والمراكز.
+              </p>
+              <div class="obj-footer">
+                <span class="pill-tag">الاحتياج الأهم</span>
+                <span class="pill-metric">تطويع الطرح لنوع الجمهور</span>
+              </div>
+            </div>
+
+            <div class="objective-card">
+              <div class="obj-badge">الشريحة التأهيلية</div>
+              <div class="obj-icon">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+              </div>
+              <h4 class="obj-title">طلاب العلم الشرعي الممارسون</h4>
+              <p class="obj-text">
+                الدارسون في الكليات الشرعية والمعاهد الدعوية الذين يتدربون على بناء الخطب الموزونة وصياغة الأفكار بأسلوب فصيح وبليغ.
+              </p>
+              <div class="obj-footer">
+                <span class="pill-tag">الاحتياج الأهم</span>
+                <span class="pill-metric">تعلم التقسيم المنبري التراثي</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==================== SECTION 2: TECHNICAL ARCHITECTURE ==================== -->
+    <section class="content-section bg-alt" id="tech">
+      <div class="container">
+        
+        <div class="section-header">
+          <span class="section-number">٠٢</span>
+          <div class="section-title-wrap">
+            <h2 class="section-title">البنية التقنية والفنية</h2>
+            <span class="section-english">Technical Architecture & High Performance</span>
+          </div>
+        </div>
+
+        <!-- 2.1 Core Tech Stack -->
+        <div class="mb-10">
+          <h3 class="subsection-title mb-4">٢.١ الهيكل الأساسي والتقنيات (Core Stack)</h3>
+          <p class="text-secondary mb-6">تم بناء المنصة باستخدام أحدث التقنيات لضمان السرعة الفائقة والاستجابة التامة:</p>
+
+          <div class="objectives-grid">
+            <div class="wishlist-card">
+              <div class="wish-num" style="font-size: 1.4rem;">⚛️</div>
+              <div class="wish-info">
+                <h4>Core (الأساس): React 19 + Vite 7</h4>
+                <p>بيئة تشغيل حديثة فائقة الخفة توفر تصييراً فورياً مع تجميع كودي بأعلى معايير السرعة.</p>
+              </div>
+            </div>
+
+            <div class="wishlist-card">
+              <div class="wish-num" style="font-size: 1.4rem;">🧭</div>
+              <div class="wish-info">
+                <h4>Routing: TanStack Start & Router</h4>
+                <p>توجيه مسارات متقدم وسريع يضمن التنقل اللحظي بين الصفحات والأرشيف دون أي إعادة تحميل.</p>
+              </div>
+            </div>
+
+            <div class="wishlist-card">
+              <div class="wish-num" style="font-size: 1.4rem;">☁️</div>
+              <div class="wish-info">
+                <h4>Edge Serverless: Cloudflare Workers</h4>
+                <p>تشغيل بنظام SSR على حافة شبكة Cloudflare العالمية عبر <code>@tanstack/start-plugin-cloudflare-workers</code> بسرعة استجابة فائقة دون تأخير بارد (Zero Cold Starts) على نطاق <code>khatiib.online</code>.</p>
+              </div>
+            </div>
+
+            <div class="wishlist-card">
+              <div class="wish-num" style="font-size: 1.4rem;">🎨</div>
+              <div class="wish-info">
+                <h4>Styling: TailwindCSS + HSL Palette</h4>
+                <p>تنسيق دقيق ومتقدم بألوان HSL فاخرة مستوحاة من وقار وهيبة المساجد والبيئات الروحية.</p>
+              </div>
+            </div>
+
+            <div class="wishlist-card">
+              <div class="wish-num" style="font-size: 1.4rem;">💎</div>
+              <div class="wish-info">
+                <h4>Icons: Lucide React Icons</h4>
+                <p>أيقونات رسومية متجهة واضحة وسريعة التحميل ومتناسقة بصرياً مع الهوية الإسلامية للمنصة.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2.2 Performance Benchmark -->
+        <div class="mb-10">
+          <h3 class="subsection-title mb-4">٢.٢ الأداء الفائق وهندسة التوليد المتوازي (Parallel AI Engine)</h3>
+          
+          <div class="editorial-card glass-panel">
+            <p class="paragraph-lead mb-4">
+              تم تحسين آلية توليد الخطب عبر نماذج الذكاء الاصطناعي برفع كفاءة استهلاك الموارد بنسبة <strong>4 أضعاف</strong> عبر استراتيجيتين هندسيتين:
+            </p>
+
+            <div class="time-analysis-grid mb-6">
+              <div class="wishlist-card" style="margin-bottom: 0;">
+                <div class="wish-num">⚡</div>
+                <div class="wish-info">
+                  <h4>المعمارية الهجينة للذكاء الاصطناعي</h4>
+                  <p>تكامل ذكي يجمع بين <strong>OpenRouter API</strong> كمسار أساسي فائق السرعة عبر <code>gemini-2.5-flash</code>، ومسار <strong>Google AI Studio المباشر</strong> مع تدوير تلقائي مرن (Multi-tier Fallback) بين النماذج المتقدمة ونماذج الحصة المجانية لضمان استمرارية الخدمة 99.9%.</p>
+                </div>
+              </div>
+
+              <div class="wishlist-card" style="margin-bottom: 0;">
+                <div class="wish-num">🚀</div>
+                <div class="wish-info">
+                  <h4>محرك التوليد المتوازي لـ ٧ أجزاء</h4>
+                  <p>توليد عناصر الخطبة الـ 7 بالتوازي (العنوان، الخطبة الأولى، الاستراحة، الخطبة الثانية، الدعاء، تخريج الأحاديث، والمراجع) عبر <code>mapWithConcurrency</code> مع تمريرها لمعالج الأنسنة الفصيحة <code>humanizeArabicSermon</code> لضبط الجزالة والوقفات المنبرية.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="latency-banner glass-panel" style="margin-top: 0;">
+              <div class="latency-icon">⏱️</div>
+              <div class="latency-text">
+                <h4 style="font-weight: 800; color: var(--gold-light);">مؤشر كفاءة زمن التوليد</h4>
+                <p>تقلص زمن صياغة الخطبة الكاملة بجميع محاورها وعزوها من <strong>20 ثانية</strong> إلى <strong>5 ثوانٍ فقط</strong>، مما يوفر تجربة سلسة تشبه سرعة التفكير الإنساني.</p>
+              </div>
+              <div class="latency-pill">
+                <span class="lat-old">20 ثانية</span>
+                <span class="lat-arrow">⚡</span>
+                <span class="lat-new">5 ثوانٍ</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2.3 Zero-Database Server -->
+        <div class="mb-4">
+          <h3 class="subsection-title mb-4">٢.٣ الخصوصية المطلقة وأمان البيانات (Zero-Database Server)</h3>
+
+          <div class="local-first-banner glass-panel">
+            <div class="shield-icon-wrap">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--emerald-accent)" stroke-width="2">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                <path d="M9 12l2 2 4-4"></path>
+              </svg>
+            </div>
+            <div class="local-first-text">
+              <h4 class="gold-gradient-text">معمارية الـ Local-First: مسوداتك ملكك وحدك بنسبة 100%</h4>
+              <p class="mb-3">
+                احتراماً لخصوصية وسرية مؤلفات الخطيب الفقهية والمنبرية، لا تملك المنصة أي خادم لحفظ نصوص الخطب:
+              </p>
+              <ul class="clean-bullet-list">
+                <li><strong>تخزين محلي حصري (LocalStorage & IndexedDB):</strong> تُحفظ كافة المسودات، والخطب المولدة، والتقييمات، وأرشيف الخطب بالكامل في ذاكرة متصفح الخطيب المحلية تلقائياً.</li>
+                <li><strong>لا توجد قاعدة بيانات سحابية (Zero-Cloud DB):</strong> لا نطلب تسجيل حساب أو بريد إلكتروني، مما يستحيل معه حدوث أي تسريب أو اطلاع خارجي على أفكار الخطيب قبل اعتلائه المنبر.</li>
+                <li><strong>السيادة والتحكم بالمفاتيح (BYOK):</strong> يملك الخطيب الحرية الكاملة لاستخدام مفاتيح الذكاء الاصطناعي الخاصة به (OpenRouter أو Google Gemini) عبر شاشة الإعدادات، مع إمكانية تصدير واستيراد كامل أرشيفه كملف نسخة احتياطية (JSON Backup) بنقرة واحدة.</li>
+                <li><strong>التصدير والحفظ الذاتي:</strong> يُنصح الخطيب بتنزيل وحفظ خطبه على جهازه الشخصي لتأمين بقائها في حال مسح بيانات المتصفح المؤقتة.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==================== SECTION 3: CORE FEATURES ==================== -->
+    <section class="content-section" id="features">
+      <div class="container">
+        
+        <div class="section-header">
+          <span class="section-number">٠٣</span>
+          <div class="section-title-wrap">
+            <h2 class="section-title">الميزات والوظائف التفصيلية</h2>
+            <span class="section-english">Core Features & Functional Modules</span>
+          </div>
+        </div>
+
+        <!-- 3.1 Create Wizard -->
+        <div class="editorial-card glass-panel mb-8">
+          <div class="subsection-header-tag">
+            <span class="tag-number">٣.١</span>
+            <h3 class="subsection-title">ورشة صياغة مسودة الخطبة (Create Wizard)</h3>
+          </div>
+          <p class="text-secondary mb-4">
+            معالج تفاعلي ذكي يتكون من <strong>5 خطوات متكاملة</strong> لتمكين الخطيب من صياغة مسودته بانسيابية تامة:
+          </p>
+
+          <div class="wizard-stepper-nav mb-6" style="pointer-events: none;">
+            <div class="w-step-btn active">
+              <span class="w-step-num">١</span>
+              <span class="w-step-name">العنوان والموجز</span>
+            </div>
+            <div class="w-step-btn active">
+              <span class="w-step-num">٢</span>
+              <span class="w-step-name">نوع المحتوى</span>
+            </div>
+            <div class="w-step-btn active">
+              <span class="w-step-num">٣</span>
+              <span class="w-step-name">الفئة المستهدفة</span>
+            </div>
+            <div class="w-step-btn active">
+              <span class="w-step-num">٤</span>
+              <span class="w-step-name">النبرة والأسلوب</span>
+            </div>
+            <div class="w-step-btn active">
+              <span class="w-step-num">٥</span>
+              <span class="w-step-name">المحاور والأدلة</span>
+            </div>
+          </div>
+
+          <div class="objectives-grid mb-6">
+            <div class="wishlist-card">
+              <div class="wish-num">١</div>
+              <div class="wish-info">
+                <h4>تحديد العنوان والموجز</h4>
+                <p>إدخال الفكرة الرئيسية أو العنوان المقترح لتركيز الطرح ومنع التشتت.</p>
+              </div>
+            </div>
+
+            <div class="wishlist-card">
+              <div class="wish-num">٢</div>
+              <div class="wish-info">
+                <h4>نوع المحتوى المنبري</h4>
+                <p>خطبة جمعة كاملة (قسمين مع استراحة) · كلمة قصيرة بين الصلوات · درس علمي مفصل.</p>
+              </div>
+            </div>
+
+            <div class="wishlist-card">
+              <div class="wish-num">٣</div>
+              <div class="wish-info">
+                <h4>تخصيص الفئة المستهدفة</h4>
+                <p>تطويع المفردات والأمثلة: جمهور عام، الشباب، أهل الحي، النساء، الناشئة، طلبة العلم.</p>
+              </div>
+            </div>
+
+            <div class="wishlist-card">
+              <div class="wish-num">٤</div>
+              <div class="wish-info">
+                <h4>ضبط النبرة والأسلوب</h4>
+                <p>وعظي مؤثر رقيق، علمي تأصيلي رصين، تربوي تحفيزي، أو اجتماعي معالج لهموم المصلين.</p>
+              </div>
+            </div>
+
+            <div class="wishlist-card" style="grid-column: span 2;">
+              <div class="wish-num">٥</div>
+              <div class="wish-info">
+                <h4>تحديد المحاور والأدلة الشرعية</h4>
+                <p>اختيار العناصر المطلوبة: الآيات القرآنية، الأحاديث النبوية، قصص من السيرة، ثمرات خلقية للفرد، وإسقاطات على الواقع المعاصر.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Pledge Box -->
+          <div class="golden-rule-banner">
+            <div class="rule-icon">⚖️</div>
+            <div class="rule-text-content">
+              <h4 class="rule-title">ميثاق ومسؤولية المنبر (Preacher Covenant):</h4>
+              <p class="rule-body">
+                قبل الشروع في التوليد، يلتزم الخطيب بتفعيل إقرار الأمانة:
+                <br>
+                <em>«أدرك أن هذه مجرد مسودة أولية، وأنا المسؤول عن صياغة الخطبة النهائية ومراجعتها قبل اعتلاء المنبر.»</em>
+                لضمان وعي الخطيب التام بواجبه العلمي واستقلالية قراره.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3.2 Anxiety-Free Loading Window -->
+        <div class="editorial-card glass-panel mb-8">
+          <div class="subsection-header-tag">
+            <span class="tag-number">٣.٢</span>
+            <h3 class="subsection-title">نافذة التحميل المطمئنة والموثقة (Anxiety-Free Loading)</h3>
+          </div>
+          <p class="text-secondary mb-4">
+            خلال ثوانٍ التوليد الخمسة، لا يُترك الخطيب أمام مؤشر انتظار مبهم، بل تُعرض له نافذة مصممة لتبديد القلق وتعزيز الوقار:
+          </p>
+          <div class="objectives-grid">
+            <div class="wishlist-card">
+              <div class="wish-num">📊</div>
+              <div class="wish-info">
+                <h4>شريط تقدم حقيقي تفاعلي</h4>
+                <p>حركة انتقال متناسقة تصاحبها نصائح وتوجيهات دعوية منتقاة تثري لحظات الانتظار.</p>
+              </div>
+            </div>
+            <div class="wishlist-card">
+              <div class="wish-num">🕊️</div>
+              <div class="wish-info">
+                <h4>بطاقة الطمأنينة الإبداعية</h4>
+                <p>توضح مراحل استدعاء الأدلة وتخريج الأحاديث لتقديم خطبة رصينة تضفي هيبة واستقراراً نفسياً.</p>
+              </div>
+            </div>
+            <div class="wishlist-card">
+              <div class="wish-num">🔍</div>
+              <div class="wish-info">
+                <h4>قائمة المصادر الشفافة</h4>
+                <p>عرض فوري للمواقع والموسوعات المعتمدة التي يتم تصفحها لتخريج الشواهد دعماً للثقة.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3.3 Open Scientific Sources -->
+        <div class="editorial-card glass-panel mb-8">
+          <div class="subsection-header-tag">
+            <span class="tag-number">٣.٣</span>
+            <h3 class="subsection-title">سلسلة التوثيق الذكي السباعية والمصادر المعتمدة (7 Authentic Sources)</h3>
+          </div>
+          <p class="text-secondary mb-4">
+            تعتمد المنصة على سلسلة توثيق فقهية وحديثية سباعية متكاملة تضمن أعلى درجات الطمأنينة السندية والتحقق المباشر عبر بروكسي الخادم الآمن (Khatiib Hadith Proxy) <strong>دون اختراق أو انتهاك لأي قواعد بيانات مغلقة</strong>:
+          </p>
+
+          <div class="objectives-grid">
+            
+            <div class="objective-card">
+              <div class="obj-badge">الرسم العثماني والتفسير</div>
+              <h4 class="obj-title">الباحث القرآني (tafsir.app)</h4>
+              <p class="obj-text">
+                جلب الآيات الكريمة بنص مصحف المدينة والرسم العثماني المحرر لضمان سلامة النطق والتشكيل المنبري ومطابقة تفاسير السلف المعتمدة.
+              </p>
+              <div class="obj-footer">
+                <span class="pill-tag">نطاق الاستخدام</span>
+                <span class="pill-metric">ضبط الآيات والتفاسير المعتمدة</span>
+              </div>
+            </div>
+
+            <div class="objective-card highlight-border">
+              <div class="obj-badge">أمهات كتب السنة (بروكسي مباشر)</div>
+              <h4 class="obj-title">الباحث الحديثي (hdith.com)</h4>
+              <p class="obj-text">
+                محرك بحث لحظي مدعوم بمسار بروكسي سحابي خاص بالمنصة (<code>/api/public/hdith-proxy</code>) للتنقيب الفوري في أمهات كتب السنة واستبعاد الضعيف.
+              </p>
+              <div class="obj-footer">
+                <span class="pill-tag">نطاق الاستخدام</span>
+                <span class="pill-metric">Khatiib Hadith Proxy</span>
+              </div>
+            </div>
+
+            <div class="objective-card">
+              <div class="obj-badge">الشروح وأقوال السلف</div>
+              <h4 class="obj-title">الموسوعة الحديثية (dorar.net)</h4>
+              <p class="obj-text">
+                مطابقة الشروح التراثية المعتمدة وأقوال أئمة السلف ومقاصد الأحاديث النبوية لدعم متانة الطرح الوعظي.
+              </p>
+              <div class="obj-footer">
+                <span class="pill-tag">نطاق الاستخدام</span>
+                <span class="pill-metric">مطابقة الشروح وفهم السلف</span>
+              </div>
+            </div>
+
+            <div class="objective-card">
+              <div class="obj-badge">التخريج السندي والحكم</div>
+              <h4 class="obj-title">الدرر السنية (التخريج)</h4>
+              <p class="obj-text">
+                عزو الروايات وأحكام كبار أئمة الحديث المتقدمين والمتأخرين لضمان صحة الحديث ودرجته العلمية.
+              </p>
+              <div class="obj-footer">
+                <span class="pill-tag">نطاق الاستخدام</span>
+                <span class="pill-metric">التحقق الإسنادي المباشر</span>
+              </div>
+            </div>
+
+            <div class="objective-card">
+              <div class="obj-badge">الفقه المقارن والمذاهب</div>
+              <h4 class="obj-title">إسلام ويب (islamweb.net)</h4>
+              <p class="obj-text">
+                تصفح التقسيمات الفقهية والتأصيلية المعتمدة لدى المذاهب الأربعة لتعزيز استيعاب المسائل المنبرية وحسن عرضها.
+              </p>
+              <div class="obj-footer">
+                <span class="pill-tag">نطاق الاستخدام</span>
+                <span class="pill-metric">التأصيل الفقهي المذهبي</span>
+              </div>
+            </div>
+
+            <div class="objective-card">
+              <div class="obj-badge">تأصيل النوازل المعاصرة</div>
+              <h4 class="obj-title">إسلام سؤال وجواب (islamqa.info)</h4>
+              <p class="obj-text">
+                تأصيل النوازل والقضايا الحياتية والواقعية المعاصرة بضوابط شرعية وفتاوى محررة تراعي مستجدات العصر.
+              </p>
+              <div class="obj-footer">
+                <span class="pill-tag">نطاق الاستخدام</span>
+                <span class="pill-metric">فتاوى النوازل المعاصرة</span>
+              </div>
+            </div>
+
+            <div class="objective-card highlight-border" style="grid-column: span 2;">
+              <div class="obj-badge">البلاغة والوقفات المنبرية</div>
+              <h4 class="obj-title">ملتقى الخطباء (khutabaa.com)</h4>
+              <p class="obj-text">
+                دراسة البلاغة الخطابية الحية، وهندسة المقدمات والخواتيم، وتوزيع الوقفات المنبرية المؤثرة التي تلامس وجدان المصلين.
+              </p>
+              <div class="obj-footer">
+                <span class="pill-tag">نطاق الاستخدام</span>
+                <span class="pill-metric">البلاغة المنبرية الحية</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- 3.4 Personal Archive & Categorized Library -->
+        <div class="editorial-card glass-panel mb-8">
+          <div class="subsection-header-tag">
+            <span class="tag-number">٣.٤</span>
+            <h3 class="subsection-title">منظومة الأرشيف والمكتبة الشرعية المصنفة (Archive & Categories)</h3>
+          </div>
+          <p class="text-secondary mb-4">
+            تنظيم متكامل للخطب عبر 4 مسارات تفاعلية تضمن سهولة الوصول وسرعة التحضير:
+          </p>
+          <div class="objectives-grid">
+            <div class="wishlist-card">
+              <div class="wish-num">📑</div>
+              <div class="wish-info">
+                <h4>المسودات المحفوظة (/app/saved)</h4>
+                <p>محرر متكامل للخطب المعدلة والمخصصة مع إمكانية التحرير اللحظي، الفلترة والبحث السريع، والاحتفاظ بنسخ متعددة.</p>
+              </div>
+            </div>
+            <div class="wishlist-card">
+              <div class="wish-num">⭐</div>
+              <div class="wish-info">
+                <h4>المفضلة المنبرية (/app/favorites)</h4>
+                <p>تمييز الخطب الأكثر تأثيراً وقبولاً للرجوع إليها سريعاً، وتصنيفها كشواهد ونماذج مرجعية دورية.</p>
+              </div>
+            </div>
+            <div class="wishlist-card">
+              <div class="wish-num">🕒</div>
+              <div class="wish-info">
+                <h4>سجل التوليد اللحظي (/app/history)</h4>
+                <p>حفظ تلقائي لجميع مخرجات التوليد الحديثة تفادياً لضياع أي فكرة أو مسودة كتبها الخطيب أثناء جلسات العصف الذهني.</p>
+              </div>
+            </div>
+            <div class="wishlist-card highlight-border">
+              <div class="wish-num">🕌</div>
+              <div class="wish-info">
+                <h4>مكتبة المواسم والمناسبات (/app/categories)</h4>
+                <p>تصفح خطب نموذجية محررة ومصنفة بحسب أبواب الشريعة والمناسبات الكبرى (رمضان، الأعياد، الكسوف، الحج، العقيدة، الأخلاق).</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3.5 Mimbar Delivery Mode -->
+        <div class="editorial-card glass-panel mb-8">
+          <div class="subsection-header-tag">
+            <span class="tag-number">٣.٥</span>
+            <h3 class="subsection-title">وضع الإلقاء المنبري الذكي (Mimbar Delivery Mode)</h3>
+          </div>
+          <p class="text-secondary mb-4">
+            واجهة محرابية وقورة مخصصة للاستخدام الحي فوق المنبر عبر الأجهزة اللوحية (iPad / Tablet) مصممة لخفض التوتر البصري:
+          </p>
+          <div class="objectives-grid">
+            <div class="wishlist-card">
+              <div class="wish-num">📖</div>
+              <div class="wish-info">
+                <h4>شاشة إلقاء كاملة خالية من المشتتات</h4>
+                <p>إخفاء كافة القوائم الجانبية والأزرار بلمسة واحدة لتركيز بصر الخطيب على نص الموعظة المنبرية فقط.</p>
+              </div>
+            </div>
+            <div class="wishlist-card">
+              <div class="wish-num">🔤</div>
+              <div class="wish-info">
+                <h4>تكبير الخط وضبط التباين المنبري</h4>
+                <p>خط ثمانية الأصيل بحجم كبير مع تشكيل تام للآيات، وتباين عالي مهيأ لبيئة إضاءة المساجد والمحاريب.</p>
+              </div>
+            </div>
+            <div class="wishlist-card">
+              <div class="wish-num">⏱️</div>
+              <div class="wish-info">
+                <h4>مؤقت الجمعة التفاعلي</h4>
+                <p>ساعة رقمية هادئة مدمجة لتنظيم وقت الخطبة الأولى، وجلسة الاستراحة، والخطبة الثانية دون تجاوز الوقت الشرعي المعتاد.</p>
+              </div>
+            </div>
+            <div class="wishlist-card">
+              <div class="wish-num">⏸️</div>
+              <div class="wish-info">
+                <h4>فواصل وسكتات الإلقاء الوعظي</h4>
+                <p>إبراز بصري واضح لنقاط الوقف المنبري وسكتات التأمل <code>(...)</code> لمساعدة الخطيب على التنفس وحسن الأداء.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3.6 Advanced Multi-Format Export Engine -->
+        <div class="editorial-card glass-panel mb-8">
+          <div class="subsection-header-tag">
+            <span class="tag-number">٣.٦</span>
+            <h3 class="subsection-title">محرك التصدير متعدد الصيغ والأنسنة اللغوية (Export Engine)</h3>
+          </div>
+          <p class="text-secondary mb-4">
+            مرونة مطلقة لنقل الخطبة ومشاركتها مع المصلين والجهات المعنية بأعلى معايير التنسيق المكتبي:
+          </p>
+          <div class="objectives-grid">
+            <div class="wishlist-card">
+              <div class="wish-num">📄</div>
+              <div class="wish-info">
+                <h4>تصدير Word مفرغ بالهوامش (.docx)</h4>
+                <p>تنزيل ملف وورد رسمي منسق بفقرات واضحة، مع تخريج الأحاديث في الهوامش السفلية للتوثيق الإداري والمكتبي.</p>
+              </div>
+            </div>
+            <div class="wishlist-card">
+              <div class="wish-num">🖨️</div>
+              <div class="wish-info">
+                <h4>تصدير PDF منبري وطباعة فورية (.pdf)</h4>
+                <p>ملف PDF جاهز للطباعة الورقية بخط عريض وهوامش متسعة مهيأة للاعتلاء المباشر مع دعم أوامر الطباعة المباشرة.</p>
+              </div>
+            </div>
+            <div class="wishlist-card">
+              <div class="wish-num">📊</div>
+              <div class="wish-info">
+                <h4>شرائح عرض تقديمي منبرية (.pptx / HTML)</h4>
+                <p>تحويل محاور الخطبة إلى شرائح تقديمية بصرية للدروس المسجدية والندوات والمحاضرات العامة المصاحبة.</p>
+              </div>
+            </div>
+            <div class="wishlist-card highlight-border">
+              <div class="wish-num">✨</div>
+              <div class="wish-info">
+                <h4>معالج الأنسنة وفلترة الفصاحة (Humanizer)</h4>
+                <p>معالج برمجي بعدي <code>humanizeArabicSermon</code> ينقي النص من العبارات الركيكة ويضبط بلاغة قريش في الخطاب الديني.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3.7 Feedback Widget -->
+        <div class="editorial-card glass-panel">
+          <div class="subsection-header-tag">
+            <span class="tag-number">٣.٧</span>
+            <h3 class="subsection-title">استبيان التقييم العائم التفاعلي والمبتكر (Feedback Widget)</h3>
+          </div>
+          <p class="text-secondary mb-4">
+            أداة مخصصة لجمع آراء الخطباء بطريقة احترافية وفاخرة تظهر في جميع صفحات المنصة:
+          </p>
+          <div class="objectives-grid mb-4">
+            <div class="wishlist-card">
+              <div class="wish-num">🎯</div>
+              <div class="wish-info">
+                <h4>أيقونة عائمة هادئة وغير مشتتة</h4>
+                <p>زر دائري متدرج الألوان بمقاس مريح وصغير <code>h-12 w-12</code> مستقر على يسار الشاشة.</p>
+              </div>
+            </div>
+            <div class="wishlist-card">
+              <div class="wish-num">📋</div>
+              <div class="wish-info">
+                <h4>أكورديون منسدل ذكي (Accordion)</h4>
+                <p>عرض تفاصيل تقييمات الخطيب بشكل منسدل وذكي لتوفير المساحة وتسهيل القراءة والمراجعة.</p>
+              </div>
+            </div>
+            <div class="wishlist-card">
+              <div class="wish-num">🔄</div>
+              <div class="wish-info">
+                <h4>إعادة التقييم (Re-evaluate)</h4>
+                <p>إمكانية تصفير التقييمات القديمة بأمان وإعادة إدخال تقييم جديد في أي وقت لتحديث الانطباع.</p>
+              </div>
+            </div>
+          </div>
+
+          <h4 class="card-small-title mb-3">الأسئلة الخمسة المبسطة للاستبيان (مقياس 5 نجوم):</h4>
+          <div class="table-responsive glass-panel">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>المحور</th>
+                  <th>صيغة السؤال الموجه للخطيب</th>
+                  <th>الهدف الاستراتيجي من القياس</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>١. الفكرة العامة</strong></td>
+                  <td>«ما تقييمك لفكرة ورشة العمل الذكية لتنظيم أفكارك المنبرية؟»</td>
+                  <td>قياس مدى قبول مفهوم الورشة التمكينية لا الاستبدالية</td>
+                </tr>
+                <tr>
+                  <td><strong>٢. التجربة والسرعة</strong></td>
+                  <td>«كيف تقيّم سرعة وسلاسة صياغة مسودة الخطبة الجديدة؟»</td>
+                  <td>التحقق من كفاءة محرك التوليد المتوازي وخفض وقت الانتظار</td>
+                </tr>
+                <tr>
+                  <td><strong>٣. التصميم البصري</strong></td>
+                  <td>«ما مدى رضاك عن جمال تصميم الواجهات وألوان الثيم الفاخر؟»</td>
+                  <td>قياس هيبة ووقار الهوية البصرية المستوحاة من المساجد</td>
+                </tr>
+                <tr>
+                  <td><strong>٤. الأدلة الشرعية</strong></td>
+                  <td>«ما تقييمك لموثوقية الأدلة وتخريج الأحاديث بالمنصة؟»</td>
+                  <td>التأكد من تبديد مخاوف الخطباء من الهلوسة والضعيف</td>
+                </tr>
+                <tr>
+                  <td><strong>٥. الوقت والجهد</strong></td>
+                  <td>«إلى أي مدى تُسهم المنصة في توفير وقتك وجهدك التحضيري؟»</td>
+                  <td>قياس الأثر الفعلي على مؤشر الـ 85% توفير وقت</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==================== SECTION 4: UI/UX DESIGN SYSTEM ==================== -->
+    <section class="content-section bg-alt" id="uiux">
+      <div class="container">
+        
+        <div class="section-header">
+          <span class="section-number">٠٤</span>
+          <div class="section-title-wrap">
+            <h2 class="section-title">الهوية البصرية وتجربة المستخدم</h2>
+            <span class="section-english">Visual Identity & UI/UX System</span>
+          </div>
+        </div>
+
+        <div class="identity-grid">
+          
+          <div class="palette-showcase glass-panel">
+            <h3 class="subsection-title mb-4">٤.١ الثيم الفاخر وعناصر الواجهة</h3>
+            
+            <div class="swatch-list mb-4">
+              <div class="swatch-item">
+                <div class="swatch-box" style="background-color: #031d18;"></div>
+                <div class="swatch-details">
+                  <strong>الأخضر الزمردي الغامق</strong>
+                  <code>#031d18</code>
+                  <span>يعبر عن وقار وهيبة المنابر الإسلامية وكسوة المحاريب</span>
+                </div>
+              </div>
+
+              <div class="swatch-item">
+                <div class="swatch-box" style="background-color: #c5a880;"></div>
+                <div class="swatch-details">
+                  <strong>الذهب الرملي النبيل</strong>
+                  <code>#c5a880</code>
+                  <span>توهجات دافئة ناعمة للأزرار والتفاعلات النشطة والشواهد</span>
+                </div>
+              </div>
+
+              <div class="swatch-item">
+                <div class="swatch-box" style="background-color: #fbf9f4;"></div>
+                <div class="swatch-details">
+                  <strong>العاج الرخامي (الوضع النهاري)</strong>
+                  <code>#fbf9f4</code>
+                  <span>خلفية نهارية دافئة مريحة للعين تشبه أوراق الكتب التراثية</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="editorial-card glass-panel">
+            <h3 class="subsection-title mb-4">الخطوط والطباعة ودعم RTL</h3>
+            <ul class="clean-bullet-list mb-6">
+              <li><strong>خط "ثِمانية" الأصيل (thmanyahseriftext):</strong> اعتماد خط عربي تراثي فخم يمنح الكلمات وقاراً منبرياً ويبرز حركات التشكيل القرآني والحديثي بوضوح تام.</li>
+              <li><strong>دعم RTL التام (Right-to-Left):</strong> توافق وتناسق كامل لاتجاه القراءة والمحاذاة من اليمين إلى اليسار في جميع عناصر التطبيق، النماذج، والمسودات.</li>
+              <li><strong>راحة العين في المساء والنهار:</strong> دعم التبديل التلقائي أو اليدوي بين الوضع النهاري الهادئ والوضع الليلي الزمردي لحماية عين الخطيب أثناء التحضير الليلي.</li>
+            </ul>
+
+            <div class="font-meta-footer">
+              <span class="font-badge">مقروئية عالية من مسافة نصف متر</span>
+              <span class="font-badge">متوافق مع الهواتف والأجهزة اللوحية</span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==================== SECTION 5: COVENANTS & ETHICS ==================== -->
+    <section class="content-section" id="covenants">
+      <div class="container">
+        
+        <div class="section-header">
+          <span class="section-number">٠٥</span>
+          <div class="section-title-wrap">
+            <h2 class="section-title">الأمانة العلمية والالتزام الأخلاقي</h2>
+            <span class="section-english">Ethical Covenants & Intellectual Freedom</span>
+          </div>
+        </div>
+
+        <div class="problem-chasm-wrapper">
+          <div class="chasm-grid" style="grid-template-columns: 1fr 1fr;">
+            
+            <div class="chasm-box chasm-success">
+              <div class="chasm-box-header">
+                <div class="icon-circle icon-success">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                  </svg>
+                </div>
+                <div>
+                  <h4 class="box-title">١. الملكية الفكرية المطلقة للخطيب</h4>
+                  <span class="box-tag tag-success">سيادة كاملة</span>
+                </div>
+              </div>
+              <p class="paragraph-lead">
+                جميع الخطب والمسودات المصاغة والمعدلة عبر المنصة هي <strong>ملك فكري خاص ومطلق للخطيب المستخدم</strong> وحده، ولا تطالب المنصة بأي حقوق نشر أو توزيع أو ملكية أو ترخيص عليها، ولا يُعاد استخدامها لتدريب أي نماذج أخرى.
+              </p>
+            </div>
+
+            <div class="chasm-box chasm-success">
+              <div class="chasm-box-header">
+                <div class="icon-circle icon-success">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polyline points="12 6 12 12 14 14"></polyline>
+                  </svg>
+                </div>
+                <div>
+                  <h4 class="box-title">٢. المسؤولية الشرعية الفردية</h4>
+                  <span class="box-tag tag-success">أمانة المنبر</span>
+                </div>
+              </div>
+              <p class="paragraph-lead">
+                المنصة أداة مساعدة ذكية لتجهيز المسودات، ويبقى العبء والتحقق الشرعي واللغوي والتأصيل الفقهي <strong>مسؤولية كاملة على الخطيب</strong> لضمان نقل العلم الموثوق والصحيح ومراعاة أحوال جماعة مسجده.
+              </p>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==================== SECTION 6: ROADMAP & FUTURE ==================== -->
+    <section class="content-section bg-alt" id="roadmap">
+      <div class="container">
+        
+        <div class="section-header">
+          <span class="section-number">٠٦</span>
+          <div class="section-title-wrap">
+            <h2 class="section-title">خارطة الطريق والتوسعات المستقبلية</h2>
+            <span class="section-english">Product Roadmap & Upcoming Milestones</span>
+          </div>
+        </div>
+
+        <div class="roadmap-phases-grid">
+          
+          <div class="roadmap-phase-card glass-panel">
+            <div class="phase-header">
+              <span class="phase-quarter">الإصدار الحالي v1.1</span>
+              <span class="phase-status" style="background: rgba(16, 185, 129, 0.15); color: var(--emerald-accent); border: 1px solid rgba(16, 185, 129, 0.3);">مكتمل ومفعل</span>
+            </div>
+            <h4 class="phase-title">التصدير الشامل، وضع الإلقاء، والمكتبة المصنفة</h4>
+            
+            <div class="phase-features">
+              <div class="feature-item">
+                <div class="feat-icon">📄</div>
+                <div class="feat-details">
+                  <strong>نظام التصدير المكتبي والمنبري المتكامل:</strong>
+                  <p>تصدير فوري لملفات Word بالهوامش السندية، وملفات PDF بالخط المنبري المكبر، وشرائح العرض التقديمي (.pptx / HTML) والطباعة المباشرة.</p>
+                </div>
+              </div>
+
+              <div class="feature-item">
+                <div class="feat-icon">📖</div>
+                <div class="feat-details">
+                  <strong>وضع الإلقاء المنبري (Mimbar Mode) والبحث الأرشيفي:</strong>
+                  <p>واجهة قراءة كاملة للمحراب بخط عريض، ومؤقت الجمعة التفاعلي، وسكتات الوقف، مع محرك بحث وفلترة فورية للخطب المحفوظة.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="roadmap-phase-card glass-panel">
+            <div class="phase-header">
+              <span class="phase-quarter">المرحلة التوسعية القادمة</span>
+              <span class="phase-status status-expansion">مجدولة</span>
+            </div>
+            <h4 class="phase-title">تطبيق الأجهزة اللوحية دون إنترنت والذكاء الصوتي</h4>
+            
+            <div class="phase-features">
+              <div class="feature-item">
+                <div class="feat-icon">📱</div>
+                <div class="feat-details">
+                  <strong>تطبيق الأجهزة اللوحية المستقل (Offline PWA):</strong>
+                  <p>حفظ وتشغيل كامل للمنصة ووضع الإلقاء على أجهزة الآيباد واللوحيات دون الحاجة لشبكة إنترنت نشطة داخل المسجد.</p>
+                </div>
+              </div>
+
+              <div class="feature-item">
+                <div class="feat-icon">🎙️</div>
+                <div class="feat-details">
+                  <strong>المدرب الصوتي لنبرات الإلقاء الوعظي:</strong>
+                  <p>إرشادات وتحليلات لضبط نبرة الصوت ومخارج الحروف وتوزيع فواصل الوقف والتنفس بما يناسب جلال الموعظة المنبرية ومقام الجمعة.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Sign-off & Institutional Verification -->
+    <section class="signoff-section">
+      <div class="container">
+        <div class="signoff-card glass-panel">
+          <div class="signoff-seal">
+            <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="var(--gold-primary)" stroke-width="1.5">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+              <path d="M9 12l2 2 4-4"></path>
+            </svg>
+            <span class="seal-text">معتمد مؤسسياً</span>
+          </div>
+
+          <div class="signoff-content">
+            <h3 class="signoff-title">اعتماد وثيقة متطلبات المنتج (PRD Sign-off)</h3>
+            <p>
+              تم تحرير وتوثيق هذه الوثيقة لتكون المرجع الفني والاستراتيجي الملزم لتطوير وهندسة منصة «خَطِيب».
+            </p>
+            <div class="signoff-meta">
+              <div class="sign-sig">
+                <span class="sig-role">إعداد وتوثيق:</span>
+                <span class="sig-name">فريق إدارة المنتج وهندسة النظم — منصة خَطِيب</span>
+              </div>
+              <div class="sign-sig">
+                <span class="sig-role">حالة الوثيقة:</span>
+                <span class="sig-name">معتمدة للإصدار الأول (v1.0)</span>
+              </div>
+              <div class="sign-sig">
+                <span class="sig-role">تاريخ الاعتماد:</span>
+                <span class="sig-name">فبراير 2026 م</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <span class="footer-logo">«خَطِيب»</span>
+          <span class="footer-slogan">«كلمة تُؤثِر.. وتقنية تُمكّن»</span>
+        </div>
+        <p class="footer-copy">
+          جميع حقوق متطلبات المنتج وتصاميم النظم محفوظة © 2026 — منصة خَطِيب.
+        </p>
+        <div class="footer-actions">
+          <a href="https://khatiib.online" target="_blank" rel="noopener noreferrer" class="btn-footer-link" style="border-color: rgba(197, 168, 128, 0.5); color: var(--gold-primary);" title="زيارة منصة خَطِيب الحية">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="2" y1="12" x2="22" y2="12"></line>
+              <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1 4-10z"></path>
+            </svg>
+            <span>المنصة الحية (khatiib.online)</span>
+          </a>
+          <a href="index.html" class="btn-footer-link" title="العودة لدراسة تجربة المستخدم">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="19" y1="12" x2="5" y2="12"></line>
+              <polyline points="12 19 5 12 12 5"></polyline>
+            </svg>
+            <span>دراسة تجربة المستخدم (UX Study)</span>
+          </a>
+          <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="btn-top" title="العودة لأعلى الصفحة">
+            ↑ أعلى الصفحة
+          </button>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
