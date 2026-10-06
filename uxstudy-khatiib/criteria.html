@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>معايير القبول والترشيح — مشروع «منصة خَطِيب» | كلمة تُؤثِر.. وتقنية تُمكّن</title>
+  
+  <!-- SEO & Social Meta -->
+  <meta name="description" content="بيان تفصيلي واستيفاء لمعايير القبول والترشيح والتحكيم لمشروع منصة خَطِيب — الورشة الذكية لصياغة الخطب المنبرية.">
+  <meta name="author" content="فريق تطوير وهندسة مشروع منصة خَطِيب">
+  
+  <link rel="stylesheet" href="styles.css">
+
+  <style>
+    /* Scoped Enhancements for Criteria Page */
+    .criteria-hero-banner {
+      background: linear-gradient(135deg, rgba(3, 29, 24, 0.95) 0%, rgba(10, 46, 38, 0.9) 100%);
+      border: 1px solid var(--gold-border);
+      border-radius: var(--radius-xl, 24px);
+      padding: clamp(2rem, 5vw, 3.5rem);
+      margin-bottom: 2.5rem;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    }
+    .theme-light .criteria-hero-banner {
+      background: linear-gradient(135deg, #f7f3ea 0%, #efe7d6 100%);
+      border-color: rgba(148, 110, 55, 0.35);
+    }
+    .criteria-weights-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+    .weight-card {
+      background: var(--bg-glass-card);
+      border: 1px solid var(--gold-border);
+      border-radius: var(--radius-md, 14px);
+      padding: 1.25rem 1rem;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+    .weight-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px var(--gold-glow);
+      border-color: var(--gold-primary);
+    }
+    .weight-percent {
+      font-size: 1.85rem;
+      font-weight: 900;
+      color: var(--gold-primary);
+      line-height: 1;
+      margin-bottom: 0.35rem;
+      font-family: 'thmanyahseriftext', sans-serif;
+    }
+    .weight-label {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      line-height: 1.3;
+    }
+    .criterion-section {
+      scroll-margin-top: 2rem;
+      margin-bottom: 3.5rem;
+    }
+    .criterion-badge-header {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.4rem 1rem;
+      background: rgba(148, 110, 55, 0.12);
+      border: 1px solid var(--gold-border);
+      border-radius: 999px;
+      color: var(--gold-primary);
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+    }
+    .criterion-title-group {
+      margin-bottom: 1.5rem;
+    }
+    .criterion-headline {
+      font-size: clamp(1.4rem, 2.8vw, 1.9rem);
+      color: var(--text-primary);
+      font-weight: 800;
+      line-height: 1.3;
+    }
+    .criterion-cards-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+    .criterion-card {
+      background: var(--bg-glass-card);
+      border: 1px solid var(--border-light, rgba(148, 110, 55, 0.2));
+      border-radius: var(--radius-lg, 18px);
+      padding: 1.75rem 2rem;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+      transition: border-color 0.25s ease;
+    }
+    .criterion-card:hover {
+      border-color: var(--gold-primary);
+    }
+    .criterion-card-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--gold-primary);
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      margin-bottom: 0.85rem;
+    }
+    .criterion-card-content {
+      color: var(--text-secondary);
+      font-size: 0.98rem;
+      line-height: 1.8;
+    }
+    .sub-item-list {
+      list-style: none;
+      padding: 0;
+      margin: 0.75rem 0 0 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+    }
+    .sub-item-list li {
+      position: relative;
+      padding-right: 1.5rem;
+    }
+    .sub-item-list li::before {
+      content: '▪';
+      position: absolute;
+      right: 0;
+      color: var(--gold-primary);
+      font-weight: bold;
+    }
+    /* Timeline styles for Day 1, 2, 3 */
+    .days-timeline-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.25rem;
+      margin-top: 1rem;
+    }
+    .day-card {
+      background: var(--bg-surface-elevated);
+      border: 1px solid var(--gold-border);
+      border-radius: var(--radius-md, 14px);
+      padding: 1.5rem;
+      position: relative;
+    }
+    .day-badge {
+      display: inline-block;
+      padding: 0.25rem 0.75rem;
+      border-radius: 6px;
+      background: var(--gold-gradient);
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 0.85rem;
+      margin-bottom: 0.85rem;
+    }
+    .day-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      font-size: 0.92rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+    .day-list li {
+      padding-right: 1.2rem;
+      position: relative;
+    }
+    .day-list li::before {
+      content: '✓';
+      position: absolute;
+      right: 0;
+      color: #10b981;
+      font-weight: bold;
+    }
+    /* Comparison Table Highlighting */
+    .comparison-table-wrapper {
+      overflow-x: auto;
+      margin-top: 1rem;
+      border-radius: var(--radius-md, 14px);
+      border: 1px solid var(--gold-border);
+    }
+    .criteria-comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: right;
+      font-size: 0.95rem;
+    }
+    .criteria-comparison-table th {
+      background: var(--bg-surface-elevated);
+      color: var(--text-primary);
+      padding: 1rem 1.25rem;
+      font-weight: 700;
+      border-bottom: 2px solid var(--gold-border);
+    }
+    .criteria-comparison-table td {
+      padding: 1rem 1.25rem;
+      border-bottom: 1px solid rgba(148, 110, 55, 0.15);
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+    .criteria-comparison-table tr:hover td {
+      background: rgba(148, 110, 55, 0.04);
+    }
+    .col-highlight {
+      background: rgba(148, 110, 55, 0.08) !important;
+      font-weight: 600;
+      color: var(--gold-dark) !important;
+      border-right: 2px solid var(--gold-primary);
+      border-left: 2px solid var(--gold-primary);
+    }
+    .theme-dark .col-highlight {
+      background: rgba(197, 168, 128, 0.08) !important;
+      color: #e6caa3 !important;
+    }
+    .nav-external-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      padding: 0.85rem 1rem;
+      border-bottom: 1px solid var(--gold-border);
+      margin-bottom: 0.75rem;
+    }
+    .nav-ext-link {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+    .nav-ext-link:hover {
+      color: var(--gold-primary);
+    }
+  </style>
+</head>
+<body class="theme-light">
+  
+  <!-- Subtle Islamic Geometric Background Pattern -->
+  <div class="bg-pattern-overlay" aria-hidden="true"></div>
+  <div class="glow-sphere glow-sphere-1" aria-hidden="true"></div>
+  <div class="glow-sphere glow-sphere-2" aria-hidden="true"></div>
+
+  <!-- Top Sticky Progress Line -->
+  <div id="scrollProgressBar" class="scroll-progress-bar"></div>
+
+  <!-- Floating Mobile Menu Toggle Button -->
+  <button id="btnMobileSidebarToggle" class="floating-mobile-trigger" aria-label="فتح قائمة المعايير">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+    <span>فهرس المعايير</span>
+  </button>
+
+  <!-- Mobile Backdrop Overlay -->
+  <div id="sidebarBackdrop" class="sidebar-backdrop hidden"></div>
+
+  <!-- Floating Sidebar Navigation -->
+  <aside class="floating-sidebar-nav" id="floatingSidebar">
+    
+    <!-- Sidebar Brand & Collapse Header -->
+    <div class="sidebar-header">
+      <div class="brand-group">
+        <div class="brand-badge-icon">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <span class="brand-title">معايير التحكيم</span>
+          <span class="brand-sub">مشروع «خَطِيب»</span>
+        </div>
+      </div>
+      <button id="btnToggleSidebarCollapse" class="btn-collapse-sidebar" title="طي / توسيع القائمة">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="15 18 9 12 15 6"></polyline>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Inter-Document Navigation Links -->
+    <div class="nav-external-group">
+      <a href="index.html" class="nav-ext-link" title="دراسة تجربة المستخدم">
+        <span>←</span> <span>دراسة تجربة المستخدم (UX)</span>
+      </a>
+      <a href="prd.html" class="nav-ext-link" title="وثيقة متطلبات المنتج">
+        <span>←</span> <span>وثيقة متطلبات المنتج (PRD)</span>
+      </a>
+      <a href="https://khatiib.online" target="_blank" rel="noopener noreferrer" class="nav-ext-link" style="color: var(--gold-primary);" title="الموقع الحي">
+        <span>🌐</span> <span>منصة خطيب الحية (khatiib.online)</span>
+      </a>
+    </div>
+
+    <!-- Sidebar Scrollable Navigation Links -->
+    <nav class="sidebar-nav-links" id="mainNav">
+      <a href="#criterion-1" class="nav-item">
+        <span class="nav-idx">٠١</span>
+        <span class="nav-text">وضوح المشكلة والجمهور (25%)</span>
+      </a>
+      <a href="#criterion-2" class="nav-item">
+        <span class="nav-idx">٠٢</span>
+        <span class="nav-text">توظيف الذكاء الاصطناعي (15%)</span>
+      </a>
+      <a href="#criterion-3" class="nav-item">
+        <span class="nav-idx">٠٣</span>
+        <span class="nav-text">الموثوقية والسلامة العلمية (20%)</span>
+      </a>
+      <a href="#criterion-4" class="nav-item">
+        <span class="nav-idx">٠٤</span>
+        <span class="nav-text">قابلية التنفيذ في التحدي (15%)</span>
+      </a>
+      <a href="#criterion-5" class="nav-item">
+        <span class="nav-idx">٠٥</span>
+        <span class="nav-text">الأصالة والقيمة المضافة (15%)</span>
+      </a>
+      <a href="#criterion-6" class="nav-item">
+        <span class="nav-idx">٠٦</span>
+        <span class="nav-text">القدرة التنفيذية وتغطية المهام (10%)</span>
+      </a>
+    </nav>
+
+    <!-- Sidebar Footer Theme Controller -->
+    <div class="sidebar-footer">
+      <button id="btnThemeToggle" class="btn-theme-toggle" title="التبديل بين الوضع النهاري والليلي">
+        <span class="theme-icon-box">
+          <svg class="theme-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+          <svg class="theme-moon hidden" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+        </span>
+        <span id="themeLabelText" class="theme-label-text">الوضع النهاري</span>
+      </button>
+    </div>
+  </aside>
+
+  <!-- Main Content Wrapper -->
+  <main class="page-main-content">
+    <div class="container" style="max-width: 1040px; padding: 2.5rem 1.5rem 5rem 1.5rem;">
+
+      <!-- Top Hero Header Banner -->
+      <section class="criteria-hero-banner">
+        <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.25rem;">
+          <span class="criterion-badge-header">
+            <span>🏆</span> وثيقة معايير النجاح والترشيح الرسمية
+          </span>
+          <span style="font-size: 0.85rem; color: var(--gold-primary); font-weight: 700; background: rgba(148, 110, 55, 0.1); padding: 0.35rem 0.85rem; border-radius: 8px;">
+            مشروع: منصة خَطِيب (Khatiib)
+          </span>
+        </div>
+
+        <h1 style="font-size: clamp(1.8rem, 3.8vw, 2.6rem); font-weight: 900; color: var(--text-primary); margin-bottom: 0.75rem; line-height: 1.25;">
+          معايير القبول والترشيح لمنصة «خَطِيب»
+        </h1>
+        
+        <p style="font-size: 1.2rem; color: var(--gold-primary); font-weight: 700; margin-bottom: 1.25rem;">
+          «كلمة تُؤثِر.. وتقنية تُمكّن»
+        </p>
+
+        <p style="font-size: 1rem; color: var(--text-secondary); line-height: 1.8; max-width: 880px;">
+          توضح هذه الوثيقة استيفاء مشروع <strong>«منصة خَطِيب»</strong> لكافة محاور ومعايير التقييم والترشيح المعتمدة في التحدي، مع بيان الأثر الواقعي، والبنية المعمارية الموثوقة، وتكامل الأدوار التقنية والعلمية وفق أعلى معايير الجودة والأمانة المنبرية.
+        </p>
+
+        <!-- Criteria Weights Summary Grid -->
+        <div class="criteria-weights-grid">
+          <div class="weight-card">
+            <div class="weight-percent">25%</div>
+            <div class="weight-label">وضوح المشكلة وملاءمتها للمسار</div>
+          </div>
+          <div class="weight-card">
+            <div class="weight-percent">15%</div>
+            <div class="weight-label">ملاءمة توظيف الذكاء الاصطناعي</div>
+          </div>
+          <div class="weight-card">
+            <div class="weight-percent">20%</div>
+            <div class="weight-label">الموثوقية والسلامة العلمية</div>
+          </div>
+          <div class="weight-card">
+            <div class="weight-percent">15%</div>
+            <div class="weight-label">قابلية التنفيذ خلال مدة التحدي</div>
+          </div>
+          <div class="weight-card">
+            <div class="weight-percent">15%</div>
+            <div class="weight-label">الأصالة والقيمة المضافة</div>
+          </div>
+          <div class="weight-card">
+            <div class="weight-percent">10%</div>
+            <div class="weight-label">القدرة التنفيذية وتغطية المهام</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== CRITERION 1 ==================== -->
+      <section id="criterion-1" class="criterion-section">
+        <div class="criterion-title-group">
+          <span class="criterion-badge-header">المعيار الأول • الوزن: 25%</span>
+          <h2 class="criterion-headline">وضوح المشكلة وملاءمتها للمسار والجمهور</h2>
+        </div>
+
+        <div class="criterion-cards-stack">
+          
+          <div class="criterion-card">
+            <h3 class="criterion-card-title">
+              <span>🎯</span> المشكلة وأولويتها
+            </h3>
+            <div class="criterion-card-content">
+              إعداد خطبة الجمعة والموعظة الأسبوعية عملية شديدة الحساسية والمسؤولية؛ فالمنبر مقام توقيف لا يحتمل الخطأ. يواجه الخطيب أسبوعياً <strong>"متلازمة الصفحة البيضاء"</strong>، وتشتتاً بين أمهات الكتب والمواقع لتخريج الأحاديث وجمع الشواهد، مما يستنزف وقته وجهده في التنسيق والجمع بدلاً من التركيز على التدبر وجودة الإلقاء ومعايشة واقع جماعة مسجده.
+            </div>
+          </div>
+
+          <div class="criterion-card">
+            <h3 class="criterion-card-title">
+              <span>🛡️</span> حدود المشكلة (ما نحله وما لا نحله)
+            </h3>
+            <div class="criterion-card-content">
+              المنصة <strong>ورشة ذكية لصياغة المسودات</strong> وتوثيق الشواهد وتنظيم الأفكار؛ ولا تدّعي استبدال الخطيب أو ممارسة الفتوى المستقلة، بل تبدأ من فكرة الخطيب وتنتهي بمسودة قابلة للتعديل والاعتماد بمسؤوليته الكاملة.
+            </div>
+          </div>
+
+          <div class="criterion-card">
+            <h3 class="criterion-card-title">
+              <span>👥</span> المستخدم المباشر والمستفيد النهائي
+            </h3>
+            <div class="criterion-card-content">
+              <ul class="sub-item-list">
+                <li><strong>المستخدم المباشر:</strong> أئمة المساجد، الخطباء، الدعاة، وطلاب العلم الشرعي الممارسون للخطابة.</li>
+                <li><strong>المستفيد النهائي:</strong> مئات الملايين من المصلين في المجتمع الإسلامي الذين يتلقون رسائل منبرية مؤصلة شرعياً، ملامسة لواقعهم، ومصاغة بأسلوب تربوي وبلاغي رصين.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="criterion-card">
+            <h3 class="criterion-card-title">
+              <span>💡</span> حالة الاستخدام (Use Case)
+            </h3>
+            <div class="criterion-card-content">
+              خطيب يحتاج لصياغة مسودة خطبة جمعة حول "نازلة معاصرة أو موضوع اجتماعي" موجهة لفئة "الشباب" بنبرة "تربوية تحفيزية". يدخل المعطيات في ورشة المنصة، ويحصل خلال وقت قصير على مسودة منبرية محكمة الشواهد ومقسمة إلى محاور مع مقدمة وخاتمة وعناصر ربط.
+            </div>
+          </div>
+
+          <div class="criterion-card">
+            <h3 class="criterion-card-title">
+              <span>📊</span> الممارسة الحالية والنمذجة الاستكشافية (الدليل)
+            </h3>
+            <div class="criterion-card-content">
+              استندنا إلى <strong>دراسة استكشافية ونمذجة معيارية افتراضية (Hypothetical User Modeling)</strong> مبنية على استقراء سلوك واحتياجات شريحة تمثيلية مفترضة قوامها <strong>145 خطيباً وإماماً</strong>:
+              <ul class="sub-item-list">
+                <li><strong>الممارسة الراهنة المرصودة:</strong> استهلاك متوسط من <strong>4 إلى 6 ساعات أسبوعياً</strong> في إعداد الخطبة الواحدة وتخريج شواهدها.</li>
+                <li><strong>العائق الأساسي:</strong> تخوف الخطباء من استخدام أدوات الذكاء الاصطناعي العامة بسبب "الهلوسة في الأحاديث النبوية، الركاكة الأسلوبية، وضعف الخصوصية".</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="criterion-card">
+            <h3 class="criterion-card-title">
+              <span>✅</span> معيار النجاح القابل للاختبار
+            </h3>
+            <div class="criterion-card-content">
+              تقليص زمن إعداد المسودة بنسبة <strong>70%</strong> (من ساعات مبعثرة إلى مسودة أولية في دقائق)، مع استهداف نسبة رضا تتجاوز <strong>90%</strong> عن موثوقية الهيكل والأدلة عبر أداة التقييم المدمجة في المنصة.
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ==================== CRITERION 2 ==================== -->
+      <section id="criterion-2" class="criterion-section">
+        <div class="criterion-title-group">
+          <span class="criterion-badge-header">المعيار الثاني • الوزن: 15%</span>
+          <h2 class="criterion-headline">ملاءمة توظيف الذكاء الاصطناعي والقيمة التي يضيفها</h2>
+        </div>
+
+        <div class="criterion-cards-stack">
+          
+          <div class="criterion-card">
+            <h3 class="criterion-card-title">
+              <span>🧠</span> المهمة المحددة للذكاء الاصطناعي
+            </h3>
+            <div class="criterion-card-content">
+              المعالجة الدلالية والتوليد الموجه للمسودة المنبرية بناءً على المعايير البلاغية الإسلامية (ملاءمة مقتضى الحال، ربط الشواهد بالمحاور).
+            </div>
+          </div>
+
+          <div class="criterion-card">
+            <h3 class="criterion-card-title">
+              <span>🔄</span> تصور المدخلات والمخرجات (I/O Architecture)
+            </h3>
+            <div class="criterion-card-content">
+              <ul class="sub-item-list">
+                <li><strong>المدخلات (Inputs):</strong> محددات دقيقة يختارها الخطيب: (العنوان والموجز + نوع المحتوى [جمعة/درس/كلمة] + الفئة المستهدفة + النبرة والأسلوب + المحاور المطلوبة + إقرار المسؤولية).</li>
+                <li><strong>المخرجات (Outputs):</strong> مسودة متكاملة مهيكلة وفق السنن المنبرية (مقدمة بحمد الله وصلاة، محاور مدعمة بنصوص صحيحة وشواهد، وخاتمة بالدعاء والتوصيات العملية).</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="criterion-card">
+            <h3 class="criterion-card-title">
+              <span>⚡</span> سبب اختيار التقنية مقارنة ببديل أبسط
+            </h3>
+            <div class="criterion-card-content">
+              البدائل البسيطة (كالقوالب الثابتة أو محركات البحث) تعطي نصوصاً مكررة وجامدة لا تراعي خصوصية الحي ولا تعالج النوازل الطارئة.
+            </div>
+          </div>
+
+          <div class="criterion-card">
+            <h3 class="criterion-card-title">
+              <span>🛡️</span> حدود التقنية والتعامل مع فشلها (Guardrails & Fallback)
+            </h3>
+            <div class="criterion-card-content">
+              <ul class="sub-item-list">
+                <li><strong>حدود التقنية:</strong> النموذج مقيّد بعدم تأليف أحاديث أو إصدار فتاوى مستقلة، وموجه للاستشهاد بالنصوص المعتمدة فقط.</li>
+                <li><strong>التعامل مع الفشل:</strong> وجود استراتيجية تبديل تلقائي بين النماذج (<code>gemini-3.5-flash</code> كخيار أساسي و <code>gemini-2.5-flash</code> كاحتياطي)، مع معالجة ذكية للأخطاء (Error Boundary)، واشتراط الإقرار البشري الصريح (Human-in-the-Loop) قبل بدء التوليد.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="criterion-card">
+            <h3 class="criterion-card-title">
+              <span>📈</span> المقارنة المرجعية وخطة القياس
+            </h3>
+            <div class="criterion-card-content">
+              <ul class="sub-item-list">
+                <li><strong>المقارنة المرجعية:</strong> مقارنة بالأدوات العامة (ChatGPT): أدوات عامة تقدم لغة صحفية ركيكة وهلوسة حديثية وتستغرق وقتاً طويلاً، بينما «خطيب» متخصص منبرياً، يستجيب في <strong>أقل من دقيقة</strong>، ويراعي الهيبة والبلاغة الوعظية.</li>
+                <li><strong>خطة القياس:</strong> قياس زمن الاستجابة (Latency Monitoring) واختبار جودة المسودة دورياً عبر مقياس تقييم الخطباء المدمج (Feedback Widget) الذي يرصد مؤشرات الرضا الخمسة لحظياً.</li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ==================== CRITERION 3 ==================== -->
+      <section id="criterion-3" class="criterion-section">
+        <div class="criterion-title-group">
+          <span class="criterion-badge-header">المعيار الثالث • الوزن: 20%</span>
+          <h2 class="criterion-headline">خطة الموثوقية والسلامة العلمية</h2>
+        </div>
+
+        <div class="criterion-cards-stack">
+          
+          <div class="criterion-card">
+            <h3 class="criterion-card-title">
+              <span>📚</span> المصادر المعتمدة وطريقة الإسناد
+            </h3>
+            <div class="criterion-card-content">
+              تعتمد المنصة سياسة حازمة بالأمانة الرقمية عبر الاسترشاد بالبوابات والموسوعات الموثوقة:
+              <ul class="sub-item-list">
+                <li><strong>القرآن الكريم:</strong> الباحث القرآني (<code>tafsir.app</code>) بالرسم العثماني المعتمد لمصحف المدينة النبوية لضمان سلامة النص من أي تحريف.</li>
+                <li><strong>السنة النبوية:</strong> الموسوعة الحديثية بالدرر السنية (<code>dorar.net</code>) والباحث الحديثي (<code>hdith.com</code>) للتحقق من صحة الأحاديث وعزوها لكتب السنة.</li>
+                <li><strong>الفقه والتأصيل:</strong> بوابات الفتوى الموثقة (<code>islamweb.net</code> و <code>islamqa.info</code>) وموقع إمام المسجد (<code>alimam.ws</code>) للحقائب المنبرية.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="criterion-card">
+            <h3 class="criterion-card-title">
+              <span>🏛️</span> الربط بمستويات المحتوى الأربعة (The 4 Content Levels)
+            </h3>
+            <div class="criterion-card-content">
+              <ol style="padding-right: 1.25rem; margin: 0; display: flex; flex-direction: column; gap: 0.65rem;">
+                <li><strong>المستوى الأول (النصوص التوقيفية والقطعية):</strong> الآيات القرآنية والأحاديث الصحيحة/الحسنة، يتم التعامل معها بتوقيفية مطلقة مع العزو الدقيق وحظر أي تصرف في المتن.</li>
+                <li><strong>المستوى الثاني (الأحكام والمسائل الفقهية):</strong> الالتزام بالمذاهب الفقهية الأربعة المعتبرة والفتوى الرسمية المستقرة، وتجنب المسائل الشاذة أو الغريبة.</li>
+                <li><strong>المستوى الثالث (الشواهد والقصص والآثار):</strong> الاستئناس بروايات السيرة والتاريخ المعتمدة، واستبعاد الإسرائيليات والمرويات المنكرة.</li>
+                <li><strong>المستوى الرابع (اللغة والصياغة المعاصرة):</strong> توظيف البلاغة العربية الرصينة، والأسلوب التربوي المؤثر الملائم لواقع الناس دون تكلف أو ابتذال.</li>
+              </ol>
+            </div>
+          </div>
+
+          <div class="criterion-card">
+            <h3 class="criterion-card-title">
+              <span>⛔</span> حالات الامتناع والإحالة (Safe Refusal)
+            </h3>
+            <div class="criterion-card-content">
+              يمتنع النظام برمجياً وسياقياً عن الخوض في:
+              <ul class="sub-item-list">
+                <li>الفتاوى الشخصية الخاصة، النوازل الكبرى الخلافية، أو القضايا السياسية والنزاعات الطائفية.</li>
+                <li>عند رصد سؤال أو موضوع خلافي حساس، يتم إظهار رسالة إحالة واضحة بضرورة مراجعة <strong>دور الإفتاء الرسمية وهيئة كبار العلماء</strong>.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="criterion-card">
+            <h3 class="criterion-card-title">
+              <span>🔬</span> خطة الاختبار ومعالجة التعارض وغياب المرجع
+            </h3>
+            <div class="criterion-card-content">
+              <ul class="sub-item-list">
+                <li><strong>غياب المرجع:</strong> في حال عدم ثبوت شاهد حديثي في موضوع معين، يوجه النظام الخطيب برمجياً للاكتفاء بالآيات القرآنية أو المعاني العامة.</li>
+                <li><strong>المراجعة البشرية الإلزامية:</strong> ميثاق المنبر يُلزم الخطيب بالمراجعة الذاتية، مع توفير واجهة تحرير فورية تتيح له حذف أو تعديل أي فقرة أو شاهد قبل الاعتماد.</li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ==================== CRITERION 4 ==================== -->
+      <section id="criterion-4" class="criterion-section">
+        <div class="criterion-title-group">
+          <span class="criterion-badge-header">المعيار الرابع • الوزن: 15%</span>
+          <h2 class="criterion-headline">قابلية التنفيذ خلال مدة التحدي</h2>
+        </div>
+
+        <div class="criterion-cards-stack">
+          
+          <div class="criterion-card">
+            <h3 class="criterion-card-title">
+              <span>🚀</span> واقع الإنجاز ونطاق المنتج (Delivered MVP)
+            </h3>
+            <div class="criterion-card-content">
+              المنتج <strong>تم بناؤه واختباره بالكامل وهو منشور ويعمل لحظياً</strong> على الرابط الرسمي: <a href="https://khatiib.online" target="_blank" rel="noopener noreferrer" style="color: var(--gold-primary); text-decoration: underline; font-weight: 700;">https://khatiib.online</a>. يشمل: ورشة صياغة من 5 خطوات، محرك توليد متوازٍ، أرشيف محلي شخصي، أداة تقييم تفاعلية، وتصدير النصوص.
+            </div>
+          </div>
+
+          <div class="criterion-card">
+            <h3 class="criterion-card-title">
+              <span>📅</span> التسلسل العملي للتنفيذ خلال أيام التحدي
+            </h3>
+            <div class="criterion-card-content">
+              <p style="margin-bottom: 1rem;">
+                المشروع كان جاهزاً تقريباً قبل التحدي وكنت قد بدأت العمل عليه وتطويره منذ فترة، ومع انطلاق أيام التحدي الثلاثة تركز العمل الميداني والتقني على المسار التالي:
+              </p>
+
+              <div class="days-timeline-grid">
+                
+                <div class="day-card">
+                  <span class="day-badge">اليوم الأول</span>
+                  <ul class="day-list">
+                    <li>التأكد من عمل الورشة وتوليد مسودة الخطبة بنجاح بدون أي مشاكل تقنية.</li>
+                    <li>العمل على تنظيم وضبط ملفات وهيكلة المشروع.</li>
+                    <li>العمل على تجهيز وتصوير فيديو العرض التقديمي.</li>
+                    <li>التأكد الشامل من قابلية الاستخدام وسلاسة التفاعل.</li>
+                  </ul>
+                </div>
+
+                <div class="day-card">
+                  <span class="day-badge">اليوم الثاني</span>
+                  <ul class="day-list">
+                    <li>تشخيص وإصلاح مشكلة توجيه الـ DNS والشبكة في Cloudflare.</li>
+                    <li>تجهيز وتنسيق ملف العرض التقديمي (Presentation).</li>
+                    <li>التأكد من جاهزية واستقرار المشروع وجعل المستودع على GitHub عاماً (Public).</li>
+                  </ul>
+                </div>
+
+                <div class="day-card">
+                  <span class="day-badge">اليوم الثالث</span>
+                  <ul class="day-list">
+                    <li>رفع جميع ملفات وروابط المشروع في لوحة التحكم والتحكيم.</li>
+                    <li>توضيح وتوثيق كافة نقاط معايير الترشيح والقبول لمشروع منصة خطيب في صفحة مستقلة.</li>
+                  </ul>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+          <div class="criterion-card">
+            <h3 class="criterion-card-title">
+              <span>⚠️</span> المخاطر الأساسية وبدائل الاعتمادات الحرجة
+            </h3>
+            <div class="criterion-card-content">
+              <ul class="sub-item-list">
+                <li><strong>خطر انقطاع أو تأخر الـ API:</strong> تم بناء نظام تبديل تلقائي (Fallback) بين نماذج متعددة من Gemini لضمان استمرارية التوليد دون توقف.</li>
+                <li><strong>خطر الخصوصية وتسريب المسودات:</strong> اعتمدنا بنية <strong>Zero-Database Server</strong>؛ حيث تُحفظ كافة خطب وبيانات المستخدم محلياً في ذاكرة متصفحه فقط (<code>LocalStorage</code>) دون حفظها على أي خادم خارجي، مما يحقق أماناً وخصوصية بنسبة 100%.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="criterion-card">
+            <h3 class="criterion-card-title">
+              <span>📦</span> مخرجات التسليم وخطة التحقق
+            </h3>
+            <div class="criterion-card-content">
+              <ul class="sub-item-list">
+                <li>كود مصدري نظيف وموثق على GitHub.</li>
+                <li>منصة حية مجربة ومستقرة، تحقق استجابة سريعة بزمن <strong>HTTP 200 OK</strong> وأداء فائق مجرب برمجياً وعملياً.</li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ==================== CRITERION 5 ==================== -->
+      <section id="criterion-5" class="criterion-section">
+        <div class="criterion-title-group">
+          <span class="criterion-badge-header">المعيار الخامس • الوزن: 15%</span>
+          <h2 class="criterion-headline">الأصالة والقيمة المضافة</h2>
+        </div>
+
+        <div class="criterion-cards-stack">
+          
+          <div class="criterion-card">
+            <h3 class="criterion-card-title">
+              <span>⚖️</span> المقارنة بالبدائل المتاحة في السوق
+            </h3>
+            <div class="criterion-card-content">
+              
+              <div class="comparison-table-wrapper">
+                <table class="criteria-comparison-table">
+                  <thead>
+                    <tr>
+                      <th style="width: 20%;">وجه المقارنة</th>
+                      <th style="width: 26%;">المواقع التقليدية<br><small style="font-weight: normal; color: var(--text-muted);">(مثل صيد الفوائد / الألوكة)</small></th>
+                      <th style="width: 26%;">النماذج العامة<br><small style="font-weight: normal; color: var(--text-muted);">(مثل ChatGPT / Claude)</small></th>
+                      <th style="width: 28%;" class="col-highlight">منصة «خَطِيب»<br><small style="font-weight: 700; color: var(--gold-primary);">(Khatiib.online)</small></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><strong>طبيعة المحتوى</strong></td>
+                      <td>خطب مؤرشفة قديمة وجامدة لا تناسب المتغيرات</td>
+                      <td>نصوص عامة بأسلوب صحفي مترجم ومكرر</td>
+                      <td class="col-highlight">مسودة مفصلة ومطوعة حسب الحي والمناسبة والجمهور</td>
+                    </tr>
+                    <tr>
+                      <td><strong>الموثوقية الحديثية</strong></td>
+                      <td>تعتمد على نص الخطيب القديم بلا تدقيق آلي</td>
+                      <td>معرضة للهلوسة واختلاق الأحاديث والأسانيد</td>
+                      <td class="col-highlight">تأصيل منضبط وموجه للمصادر المعتمدة ونصوص محققة</td>
+                    </tr>
+                    <tr>
+                      <td><strong>الخصوصية</strong></td>
+                      <td>عامة ومنشورة ومتاحة للجميع</td>
+                      <td>تُستخدم البيانات في تدريب النماذج السحابية للشركات</td>
+                      <td class="col-highlight">خصوصية مطلقة (Zero-Database وتخزين محلي 100%)</td>
+                    </tr>
+                    <tr>
+                      <td><strong>سير العمل (Workflow)</strong></td>
+                      <td>نسخ ولصق يدوي مبعثر واستنزاف للوقت</td>
+                      <td>محادثة غير مهيكلة تتطلب تلقيناً وتوجيهاً معقداً</td>
+                      <td class="col-highlight">معالج منبري مخصص من 5 خطوات في ثوانٍ معدودة</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="criterion-card">
+            <h3 class="criterion-card-title">
+              <span>💎</span> القيمة المضافة الحقيقية
+            </h3>
+            <div class="criterion-card-content">
+              <ul class="sub-item-list">
+                <li><strong>التوطين الشرعي والبلاغي:</strong> توجيه الذكاء الاصطناعي لفهم التقاليد المنبرية الإسلامية وحسن التخلص والدعاء المناسب.</li>
+                <li><strong>احترام هيبة مكان الخطيب (Co-pilot وليس Autopilot):</strong> المنصة تمكن الخطيب ولا تصادره، وتذكره بميثاق المسؤولية المنبرية والأمانة العلمية.</li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ==================== CRITERION 6 ==================== -->
+      <section id="criterion-6" class="criterion-section">
+        <div class="criterion-title-group">
+          <span class="criterion-badge-header">المعيار السادس • الوزن: 10%</span>
+          <h2 class="criterion-headline">القدرة على التنفيذ وتغطية المهام</h2>
+        </div>
+
+        <div class="criterion-cards-stack">
+          
+          <div class="criterion-card">
+            <h3 class="criterion-card-title">
+              <span>🏆</span> الأدلة المباشرة على القدرة التنفيذية
+            </h3>
+            <div class="criterion-card-content">
+              <ul class="sub-item-list">
+                <li>تقديم منتج رقمي متكامل وحي يعمل على الإنترنت (<a href="https://khatiib.online" target="_blank" rel="noopener noreferrer" style="color: var(--gold-primary); text-decoration: underline;">https://khatiib.online</a>)، وليس مجرد فكرة نظرية أو تصميم أولي.</li>
+                <li>تصميم وبرمجة نظام متكامل يجمع بين أحدث تقنيات الويب السحابية (<code>TanStack Start</code>, <code>React 19</code>, <code>Cloudflare Edge</code>, <code>Tailwind v4</code>).</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="criterion-card">
+            <h3 class="criterion-card-title">
+              <span>🧩</span> تكامل وتغطية مجالات المشروع
+            </h3>
+            <div class="criterion-card-content">
+              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin-top: 0.5rem;">
+                
+                <div style="background: var(--bg-surface); padding: 1.2rem; border-radius: 12px; border: 1px solid var(--gold-border);">
+                  <div style="color: var(--gold-primary); font-weight: 700; margin-bottom: 0.5rem;">١. المسار التقني والذكاء الاصطناعي</div>
+                  <p style="font-size: 0.88rem; color: var(--text-secondary); line-height: 1.6; margin: 0;">
+                    ضبط الـ Prompts، التوليد المتوازي السريع، إدارة الحالة والـ Routing، والتخزين المحلي الآمن.
+                  </p>
+                </div>
+
+                <div style="background: var(--bg-surface); padding: 1.2rem; border-radius: 12px; border: 1px solid var(--gold-border);">
+                  <div style="color: var(--gold-primary); font-weight: 700; margin-bottom: 0.5rem;">٢. تجربة المستخدم والتصميم (UI/UX)</div>
+                  <p style="font-size: 0.88rem; color: var(--text-secondary); line-height: 1.6; margin: 0;">
+                    نمذجة سلوكية ومعيارية دقيقة لاحتياجات الخطباء مبنية على محاكاة متطلبات شريحة تمثيلية، وثيم بصري رصين مستوحى من وقار المساجد.
+                  </p>
+                </div>
+
+                <div style="background: var(--bg-surface); padding: 1.2rem; border-radius: 12px; border: 1px solid var(--gold-border);">
+                  <div style="color: var(--gold-primary); font-weight: 700; margin-bottom: 0.5rem;">٣. المسار العلمي والشرعي</div>
+                  <p style="font-size: 0.88rem; color: var(--text-secondary); line-height: 1.6; margin: 0;">
+                    ضبط معايير السلامة العلمية والاستناد للبوابات الحديثية والفقهية المعتمدة وميثاق المنبر.
+                  </p>
+                </div>
+
+                <div style="background: var(--bg-surface); padding: 1.2rem; border-radius: 12px; border: 1px solid var(--gold-border);">
+                  <div style="color: var(--gold-primary); font-weight: 700; margin-bottom: 0.5rem;">٤. مسار الجودة والاختبار</div>
+                  <p style="font-size: 0.88rem; color: var(--text-secondary); line-height: 1.6; margin: 0;">
+                    اختبارات استقرار الخوادم، سرعة الاستجابة، ونظام استطلاع الرأي المدمج لحظياً.
+                  </p>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- Institutional Sign-off Section -->
+      <section style="margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--gold-border);">
+        <div style="background: var(--bg-surface-elevated); border: 1px solid var(--gold-border); border-radius: 18px; padding: 2rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1.5rem;">
+          <div>
+            <h3 style="color: var(--text-primary); font-size: 1.2rem; font-weight: 800; margin-bottom: 0.35rem;">
+              اعتماد توثيق معايير الترشيح والقبول
+            </h3>
+            <p style="color: var(--text-muted); font-size: 0.9rem; margin: 0;">
+              مشروع منصة «خَطِيب» — مسار التقنيات الإسلامية وتطبيقات الذكاء الاصطناعي التوليدي.
+            </p>
+          </div>
+          <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+            <a href="index.html" class="btn-footer-link" style="border: 1px solid var(--gold-border); padding: 0.5rem 1rem; border-radius: 8px; text-decoration: none; color: var(--text-primary); font-size: 0.88rem;">
+              📄 دراسة تجربة المستخدم
+            </a>
+            <a href="prd.html" class="btn-footer-link" style="border: 1px solid var(--gold-border); padding: 0.5rem 1rem; border-radius: 8px; text-decoration: none; color: var(--text-primary); font-size: 0.88rem;">
+              📋 وثيقة الـ PRD
+            </a>
+            <a href="https://khatiib.online" target="_blank" rel="noopener noreferrer" style="background: var(--gold-gradient); color: #fff; padding: 0.5rem 1.25rem; border-radius: 8px; text-decoration: none; font-weight: 700; font-size: 0.88rem;">
+              🌐 فتح المنصة الحية
+            </a>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <span class="footer-logo">«خَطِيب»</span>
+          <span class="footer-slogan">«كلمة تُؤثِر.. وتقنية تُمكّن»</span>
+        </div>
+        <p class="footer-copy">
+          جميع حقوق التوثيق والبرمجة محفوظة © 2026 — منصة خَطِيب (Khatiib).
+        </p>
+        <div class="footer-actions">
+          <a href="https://khatiib.online" target="_blank" rel="noopener noreferrer" class="btn-footer-link" style="border-color: rgba(197, 168, 128, 0.5); color: var(--gold-primary);" title="زيارة منصة خَطِيب الحية">
+            <span>🌐 المنصة الحية (khatiib.online)</span>
+          </a>
+          <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="btn-top" title="العودة لأعلى الصفحة">
+            ↑ أعلى الصفحة
+          </button>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
